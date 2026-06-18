@@ -161,65 +161,69 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
                 ),
                 const SizedBox(height: 24),
 
-                // 2. Bento Grid KPI Summary
-                GridView.count(
-                  crossAxisCount: 2,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  childAspectRatio: 1.4,
+                // 2. Bento Grid KPI Summary (Compact 4-column row)
+                Row(
                   children: [
-                    _buildKpiCard(
-                      title: 'AVG. COMPLIANCE',
-                      value: '$avgSystemScore%',
-                      icon: Icons.donut_large_rounded,
-                      color: ObsidianTheme.primary,
-                      subtitle: '${completedAttempts.length} exams reviewed',
+                    Expanded(
+                      child: _buildCompactKpiCard(
+                        title: 'COMPLIANCE',
+                        value: '$avgSystemScore%',
+                        icon: Icons.donut_large_rounded,
+                        color: ObsidianTheme.primary,
+                      ),
                     ),
-                    _buildKpiCard(
-                      title: 'TOTAL VIVAS',
-                      value: '${attempts.length}',
-                      icon: Icons.assignment_turned_in_rounded,
-                      color: ObsidianTheme.tertiary,
-                      subtitle: '${completedAttempts.length} Completed • ${attempts.length - completedAttempts.length} In-Progress',
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _buildCompactKpiCard(
+                        title: 'TOTAL VIVAS',
+                        value: '${attempts.length}',
+                        icon: Icons.assignment_turned_in_rounded,
+                        color: ObsidianTheme.tertiary,
+                      ),
                     ),
-                    _buildKpiCard(
-                      title: 'QUESTION BANK',
-                      value: '${questions.length}',
-                      icon: Icons.quiz_rounded,
-                      color: Colors.amber,
-                      subtitle: 'Active clinical items',
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _buildCompactKpiCard(
+                        title: 'QUESTIONS',
+                        value: '${questions.length}',
+                        icon: Icons.quiz_rounded,
+                        color: Colors.amber,
+                      ),
                     ),
-                    _buildKpiCard(
-                      title: 'ACTIVE STAFF',
-                      value: '$totalActiveStaff',
-                      icon: Icons.people_alt_rounded,
-                      color: Colors.cyan,
-                      subtitle: '$compliantCount certified compliant',
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _buildCompactKpiCard(
+                        title: 'ACTIVE STAFF',
+                        value: '$totalActiveStaff',
+                        icon: Icons.people_alt_rounded,
+                        color: Colors.cyan,
+                      ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 20),
 
-                // 3. Stacked Horizontal Compliance Bar
-                _buildComplianceBreakdownCard(
-                  compliant: compliantCount,
-                  atRisk: atRiskCount,
-                  nonCompliant: nonCompliantCount,
-                  uncertified: uncertifiedCount,
+                // 3. Small Visualizations in Small Sections (Side-by-side compact charts)
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: _buildComplianceBreakdownCard(
+                        compliant: compliantCount,
+                        atRisk: atRiskCount,
+                        nonCompliant: nonCompliantCount,
+                        uncertified: uncertifiedCount,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: _buildStoreProficiencyCard(sortedStores),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 20),
 
-                // 4. Store Proficiency Analysis
-                _buildStoreProficiencyCard(sortedStores),
-                const SizedBox(height: 20),
-
-                // 5. Admin Quick Actions
-                _buildQuickActionsCard(context),
-                const SizedBox(height: 20),
-
-                // 6. Recent Vivas Activity Table
+                // 4. Recent Vivas Activity Table
                 _buildRecentVivasFeed(completedAttempts, employees),
                 const SizedBox(height: 24),
               ],
@@ -230,57 +234,40 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
     );
   }
 
-  Widget _buildKpiCard({
+  Widget _buildCompactKpiCard({
     required String title,
     required String value,
     required IconData icon,
     required Color color,
-    required String subtitle,
   }) {
     return PharmaQCard(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                  color: ObsidianTheme.onSurfaceVariant,
-                ),
-              ),
-              Icon(icon, color: color, size: 20),
-            ],
-          ),
+          Icon(icon, color: color, size: 20),
           const SizedBox(height: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                value,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                subtitle,
-                style: const TextStyle(
-                  fontSize: 9,
-                  color: ObsidianTheme.onSurfaceVariant,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          )
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              letterSpacing: -0.5,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 8,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.5,
+              color: ObsidianTheme.onSurfaceVariant,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
         ],
       ),
     );
@@ -293,80 +280,78 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
     required int uncertified,
   }) {
     final int total = compliant + atRisk + nonCompliant + uncertified;
-    final double pctCompliant = total > 0 ? (compliant / total) : 0.0;
-    final double pctAtRisk = total > 0 ? (atRisk / total) : 0.0;
-    final double pctNonCompliant = total > 0 ? (nonCompliant / total) : 0.0;
-    final double pctUncertified = total > 0 ? (uncertified / total) : 0.0;
+    final List<double> values = [
+      compliant.toDouble(),
+      atRisk.toDouble(),
+      nonCompliant.toDouble(),
+      uncertified.toDouble(),
+    ];
+    final List<Color> colors = [
+      ObsidianTheme.tertiary,
+      Colors.orange,
+      ObsidianTheme.error,
+      ObsidianTheme.outline,
+    ];
 
     return PharmaQCard(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(12),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
-            'STAFF COMPLIANCE STATUS',
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.5,
-              color: ObsidianTheme.onSurfaceVariant,
-            ),
-          ),
-          const SizedBox(height: 16),
-          // Stacked Progress Bar
-          ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: SizedBox(
-              height: 20,
-              child: Row(
-                children: [
-                  if (compliant > 0)
-                    Expanded(
-                      flex: (pctCompliant * 100).round(),
-                      child: Container(color: ObsidianTheme.tertiary),
-                    ),
-                  if (atRisk > 0)
-                    Expanded(
-                      flex: (pctAtRisk * 100).round(),
-                      child: Container(color: Colors.orange),
-                    ),
-                  if (nonCompliant > 0)
-                    Expanded(
-                      flex: (pctNonCompliant * 100).round(),
-                      child: Container(color: ObsidianTheme.error),
-                    ),
-                  if (uncertified > 0)
-                    Expanded(
-                      flex: (pctUncertified * 100).round(),
-                      child: Container(color: ObsidianTheme.outline),
-                    ),
-                  if (total == 0)
-                    Expanded(
-                      child: Container(color: ObsidianTheme.outlineVariant),
-                    ),
-                ],
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'STAFF COMPLIANCE',
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.0,
+                color: ObsidianTheme.onSurfaceVariant,
               ),
             ),
           ),
           const SizedBox(height: 16),
-          // Legend
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildLegendItem(
-                  'Compliant (>=80%)', '$compliant', ObsidianTheme.tertiary),
-              _buildLegendItem('At Risk (60-79%)', '$atRisk', Colors.orange),
-            ],
+          SizedBox(
+            width: 75,
+            height: 75,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                CustomPaint(
+                  size: const Size(75, 75),
+                  painter: DonutChartPainter(values: values, colors: colors),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '$total',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: ObsidianTheme.onSurface,
+                      ),
+                    ),
+                    const Text(
+                      'Staff',
+                      style: TextStyle(
+                        fontSize: 8,
+                        color: ObsidianTheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildLegendItem(
-                  'Non-Compliant (<60%)', '$nonCompliant', ObsidianTheme.error),
-              _buildLegendItem('Uncertified (No Vivas)', '$uncertified', ObsidianTheme.outline),
-            ],
-          )
+          const SizedBox(height: 16),
+          _buildLegendItem('Compliant', '$compliant', ObsidianTheme.tertiary),
+          const SizedBox(height: 4),
+          _buildLegendItem('At Risk', '$atRisk', Colors.orange),
+          const SizedBox(height: 4),
+          _buildLegendItem('Non-Compliant', '$nonCompliant', ObsidianTheme.error),
+          const SizedBox(height: 4),
+          _buildLegendItem('Uncertified', '$uncertified', ObsidianTheme.outline),
         ],
       ),
     );
@@ -376,18 +361,23 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
     return Row(
       children: [
         Container(
-          width: 10,
-          height: 10,
+          width: 8,
+          height: 8,
           decoration: BoxDecoration(color: color, shape: BoxShape.circle),
         ),
-        const SizedBox(width: 8),
-        Text(
-          '$label: ',
-          style: const TextStyle(fontSize: 11, color: ObsidianTheme.onSurfaceVariant),
+        const SizedBox(width: 6),
+        Expanded(
+          child: Text(
+            label,
+            style: const TextStyle(fontSize: 9, color: ObsidianTheme.onSurfaceVariant),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
+        const SizedBox(width: 4),
         Text(
           count,
-          style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
         ),
       ],
     );
@@ -395,148 +385,105 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
 
   Widget _buildStoreProficiencyCard(List<MapEntry<String, double>> sortedStores) {
     return PharmaQCard(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'STORE CLINICAL PROFICIENCY',
+            'STORE PROFICIENCY',
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 10,
               fontWeight: FontWeight.bold,
-              letterSpacing: 1.5,
+              letterSpacing: 1.0,
               color: ObsidianTheme.onSurfaceVariant,
             ),
           ),
           const SizedBox(height: 16),
           if (sortedStores.isEmpty)
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
+            const SizedBox(
+              height: 125,
               child: Center(
-                  child: Text('No store assessment data available',
-                      style: TextStyle(color: ObsidianTheme.onSurfaceVariant))),
+                child: Text(
+                  'No data available',
+                  style: TextStyle(fontSize: 10, color: ObsidianTheme.onSurfaceVariant),
+                ),
+              ),
             )
           else
-            ...sortedStores.map((entry) {
-              final store = entry.key;
-              final score = entry.value;
-              final color = score >= 80
-                  ? ObsidianTheme.tertiary
-                  : (score >= 60 ? Colors.orange : ObsidianTheme.error);
+            SizedBox(
+              height: 125,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: sortedStores.take(4).map((entry) {
+                  final store = entry.key;
+                  final score = entry.value;
+                  final color = score >= 80
+                      ? ObsidianTheme.tertiary
+                      : (score >= 60 ? Colors.orange : ObsidianTheme.error);
+                  
+                  String shortName = store;
+                  if (store.toLowerCase().startsWith('main pharmacy ')) {
+                    shortName = 'Phar ' + store.substring(14);
+                  } else if (store.toLowerCase().startsWith('store ')) {
+                    shortName = 'St ' + store.substring(6);
+                  } else if (store.length > 7) {
+                    shortName = store.substring(0, 5) + '..';
+                  }
 
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(store,
-                            style: const TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.w500)),
-                        Text('$score%',
-                            style: TextStyle(
-                                fontSize: 13,
-                                color: color,
-                                fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    const SizedBox(height: 6),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(2),
-                      child: LinearProgressIndicator(
-                        value: score / 100.0,
-                        backgroundColor: ObsidianTheme.surfaceContainerHighest,
-                        color: color,
-                        minHeight: 6,
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '${score.toInt()}%',
+                        style: TextStyle(
+                          fontSize: 9,
+                          fontWeight: FontWeight.bold,
+                          color: color,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            }).toList(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildQuickActionsCard(BuildContext context) {
-    return PharmaQCard(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'SYSTEM QUICK ACTIONS',
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.5,
-              color: ObsidianTheme.onSurfaceVariant,
+                      const SizedBox(height: 4),
+                      Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          Container(
+                            width: 14,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              color: ObsidianTheme.surfaceContainerHighest,
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                          ),
+                          Container(
+                            width: 14,
+                            height: 80 * (score / 100.0),
+                            decoration: BoxDecoration(
+                              color: color,
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      SizedBox(
+                        width: 40,
+                        child: Text(
+                          shortName,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 8,
+                            color: ObsidianTheme.onSurfaceVariant,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
+              ),
             ),
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(
-                child: _buildActionTile(
-                  icon: Icons.people_outline,
-                  label: 'Manage Roles',
-                  onTap: () => context.push('/admin/roles'),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _buildActionTile(
-                  icon: Icons.admin_panel_settings_outlined,
-                  label: 'Audit Logs',
-                  onTap: () => context.push('/admin/audit'),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _buildActionTile(
-                  icon: Icons.assignment_outlined,
-                  label: 'Compliance Report',
-                  onTap: () => context.push('/admin/compliance'),
-                ),
-              ),
-            ],
-          )
         ],
-      ),
-    );
-  }
-
-  Widget _buildActionTile({
-    required IconData icon,
-    required String label,
-    required VoidCallback onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(8),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
-        decoration: BoxDecoration(
-          color: ObsidianTheme.surfaceContainer,
-          border: Border.all(color: ObsidianTheme.outlineVariant),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Column(
-          children: [
-            Icon(icon, color: ObsidianTheme.primary, size: 24),
-            const SizedBox(height: 8),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -660,3 +607,58 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
     );
   }
 }
+
+class DonutChartPainter extends CustomPainter {
+  final List<double> values;
+  final List<Color> colors;
+
+  DonutChartPainter({required this.values, required this.colors});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double total = values.fold(0, (sum, val) => sum + val);
+    if (total == 0) {
+      final paint = Paint()
+        ..color = ObsidianTheme.surfaceContainerHighest
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 8;
+      canvas.drawCircle(size.center(Offset.zero), size.width / 2 - 4, paint);
+      return;
+    }
+
+    final double center = size.width / 2;
+    final double radius = size.width / 2 - 5;
+    final rect = Rect.fromCircle(center: Offset(center, center), radius: radius);
+
+    double startAngle = -3.141592653589793 / 2; // Start from top
+    int nonZeroCount = values.where((v) => v > 0).length;
+    
+    // If there is only one non-zero segment, don't use gaps
+    final double gapAngle = nonZeroCount > 1 ? 0.08 : 0.0;
+
+    for (int i = 0; i < values.length; i++) {
+      if (values[i] == 0) continue;
+      final double sweepAngle = (values[i] / total) * 2 * 3.141592653589793;
+      if (sweepAngle <= 0.001) continue;
+      
+      final double effectiveGap = (sweepAngle > gapAngle * 1.5) ? gapAngle : 0.0;
+      final double drawStart = startAngle + effectiveGap / 2;
+      final double drawSweep = sweepAngle - effectiveGap;
+
+      final paint = Paint()
+        ..color = colors[i]
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 8
+        ..strokeCap = StrokeCap.butt;
+      
+      canvas.drawArc(rect, drawStart, drawSweep, false, paint);
+      startAngle += sweepAngle;
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant DonutChartPainter oldDelegate) {
+    return oldDelegate.values != values || oldDelegate.colors != colors;
+  }
+}
+
