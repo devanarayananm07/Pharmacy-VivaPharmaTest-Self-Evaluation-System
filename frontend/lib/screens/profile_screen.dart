@@ -17,19 +17,19 @@ class ProfileScreen extends ConsumerStatefulWidget {
 
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   final List<String> _maleAvatars = [
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Felix&top=shortHairShortFlat&facialHairProbability=100&facialHair=beardMajestic', // Male Pharmacist/Doctor illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Jack&top=shortHairTheCaesarSidePart&facialHairProbability=100&facialHair=beardLight', // Male Specialist illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=James&top=shortHairSides&facialHairProbability=100&facialHair=beardMedium', // Male friendly illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Christian&top=shortHairShortWaved&facialHairProbability=100&facialHair=moustacheFancy', // Male medical-style illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=George&top=shaggyMullet&facialHairProbability=0', // Male corporate style illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Felix&top=shortHairShortFlat&facialHairProbability=100&facialHair=beardMajestic&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Male Pharmacist/Doctor illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Jack&top=shortHairTheCaesarSidePart&facialHairProbability=100&facialHair=beardLight&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Male Specialist illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=James&top=shortHairSides&facialHairProbability=100&facialHair=beardMedium&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Male friendly illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Christian&top=shortHairShortWaved&facialHairProbability=100&facialHair=moustacheFancy&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Male medical-style illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=George&top=shaggyMullet&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Male corporate style illustration
   ];
 
   final List<String> _femaleAvatars = [
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Maria&top=longButNotTooLong&facialHairProbability=0', // Female Pharmacist/Professional illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Sara&top=straight02&facialHairProbability=0', // Female clinical scientist illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Aria&top=curly&facialHairProbability=0', // Female friendly illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Lulu&top=bun&facialHairProbability=0', // Female smart glasses illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Heidi&top=bob&facialHairProbability=0', // Female doctor illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Maria&top=longButNotTooLong&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Female Pharmacist/Professional illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Sara&top=straight02&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Female clinical scientist illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Aria&top=curly&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Female friendly illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Lulu&top=bun&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Female smart glasses illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Heidi&top=bob&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Female doctor illustration
   ];
 
   void _saveAvatar(String url) {
