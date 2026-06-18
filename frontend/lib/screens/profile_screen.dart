@@ -17,19 +17,21 @@ class ProfileScreen extends ConsumerStatefulWidget {
 
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   final List<String> _maleAvatars = [
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Felix&top=shortFlat&facialHairProbability=100&facialHair=beardMajestic&accessories=prescription01&accessoriesProbability=100&apparel=collarAndShirt&apparelColor=ffffff&mouth=smile&eyebrows=default', // Senior Pharmacist / Mentor
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Jack&top=theCaesar&facialHairProbability=100&facialHair=beardLight&accessoriesProbability=0&apparel=overall&apparelColor=65c9ff&mouth=smile&eyebrows=default', // Clinical Pharmacist (Blue Scrubs)
-    'https://api.dicebear.com/7.x/avataaars/png?seed=James&top=sides&facialHairProbability=100&facialHair=beardMedium&accessoriesProbability=0&apparel=overall&apparelColor=26a69a&mouth=smile&eyebrows=default', // Junior Pharmacist (Teal Scrubs)
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Christian&top=shortWaved&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&apparelColor=e0e0e0&mouth=smile&eyebrows=default', // Trainee / Student
-    'https://api.dicebear.com/7.x/avataaars/png?seed=George&top=shaggyMullet&facialHairProbability=80&facialHair=beardLight&accessories=prescription02&accessoriesProbability=100&apparel=collarAndShirt&apparelColor=ffffff&mouth=smile&eyebrows=default', // Chief Pharmacist / Admin
+    'assets/avatars/avatar_0_0.png',
+    'assets/avatars/avatar_0_1.png',
+    'assets/avatars/avatar_0_2.png',
+    'assets/avatars/avatar_0_3.png',
+    'assets/avatars/avatar_1_0.png',
+    'assets/avatars/avatar_1_1.png',
   ];
 
   final List<String> _femaleAvatars = [
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Maria&top=longButNotTooLong&facialHairProbability=0&accessories=prescription01&accessoriesProbability=100&apparel=collarAndShirt&apparelColor=ffffff&mouth=smile&eyebrows=default', // Senior Pharmacist / Mentor
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Sara&top=straight02&facialHairProbability=0&accessoriesProbability=0&apparel=overall&apparelColor=65c9ff&mouth=smile&eyebrows=default', // Clinical Pharmacist (Blue Scrubs)
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Aria&top=curly&facialHairProbability=0&accessoriesProbability=0&apparel=overall&apparelColor=26a69a&mouth=smile&eyebrows=default', // Junior Pharmacist (Teal Scrubs)
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Lulu&top=bun&facialHairProbability=0&accessories=prescription02&accessoriesProbability=100&apparel=collarAndShirt&apparelColor=e0e0e0&mouth=smile&eyebrows=default', // Trainee / Student
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Heidi&top=bob&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&apparelColor=ffffff&mouth=smile&eyebrows=default', // Chief Pharmacist / Admin
+    'assets/avatars/avatar_1_2.png',
+    'assets/avatars/avatar_1_3.png',
+    'assets/avatars/avatar_2_0.png',
+    'assets/avatars/avatar_2_1.png',
+    'assets/avatars/avatar_2_2.png',
+    'assets/avatars/avatar_2_3.png',
   ];
 
   void _saveAvatar(String url) {
@@ -84,7 +86,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         ),
                         child: CircleAvatar(
                           radius: 26,
-                          backgroundImage: NetworkImage(url),
+                          backgroundImage: url.startsWith('assets/')
+                              ? AssetImage(url)
+                              : NetworkImage(url) as ImageProvider,
                         ),
                       ),
                     );
@@ -116,7 +120,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         ),
                         child: CircleAvatar(
                           radius: 26,
-                          backgroundImage: NetworkImage(url),
+                          backgroundImage: url.startsWith('assets/')
+                              ? AssetImage(url)
+                              : NetworkImage(url) as ImageProvider,
                         ),
                       ),
                     );

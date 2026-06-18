@@ -15,9 +15,18 @@ class ProfileAvatar extends ConsumerWidget {
     final avatarUrl = ref.watch(profileAvatarProvider);
     final authState = ref.watch(authProvider);
 
+    ImageProvider? imageProvider;
+    if (avatarUrl.isNotEmpty) {
+      if (avatarUrl.startsWith('assets/')) {
+        imageProvider = AssetImage(avatarUrl);
+      } else {
+        imageProvider = NetworkImage(avatarUrl);
+      }
+    }
+
     return CircleAvatar(
       radius: radius,
-      backgroundImage: avatarUrl.isNotEmpty ? NetworkImage(avatarUrl) : null,
+      backgroundImage: imageProvider,
       child: avatarUrl.isEmpty
           ? Text(
               (authState.employeeName ?? 'P')
