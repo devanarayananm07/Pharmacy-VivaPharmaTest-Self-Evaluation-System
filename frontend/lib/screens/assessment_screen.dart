@@ -417,22 +417,24 @@ class _AssessmentScreenState extends ConsumerState<AssessmentScreen> {
                       ),
                       const Spacer(),
                       ElevatedButton(
-                        onPressed: canSave ? () {
+                         onPressed: canSave ? () {
                           if (!hasSelected) {
+                            ScaffoldMessenger.of(context).clearSnackBars();
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Please select an option before saving.'),
-                                duration: Duration(seconds: 2),
+                                duration: Duration(seconds: 1),
                               ),
                             );
                             return;
                           }
                           final saved = ref.read(assessmentProvider.notifier).saveCurrentAnswer();
                           if (saved) {
+                            ScaffoldMessenger.of(context).clearSnackBars();
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Answer selection saved.'),
-                                duration: Duration(seconds: 2),
+                                duration: Duration(seconds: 1),
                               ),
                             );
                           }
@@ -768,13 +770,18 @@ class _AssessmentScreenState extends ConsumerState<AssessmentScreen> {
   }
 
   Widget _buildFeedbackArea(AssessmentState state, dynamic question) {
+    final savedAns = state.answers[state.currentIndex];
+    final isCorrect = savedAns != null && savedAns['brand_name'] == question['drug_name'];
+
+    if (!isCorrect) {
+      return const SizedBox.shrink();
+    }
+
     final options = state.mcqOptions[state.currentIndex] ?? [];
     final correctOption = options.firstWhere(
       (opt) => opt['brand_name'] == question['drug_name'],
       orElse: () => options.isNotEmpty ? options.first : {},
     );
-    final savedAns = state.answers[state.currentIndex];
-    final isCorrect = savedAns != null && savedAns['brand_name'] == question['drug_name'];
 
     final correctText = getCorrectOptionText(correctOption, state.difficulty);
 
