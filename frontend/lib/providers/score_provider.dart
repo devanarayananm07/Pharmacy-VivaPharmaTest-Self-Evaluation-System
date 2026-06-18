@@ -106,7 +106,13 @@ final scoreHistoryProvider = FutureProvider.autoDispose.family<ScoreStats, Score
   // Filter based on viewMode
   Iterable<dynamic> filtered = rawAttempts;
   if (filters.viewMode == 'self') {
-    filtered = filtered.where((a) => a['employee_id'] == employeeId);
+    filtered = filtered.where((a) {
+      if (a['employee_id'] != employeeId) return false;
+      // Exclude predefined mock attempts (att1, att2, etc.) for the self view
+      final idStr = a['id']?.toString() ?? '';
+      final isPredefinedMock = RegExp(r'^att\d+$').hasMatch(idStr);
+      return !isPredefinedMock;
+    });
   } else if (filters.viewMode == 'mentors') {
     filtered = filtered.where((a) {
       final aId = a['employee_id']?.toString().toLowerCase() ?? '';

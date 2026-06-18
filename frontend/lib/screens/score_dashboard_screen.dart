@@ -320,7 +320,7 @@ class _ScoreDashboardScreenState extends ConsumerState<ScoreDashboardScreen> {
                               const SizedBox(height: 16),
                               Text(
                                 isSelf
-                                    ? 'No Completed Exams Found'
+                                    ? 'No exam writed till now'
                                     : filters.viewMode == 'mentors'
                                         ? 'No Mentor Exams Found'
                                         : 'No Employee Exams Found',
@@ -329,7 +329,7 @@ class _ScoreDashboardScreenState extends ConsumerState<ScoreDashboardScreen> {
                               const SizedBox(height: 8),
                               Text(
                                 isSelf
-                                    ? 'Complete at least one exam on the Home tab to view score trends and proficiency reports.'
+                                    ? 'Complete at least one exam on the Study tab to view score trends and proficiency reports.'
                                     : filters.viewMode == 'mentors'
                                         ? 'No exam attempts matching the selected filters were completed by mentors.'
                                         : 'No exam attempts matching the selected filters were completed by other employees.',
