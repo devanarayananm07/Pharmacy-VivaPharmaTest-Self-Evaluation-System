@@ -85,3 +85,19 @@ class AdminNotifier extends Notifier<void> {
 final adminProvider = NotifierProvider<AdminNotifier, void>(() {
   return AdminNotifier();
 });
+
+final adminDashboardDataProvider = FutureProvider.autoDispose<Map<String, dynamic>>((ref) async {
+  final apiService = ref.watch(apiServiceProvider);
+  
+  final Future<List<dynamic>> attemptsFuture = apiService.getAttempts();
+  final Future<List<dynamic>> employeesFuture = apiService.getEmployees();
+  final Future<List<dynamic>> questionsFuture = apiService.getQuestions();
+  
+  final results = await Future.wait([attemptsFuture, employeesFuture, questionsFuture]);
+  
+  return {
+    'attempts': results[0],
+    'employees': results[1],
+    'questions': results[2],
+  };
+});

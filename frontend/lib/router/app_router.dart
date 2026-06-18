@@ -14,6 +14,7 @@ import '../screens/compliance_reporting_screen.dart';
 import '../screens/role_management_screen.dart';
 import '../screens/score_dashboard_screen.dart';
 import '../screens/exam_dashboard_screen.dart';
+import '../screens/admin_dashboard_screen.dart';
 
 // Batch Import & Export
 import '../screens/batch_import_mapping_screen.dart';
@@ -69,19 +70,11 @@ final routerProvider = Provider<GoRouter>((ref) {
 
       // Authenticated state redirection
       if (isLoggingIn) {
-        if (authState.role == 'Admin') {
-          return '/profile';
-        }
         return '/dashboard';
       }
 
       // Restrict access based on role privileges
       final targetPath = state.matchedLocation;
-
-      // Prevent Admin from visiting the dashboard/exam screen
-      if (targetPath == '/dashboard' && authState.role == 'Admin') {
-        return '/profile';
-      }
 
       final isAdminRoute = targetPath.startsWith('/admin') ||
                            targetPath.startsWith('/import') ||
@@ -92,9 +85,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         return '/dashboard';
       }
       if (isMentorRoute && authState.role != 'Admin' && authState.role != 'Mentor') {
-        if (authState.role == 'Admin') {
-          return '/profile';
-        }
         return '/dashboard';
       }
 
@@ -102,7 +92,16 @@ final routerProvider = Provider<GoRouter>((ref) {
     },
     routes: [
       GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
-      GoRoute(path: '/dashboard', builder: (context, state) => const DashboardScreen()),
+      GoRoute(
+        path: '/dashboard',
+        builder: (context, state) {
+          final role = ref.read(authProvider).role;
+          if (role == 'Admin') {
+            return const AdminDashboardScreen();
+          }
+          return const DashboardScreen();
+        },
+      ),
       GoRoute(path: '/study', builder: (context, state) => const StudyScreen()),
       GoRoute(path: '/assessment', builder: (context, state) => const AssessmentScreen()),
 

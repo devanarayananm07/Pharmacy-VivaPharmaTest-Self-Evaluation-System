@@ -17,19 +17,19 @@ class ProfileScreen extends ConsumerStatefulWidget {
 
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   final List<String> _maleAvatars = [
-    'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=256', // Male Pharmacist/Doctor
-    'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=256', // Male Specialist/Professional
-    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=256', // Male Portrait
-    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=256', // Male smiling portrait
-    'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256', // Male Executive
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Felix', // Male Pharmacist/Doctor illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Jack', // Male Specialist illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=James', // Male friendly illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Christian', // Male medical-style illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=George', // Male corporate style illustration
   ];
 
   final List<String> _femaleAvatars = [
-    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256', // Female Pharmacist/Professional
-    'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=256', // Female doctor/clinical scientist
-    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=256', // Female portrait
-    'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=256', // Female with glasses
-    'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=256', // Female portrait clinical
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Maria', // Female Pharmacist/Professional illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Sara', // Female clinical scientist illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Aria', // Female friendly illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Lulu', // Female smart glasses illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Heidi', // Female doctor illustration
   ];
 
   void _saveAvatar(String url) {
