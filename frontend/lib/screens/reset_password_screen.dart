@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../theme/obsidian_theme.dart';
 import '../components/top_app_bar.dart';
 import '../providers/auth_provider.dart';
+import '../components/profile_avatar.dart';
 
 class ResetPasswordScreen extends ConsumerStatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -103,21 +104,10 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
         appBar: TopAppBar(
           title: 'PharmaQ',
           showBackButton: !forcePasswordChange, // Prevent going back during forced change
-          actions: [
+          actions: const [
             Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Container(
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: ObsidianTheme.outlineVariant),
-                  image: const DecorationImage(
-                    image: NetworkImage('https://lh3.googleusercontent.com/aida-public/AB6AXuDqvIVbJ8l2nlVvqgsUD0JYQFD9ZE_Pwa2Js6aAzC9o8ud-erkEhFE1_ESvA6skwLIrojvwMxksLIwbTphVr_h_yxr3mUQ-Kpv52ZqwPcOXIMrT67YzgqK3kj9UVb0N4b-s_Pf2hLjbl1AnBU881WJIBkGoz5tEyhPlxls5uxYta6K8ewzQjs476WCXWgz-DYn2NZYyo_QO0NNYYxI00nLk6qQYhBl8oDo6sw0k0IZJ_p-cz62JQngxRwuz2uIvBBsl2HlGDQr-WqY'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+              padding: EdgeInsets.only(right: 16.0),
+              child: ProfileAvatar(radius: 16),
             )
           ],
         ),

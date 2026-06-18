@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import '../theme/obsidian_theme.dart';
 import '../components/top_app_bar.dart';
 import '../components/bottom_nav_bar.dart';
+import '../components/profile_avatar.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../providers/auth_provider.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
@@ -16,43 +16,26 @@ class ProfileScreen extends ConsumerStatefulWidget {
 }
 
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
-  final List<String> _avatars = [
+  final List<String> _maleAvatars = [
     'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=256', // Male Pharmacist/Doctor
-    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256', // Female Pharmacist/Professional
-    'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=256', // Male Clinic Specialist
-    'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=256', // Female Doctor/Mentor
-    'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&q=80&w=256', // Medical Clinic Icon
+    'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=256', // Male Specialist/Professional
+    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=256', // Male Portrait
+    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=256', // Male smiling portrait
+    'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256', // Male Executive
   ];
 
-  String _selectedAvatar = '';
+  final List<String> _femaleAvatars = [
+    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256', // Female Pharmacist/Professional
+    'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=256', // Female doctor/clinical scientist
+    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=256', // Female portrait
+    'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=256', // Female with glasses
+    'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=256', // Female portrait clinical
+  ];
 
-  @override
-  void initState() {
-    super.initState();
-    _loadProfileData();
+  void _saveAvatar(String url) {
+    ref.read(profileAvatarProvider.notifier).setAvatar(url);
   }
 
-  Future<void> _loadProfileData() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final savedAvatar = prefs.getString('profile_avatar_url');
-      if (savedAvatar != null) {
-        setState(() {
-          _selectedAvatar = savedAvatar;
-        });
-      }
-    } catch (_) {}
-  }
-
-  Future<void> _saveAvatar(String url) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('profile_avatar_url', url);
-      setState(() {
-        _selectedAvatar = url;
-      });
-    } catch (_) {}
-  }
 
   void _handleLogout() async {
     await ref.read(authProvider.notifier).logout();
@@ -62,7 +45,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   void _showAvatarPicker() {
-    final textController = TextEditingController(text: _selectedAvatar);
+    final selectedAvatar = ref.read(profileAvatarProvider);
+    final textController = TextEditingController(text: selectedAvatar);
     showDialog(
       context: context,
       builder: (context) {
@@ -75,38 +59,70 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text('Choose one of our professional avatars:', style: TextStyle(fontSize: 13, color: ObsidianTheme.onSurfaceVariant)),
-                const SizedBox(height: 16),
-                SizedBox(
-                  height: 80,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _avatars.length,
-                    itemBuilder: (context, index) {
-                      final url = _avatars[index];
-                      final isSel = _selectedAvatar == url;
-                      return GestureDetector(
-                        onTap: () {
-                          _saveAvatar(url);
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 12),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: isSel ? ObsidianTheme.primary : Colors.transparent,
-                              width: 3,
-                            ),
-                          ),
-                          child: CircleAvatar(
-                            radius: 32,
-                            backgroundImage: NetworkImage(url),
+                const SizedBox(height: 20),
+                
+                // Men's Variety Header
+                const Text('MEN\'S VARIETY', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1.2, color: ObsidianTheme.onSurfaceVariant)),
+                const SizedBox(height: 10),
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: _maleAvatars.map((url) {
+                    final isSel = selectedAvatar == url;
+                    return GestureDetector(
+                      onTap: () {
+                        _saveAvatar(url);
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: isSel ? ObsidianTheme.primary : Colors.transparent,
+                            width: 3,
                           ),
                         ),
-                      );
-                    },
-                  ),
+                        child: CircleAvatar(
+                          radius: 26,
+                          backgroundImage: NetworkImage(url),
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
+                
+                const SizedBox(height: 20),
+                
+                // Women's Variety Header
+                const Text('WOMEN\'S VARIETY', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1.2, color: ObsidianTheme.onSurfaceVariant)),
+                const SizedBox(height: 10),
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: _femaleAvatars.map((url) {
+                    final isSel = selectedAvatar == url;
+                    return GestureDetector(
+                      onTap: () {
+                        _saveAvatar(url);
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: isSel ? ObsidianTheme.primary : Colors.transparent,
+                            width: 3,
+                          ),
+                        ),
+                        child: CircleAvatar(
+                          radius: 26,
+                          backgroundImage: NetworkImage(url),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+
                 const SizedBox(height: 24),
                 const Divider(color: ObsidianTheme.outlineVariant),
                 const SizedBox(height: 12),
@@ -212,22 +228,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: TopAppBar(
+      appBar: const TopAppBar(
         title: 'PharmaQ',
         showBackButton: false,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: CircleAvatar(
-              radius: 16,
-              backgroundImage: _selectedAvatar.isNotEmpty ? NetworkImage(_selectedAvatar) : null,
-              child: _selectedAvatar.isEmpty
-                  ? Text(
-                      (authState.employeeName ?? 'P').split(' ').map((s) => s.isNotEmpty ? s[0] : '').take(2).join().toUpperCase(),
-                      style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-                    )
-                  : null,
-            ),
+            padding: EdgeInsets.only(right: 16.0),
+            child: ProfileAvatar(radius: 16),
           )
         ],
       ),
@@ -250,16 +257,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             shape: BoxShape.circle,
                             gradient: LinearGradient(colors: [ObsidianTheme.primary, ObsidianTheme.tertiary]),
                           ),
-                          child: CircleAvatar(
-                            radius: 44,
-                            backgroundImage: _selectedAvatar.isNotEmpty ? NetworkImage(_selectedAvatar) : null,
-                            child: _selectedAvatar.isEmpty
-                                ? Text(
-                                    (authState.employeeName ?? 'P').split(' ').map((s) => s.isNotEmpty ? s[0] : '').take(2).join().toUpperCase(),
-                                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                                  )
-                                : null,
-                          ),
+                          child: const ProfileAvatar(radius: 44),
                         ),
                         Positioned(
                           bottom: 0,

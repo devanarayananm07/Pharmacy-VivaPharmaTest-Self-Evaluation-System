@@ -40,7 +40,12 @@ class _ScoreDashboardScreenState extends ConsumerState<ScoreDashboardScreen> {
     super.initState();
     Future.microtask(() {
       if (mounted) {
-        ref.read(scoreFiltersProvider.notifier).reset();
+        final authState = ref.read(authProvider);
+        if (authState.role == 'Admin') {
+          ref.read(scoreFiltersProvider.notifier).setViewMode('employees');
+        } else {
+          ref.read(scoreFiltersProvider.notifier).reset();
+        }
       }
     });
     _loadFilterOptions();
@@ -135,7 +140,8 @@ class _ScoreDashboardScreenState extends ConsumerState<ScoreDashboardScreen> {
                 Builder(
                   builder: (context) {
                     final List<Map<String, String>> segments = [
-                      {'label': 'My Scores', 'value': 'self'},
+                      if (authState.role != 'Admin')
+                        {'label': 'My Scores', 'value': 'self'},
                       if (authState.role == 'Admin')
                         {'label': 'Mentor Scores', 'value': 'mentors'},
                       if (authState.role == 'Admin' || authState.role == 'Mentor')

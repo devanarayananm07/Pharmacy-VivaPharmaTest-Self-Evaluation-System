@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../theme/obsidian_theme.dart';
 import '../components/top_app_bar.dart';
 import '../components/pharmaq_card.dart';
+import '../components/profile_avatar.dart';
 
-class ExamDashboardScreen extends StatefulWidget {
+class ExamDashboardScreen extends ConsumerStatefulWidget {
   const ExamDashboardScreen({super.key});
 
   @override
-  State<ExamDashboardScreen> createState() => _ExamDashboardScreenState();
+  ConsumerState<ExamDashboardScreen> createState() => _ExamDashboardScreenState();
 }
 
-class _ExamDashboardScreenState extends State<ExamDashboardScreen> {
+class _ExamDashboardScreenState extends ConsumerState<ExamDashboardScreen> {
   double _questionCount = 25;
 
   @override
@@ -26,12 +28,9 @@ class _ExamDashboardScreenState extends State<ExamDashboardScreen> {
               TextButton(onPressed: () {}, child: const Text('Resources', style: TextStyle(color: ObsidianTheme.onSurfaceVariant))),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: CircleAvatar(
-              radius: 16,
-              backgroundImage: const NetworkImage('https://lh3.googleusercontent.com/aida-public/AB6AXuCWsz7U0-Ix9hw5NivXCYGd3jTAKdxSglHhMSrcZRQCE0slXH9CVk8brQ6nCtc-kqn3t_v3gElawsqImu8tCsjQ5s55MXm-TPdCTh0Wr_oP0IQywnk-Fpio41K4JHLc065PU_8Ij3OvgqckMgrpOenYV-QicCV8VIgK7Zzyen1NhfBbcDcXmmUiU0WYoHEBr_okjlktbi0vG-pJ-ctmfowIrhRAIvUEHLBcp_ymrDzrr8_nsVIdaf-gOtclXv5wMfTcZWMEwh-Wv1s'),
-            ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: ProfileAvatar(radius: 16),
           ),
         ],
       ),

@@ -146,3 +146,33 @@ class AuthNotifier extends Notifier<AuthState> {
 final authProvider = NotifierProvider<AuthNotifier, AuthState>(() {
   return AuthNotifier();
 });
+
+class ProfileAvatarNotifier extends Notifier<String> {
+  @override
+  String build() {
+    _init();
+    return '';
+  }
+
+  Future<void> _init() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final savedAvatar = prefs.getString('profile_avatar_url');
+      if (savedAvatar != null) {
+        state = savedAvatar;
+      }
+    } catch (_) {}
+  }
+
+  Future<void> setAvatar(String url) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('profile_avatar_url', url);
+      state = url;
+    } catch (_) {}
+  }
+}
+
+final profileAvatarProvider = NotifierProvider<ProfileAvatarNotifier, String>(() {
+  return ProfileAvatarNotifier();
+});

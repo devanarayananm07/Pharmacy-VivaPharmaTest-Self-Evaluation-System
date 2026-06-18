@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../theme/obsidian_theme.dart';
 import '../components/top_app_bar.dart';
 import '../components/pharmaq_card.dart';
+import '../components/profile_avatar.dart';
 
-class ComplianceReportingScreen extends StatelessWidget {
+class ComplianceReportingScreen extends ConsumerWidget {
   const ComplianceReportingScreen({super.key});
 
   Widget _buildEmployeeCard({
@@ -153,17 +155,14 @@ class ComplianceReportingScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: TopAppBar(
+      appBar: const TopAppBar(
         title: 'Compliance Overview',
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: CircleAvatar(
-              radius: 16,
-              backgroundImage: const NetworkImage('https://lh3.googleusercontent.com/aida-public/AB6AXuCwJxuF3bSynpRROiilfwc21H3_P-z3YN6m_mHw0FXvIGtz84egQvyL9Z60MFs6irWTh07GS7fsq28Y5Ia05Tqy7ZMaUcFYcG13ekdC1qx3kCfHLZJaZwuPdHIOjarfYdgcbFicpFP4XHflWbFHbDAjqGetUwv8TvS79pVWOnQl35FsvHHoUJR3ZlAD7we1ZO1y3YpZHE8J8ZyHrvD4A016OdvTj_JFKzc1crWjrnOVHzxgnumYOxgPtjR7JbmWy9dN0Us4AnJokpY'),
-            ),
+            padding: EdgeInsets.only(right: 16.0),
+            child: ProfileAvatar(radius: 16),
           )
         ],
       ),

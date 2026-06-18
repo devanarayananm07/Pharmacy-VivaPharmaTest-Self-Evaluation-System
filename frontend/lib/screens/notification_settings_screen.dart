@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../theme/obsidian_theme.dart';
 import '../components/top_app_bar.dart';
 import '../components/bottom_nav_bar.dart';
 import '../components/pharmaq_card.dart';
+import '../components/profile_avatar.dart';
 
-class NotificationSettingsScreen extends StatefulWidget {
+class NotificationSettingsScreen extends ConsumerStatefulWidget {
   const NotificationSettingsScreen({super.key});
 
   @override
-  State<NotificationSettingsScreen> createState() => _NotificationSettingsScreenState();
+  ConsumerState<NotificationSettingsScreen> createState() => _NotificationSettingsScreenState();
 }
 
-class _NotificationSettingsScreenState extends State<NotificationSettingsScreen> {
+class _NotificationSettingsScreenState extends ConsumerState<NotificationSettingsScreen> {
   bool pushEnabled = true;
   bool exportReady = true;
   bool exportProgress = false;
@@ -24,16 +26,13 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TopAppBar(
+      appBar: const TopAppBar(
         title: 'PharmaQ',
         actions: [
-          IconButton(icon: const Icon(Icons.search), onPressed: () {}),
-          const Padding(
+          IconButton(icon: Icon(Icons.search), onPressed: null),
+          Padding(
             padding: EdgeInsets.only(right: 16.0),
-            child: CircleAvatar(
-              radius: 14,
-              backgroundImage: NetworkImage('https://lh3.googleusercontent.com/aida-public/AB6AXuDJv8X4-ImUUz1T5SvtErcXjLbRVdYBRLEyKibyPdDkdRnOlw0lh9oJqjbuRRYhrKg5FlTN7vRByar3IpIxYud1cF3Nt1Lts9AUAfK8-O_zMkCoNNAJm6rA6v37eWHO0JRakDhva6hFjKwQN4NtCaruKINWxlUkSqy4XEVkiDfO5Qfvq_gkBaSkRQXrvx_mrf7WGII3lkBjstc3NEzfXzTR9B43AfYwm-NoYZ4ikofeNBtau4Jthm7WGxL-W8TG-6P9EPZo1iLbyT8'),
-            ),
+            child: ProfileAvatar(radius: 14),
           )
         ],
       ),
