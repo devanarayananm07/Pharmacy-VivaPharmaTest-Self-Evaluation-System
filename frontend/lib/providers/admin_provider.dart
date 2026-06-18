@@ -92,12 +92,14 @@ final adminDashboardDataProvider = FutureProvider.autoDispose<Map<String, dynami
   final Future<List<dynamic>> attemptsFuture = apiService.getAttempts();
   final Future<List<dynamic>> employeesFuture = apiService.getEmployees();
   final Future<List<dynamic>> questionsFuture = apiService.getQuestions();
+  final Future<List<Map<String, dynamic>>> logsFuture = apiService.getSystemLogs();
   
-  final results = await Future.wait([attemptsFuture, employeesFuture, questionsFuture]);
+  final results = await Future.wait([attemptsFuture, employeesFuture, questionsFuture, logsFuture]);
   
   return {
     'attempts': results[0],
     'employees': results[1],
     'questions': results[2],
+    'logs': results[3],
   };
 });

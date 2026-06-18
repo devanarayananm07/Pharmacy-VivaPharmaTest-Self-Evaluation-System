@@ -296,6 +296,59 @@ class ApiService {
     }
   ];
 
+  static final List<Map<String, dynamic>> _systemLogs = [
+    {
+      "id": "log1",
+      "action": "Updated indication details for AMOXICILLIN",
+      "user": "Test Mentor (Mentor)",
+      "type": "question",
+      "date": "2026-06-18 14:12:00"
+    },
+    {
+      "id": "log2",
+      "action": "Promoted Test Mentor to Clinical Mentor",
+      "user": "System Administrator (Admin)",
+      "type": "employee",
+      "date": "2026-06-18 13:45:00"
+    },
+    {
+      "id": "log3",
+      "action": "Added new clinical item METFORMIN to Question Bank",
+      "user": "System Administrator (Admin)",
+      "type": "question",
+      "date": "2026-06-18 11:20:00"
+    },
+    {
+      "id": "log4",
+      "action": "Updated role of Test Employee to Pharmacy Staff",
+      "user": "System Administrator (Admin)",
+      "type": "employee",
+      "date": "2026-06-18 10:05:00"
+    },
+    {
+      "id": "log5",
+      "action": "Imported 10 clinical questions via batch mapping",
+      "user": "System Administrator (Admin)",
+      "type": "question",
+      "date": "2026-06-17 16:30:00"
+    }
+  ];
+
+  Future<List<Map<String, dynamic>>> getSystemLogs() async {
+    return List<Map<String, dynamic>>.from(_systemLogs);
+  }
+
+  Future<String> _getActiveUserLabel() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final name = prefs.getString('employee_name') ?? 'System Administrator';
+      final role = prefs.getString('employee_role') ?? 'Admin';
+      return '$name ($role)';
+    } catch (_) {
+      return 'System Administrator (Admin)';
+    }
+  }
+
   Future<Map<String, String>> _getHeaders() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token');
@@ -554,11 +607,28 @@ class ApiService {
           body: jsonEncode(employee),
         ),
       );
-      return Map<String, dynamic>.from(res);
+      final newEmp = Map<String, dynamic>.from(res);
+      final userLabel = await _getActiveUserLabel();
+      _systemLogs.insert(0, {
+        "id": "log_emp_${DateTime.now().millisecondsSinceEpoch}",
+        "action": "Registered new staff: ${newEmp['name1'] ?? newEmp['emp_id']}",
+        "user": userLabel,
+        "type": "employee",
+        "date": DateTime.now().toString().substring(0, 19),
+      });
+      return newEmp;
     } catch (e) {
       print("ApiService createEmployee failed: $e. Mocking creation.");
       final newEmp = Map<String, dynamic>.from(employee);
       _mockEmployees.add(newEmp);
+      final userLabel = await _getActiveUserLabel();
+      _systemLogs.insert(0, {
+        "id": "log_emp_${DateTime.now().millisecondsSinceEpoch}",
+        "action": "Registered new staff: ${newEmp['name1'] ?? newEmp['emp_id']}",
+        "user": userLabel,
+        "type": "employee",
+        "date": DateTime.now().toString().substring(0, 19),
+      });
       return newEmp;
     }
   }
@@ -572,7 +642,16 @@ class ApiService {
           body: jsonEncode(employee),
         ),
       );
-      return Map<String, dynamic>.from(res);
+      final updatedEmp = Map<String, dynamic>.from(res);
+      final userLabel = await _getActiveUserLabel();
+      _systemLogs.insert(0, {
+        "id": "log_emp_${DateTime.now().millisecondsSinceEpoch}",
+        "action": "Updated privileges for ${updatedEmp['name1'] ?? updatedEmp['emp_id']} to ${updatedEmp['role'] ?? 'Staff'}",
+        "user": userLabel,
+        "type": "employee",
+        "date": DateTime.now().toString().substring(0, 19),
+      });
+      return updatedEmp;
     } catch (e) {
       print("ApiService updateEmployee failed: $e. Mocking update.");
       final empId = employee['emp_id']?.toString();
@@ -580,6 +659,14 @@ class ApiService {
       if (idx != -1) {
         _mockEmployees[idx] = Map<String, dynamic>.from(employee);
       }
+      final userLabel = await _getActiveUserLabel();
+      _systemLogs.insert(0, {
+        "id": "log_emp_${DateTime.now().millisecondsSinceEpoch}",
+        "action": "Updated privileges for ${employee['name1'] ?? employee['emp_id']} to ${employee['role'] ?? 'Staff'}",
+        "user": userLabel,
+        "type": "employee",
+        "date": DateTime.now().toString().substring(0, 19),
+      });
       return employee;
     }
   }
@@ -593,9 +680,25 @@ class ApiService {
           body: jsonEncode({'emp_id': empId}),
         ),
       );
+      final userLabel = await _getActiveUserLabel();
+      _systemLogs.insert(0, {
+        "id": "log_emp_${DateTime.now().millisecondsSinceEpoch}",
+        "action": "Removed staff member (ID: $empId) from database",
+        "user": userLabel,
+        "type": "employee",
+        "date": DateTime.now().toString().substring(0, 19),
+      });
     } catch (e) {
       print("ApiService deleteEmployee failed: $e. Mocking deletion.");
       _mockEmployees.removeWhere((x) => x['emp_id'].toString() == empId);
+      final userLabel = await _getActiveUserLabel();
+      _systemLogs.insert(0, {
+        "id": "log_emp_${DateTime.now().millisecondsSinceEpoch}",
+        "action": "Removed staff member (ID: $empId) from database",
+        "user": userLabel,
+        "type": "employee",
+        "date": DateTime.now().toString().substring(0, 19),
+      });
     }
   }
 
@@ -650,7 +753,16 @@ class ApiService {
           body: jsonEncode(question),
         ),
       );
-      return Map<String, dynamic>.from(res);
+      final newQ = Map<String, dynamic>.from(res);
+      final userLabel = await _getActiveUserLabel();
+      _systemLogs.insert(0, {
+        "id": "log_q_${DateTime.now().millisecondsSinceEpoch}",
+        "action": "Created new clinical question for ${newQ['generic_name']}",
+        "user": userLabel,
+        "type": "question",
+        "date": DateTime.now().toString().substring(0, 19),
+      });
+      return newQ;
     } catch (e) {
       print("ApiService createQuestion failed: $e. Mocking creation.");
       final newQ = {
@@ -658,6 +770,14 @@ class ApiService {
         ...question
       };
       _mockQuestions.add(newQ);
+      final userLabel = await _getActiveUserLabel();
+      _systemLogs.insert(0, {
+        "id": "log_q_${DateTime.now().millisecondsSinceEpoch}",
+        "action": "Created new clinical question for ${newQ['generic_name']}",
+        "user": userLabel,
+        "type": "question",
+        "date": DateTime.now().toString().substring(0, 19),
+      });
       return newQ;
     }
   }
@@ -671,7 +791,16 @@ class ApiService {
           body: jsonEncode(question),
         ),
       );
-      return Map<String, dynamic>.from(res);
+      final updatedQ = Map<String, dynamic>.from(res);
+      final userLabel = await _getActiveUserLabel();
+      _systemLogs.insert(0, {
+        "id": "log_q_${DateTime.now().millisecondsSinceEpoch}",
+        "action": "Modified question details for ${updatedQ['generic_name']}",
+        "user": userLabel,
+        "type": "question",
+        "date": DateTime.now().toString().substring(0, 19),
+      });
+      return updatedQ;
     } catch (e) {
       print("ApiService updateQuestion failed: $e. Mocking update.");
       final qId = question['id']?.toString();
@@ -679,6 +808,14 @@ class ApiService {
       if (idx != -1) {
         _mockQuestions[idx] = Map<String, dynamic>.from(question);
       }
+      final userLabel = await _getActiveUserLabel();
+      _systemLogs.insert(0, {
+        "id": "log_q_${DateTime.now().millisecondsSinceEpoch}",
+        "action": "Modified question details for ${question['generic_name']}",
+        "user": userLabel,
+        "type": "question",
+        "date": DateTime.now().toString().substring(0, 19),
+      });
       return question;
     }
   }
@@ -692,9 +829,25 @@ class ApiService {
           body: jsonEncode({'id': id}),
         ),
       );
+      final userLabel = await _getActiveUserLabel();
+      _systemLogs.insert(0, {
+        "id": "log_q_${DateTime.now().millisecondsSinceEpoch}",
+        "action": "Deleted clinical question (ID: $id) from bank",
+        "user": userLabel,
+        "type": "question",
+        "date": DateTime.now().toString().substring(0, 19),
+      });
     } catch (e) {
       print("ApiService deleteQuestion failed: $e. Mocking deletion.");
       _mockQuestions.removeWhere((x) => x['id'].toString() == id);
+      final userLabel = await _getActiveUserLabel();
+      _systemLogs.insert(0, {
+        "id": "log_q_${DateTime.now().millisecondsSinceEpoch}",
+        "action": "Deleted clinical question (ID: $id) from bank",
+        "user": userLabel,
+        "type": "question",
+        "date": DateTime.now().toString().substring(0, 19),
+      });
     }
   }
 

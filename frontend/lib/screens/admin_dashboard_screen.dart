@@ -62,6 +62,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
           final List<dynamic> attempts = data['attempts'] ?? [];
           final List<dynamic> employees = data['employees'] ?? [];
           final List<dynamic> questions = data['questions'] ?? [];
+          final List<dynamic> logs = data['logs'] ?? [];
 
           // 1. Calculations
           final completedAttempts = attempts.where((a) => a['status'] == 'Completed').toList();
@@ -223,8 +224,8 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
                 ),
                 const SizedBox(height: 20),
 
-                // 4. Recent Vivas Activity Table
-                _buildRecentVivasFeed(completedAttempts, employees),
+                // 4. Latest System Updates Table
+                _buildSystemUpdatesFeed(logs),
                 const SizedBox(height: 24),
               ],
             ),
@@ -488,16 +489,8 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
     );
   }
 
-  Widget _buildRecentVivasFeed(List<dynamic> completedAttempts, List<dynamic> employees) {
-    // Resolve employee names
-    final Map<String, String> employeeNames = {};
-    for (var emp in employees) {
-      final id = emp['emp_id']?.toString() ?? '';
-      final name = emp['name1']?.toString() ?? 'Staff Member';
-      employeeNames[id] = name;
-    }
-
-    final latestCompleted = completedAttempts.take(5).toList();
+  Widget _buildSystemUpdatesFeed(List<dynamic> logs) {
+    final latestLogs = logs.take(5).toList();
 
     return PharmaQCard(
       padding: const EdgeInsets.all(20),
@@ -505,7 +498,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'LATEST SYSTEM VIVAS',
+            'LATEST SYSTEM UPDATES',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
@@ -514,11 +507,11 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          if (latestCompleted.isEmpty)
+          if (latestLogs.isEmpty)
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 24.0),
               child: Center(
-                child: Text('No completed vivas recorded yet.',
+                child: Text('No recent updates recorded.',
                     style: TextStyle(color: ObsidianTheme.onSurfaceVariant)),
               ),
             )
@@ -526,31 +519,50 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: latestCompleted.length,
+              itemCount: latestLogs.length,
               separatorBuilder: (context, index) =>
                   const Divider(color: ObsidianTheme.outlineVariant, height: 20),
               itemBuilder: (context, index) {
-                final attempt = latestCompleted[index];
-                final empId = attempt['employee_id']?.toString() ?? '';
-                final name = employeeNames[empId] ?? empId;
-                final score = (attempt['percent'] as num).toDouble();
-                final store = attempt['store']?.toString() ?? 'General';
-                final isPassed = (attempt['passed'] as num).toInt() == 1;
+                final log = latestLogs[index];
+                final String action = log['action'] ?? 'System update';
+                final String user = log['user'] ?? 'System';
+                final String type = log['type'] ?? 'info';
+                final String dateTime = log['date'] ?? '';
+
+                IconData icon;
+                Color iconColor;
+                if (type == 'question') {
+                  icon = Icons.quiz_rounded;
+                  iconColor = ObsidianTheme.primary;
+                } else if (type == 'employee') {
+                  icon = Icons.manage_accounts_rounded;
+                  iconColor = ObsidianTheme.tertiary;
+                } else {
+                  icon = Icons.info_outline;
+                  iconColor = ObsidianTheme.outline;
+                }
+
+                String timeDisplay = dateTime;
+                if (dateTime.contains(' ')) {
+                  final parts = dateTime.split(' ');
+                  if (parts.length > 1) {
+                    final timePart = parts[1];
+                    timeDisplay = timePart.length >= 5 ? timePart.substring(0, 5) : timePart;
+                  }
+                }
 
                 return Row(
                   children: [
                     Container(
                       padding: const EdgeInsets.all(6),
                       decoration: BoxDecoration(
-                        color: isPassed
-                            ? ObsidianTheme.tertiary.withValues(alpha: 0.1)
-                            : ObsidianTheme.error.withValues(alpha: 0.1),
+                        color: iconColor.withValues(alpha: 0.1),
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
-                        isPassed ? Icons.check : Icons.close,
-                        color: isPassed ? ObsidianTheme.tertiary : ObsidianTheme.error,
-                        size: 14,
+                        icon,
+                        color: iconColor,
+                        size: 16,
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -559,7 +571,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            name,
+                            action,
                             style: const TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
@@ -567,7 +579,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            store,
+                            user,
                             style: const TextStyle(
                               fontSize: 10,
                               color: ObsidianTheme.onSurfaceVariant,
@@ -577,26 +589,13 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          '$score%',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                            color: isPassed ? ObsidianTheme.tertiary : ObsidianTheme.error,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          attempt['date']?.toString().split(' ').first ?? '',
-                          style: const TextStyle(
-                            fontSize: 9,
-                            color: ObsidianTheme.onSurfaceVariant,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      timeDisplay,
+                      style: const TextStyle(
+                        fontSize: 10,
+                        color: ObsidianTheme.onSurfaceVariant,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ],
                 );
