@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ - Configure Difficulty</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#fafafa",
+                    "primary": "#a78bfa",
+                    "inverse-primary": "#5b21b6",
+                    "on-surface": "#fafafa",
+                    "surface-container-high": "#18181b",
+                    "outline": "#52525b",
+                    "surface-container": "#121215",
+                    "secondary-fixed-dim": "#71717a",
+                    "inverse-on-surface": "#09090b",
+                    "surface-dim": "#0c0c0f",
+                    "secondary-fixed": "#a1a1aa",
+                    "surface": "#0c0c0f",
+                    "primary-fixed-dim": "#c4b5fd",
+                    "tertiary-fixed": "#bbf7d0",
+                    "outline-variant": "#27272a",
+                    "tertiary-fixed-dim": "#6ee7b7",
+                    "on-secondary-container": "#a1a1aa",
+                    "on-primary-fixed-variant": "#5b21b6",
+                    "surface-variant": "#18181b",
+                    "on-secondary": "#09090b",
+                    "on-error-container": "#fca5a5",
+                    "primary-fixed": "#ede9fe",
+                    "on-primary-fixed": "#2e1065",
+                    "error": "#ef4444",
+                    "secondary-container": "#27272a",
+                    "background": "#09090b",
+                    "surface-container-highest": "#1e1e22",
+                    "on-tertiary-fixed-variant": "#047857",
+                    "surface-bright": "#18181b",
+                    "on-secondary-fixed-variant": "#3f3f46",
+                    "on-primary-container": "#ede9fe",
+                    "surface-tint": "#a78bfa",
+                    "secondary": "#71717a",
+                    "on-tertiary": "#001a12",
+                    "surface-container-lowest": "#09090b",
+                    "on-tertiary-fixed": "#003318",
+                    "on-tertiary-container": "#bbf7d0",
+                    "surface-container-low": "#0f0f12",
+                    "error-container": "#3b1111",
+                    "on-primary": "#0a0012",
+                    "tertiary-container": "#065f46",
+                    "tertiary": "#34d399",
+                    "on-secondary-fixed": "#18181b",
+                    "inverse-surface": "#fafafa",
+                    "primary-container": "#7c3aed",
+                    "on-surface-variant": "#a1a1aa",
+                    "on-error": "#1a0000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Geist"],
+                    "display": ["Geist"],
+                    "body": ["Geist"],
+                    "label": ["Geist"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .difficulty-card.active {
+            border-color: #a78bfa;
+            background-color: rgba(167, 139, 250, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col custom-scrollbar">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky bg-background dark:bg-background border-b border-outline-variant z-50 flex items-center justify-between px-4 h-16 max-w-none">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary">clinical_notes</span>
+<h1 class="text-xl font-bold tracking-tighter text-primary dark:text-primary">PharmaQ</h1>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-secondary hover:bg-surface-variant transition-colors px-3 py-2 rounded-lg text-sm font-medium" href="#">Home</a>
+<a class="text-primary hover:bg-surface-variant transition-colors px-3 py-2 rounded-lg text-sm font-medium" href="#">Study</a>
+<a class="text-secondary hover:bg-surface-variant transition-colors px-3 py-2 rounded-lg text-sm font-medium" href="#">Score</a>
+<a class="text-secondary hover:bg-surface-variant transition-colors px-3 py-2 rounded-lg text-sm font-medium" href="#">Profile</a>
+</nav>
+<button class="p-2 rounded-full hover:bg-surface-variant transition-colors active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 max-w-5xl mx-auto w-full px-4 py-8 pb-32">
+<!-- Header Section -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-2 block">Step 2 of 3</span>
+<h2 class="text-4xl font-headline font-bold tracking-tighter text-on-surface">Configure Difficulty</h2>
+<p class="text-on-surface-variant mt-2 max-w-md">Define the cognitive load and complexity parameters for this pharmaceutical assessment question.</p>
+</div>
+<!-- Progress Bar -->
+<div class="w-full md:w-64 h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3 shadow-[0_0_12px_rgba(167,139,250,0.5)]"></div>
+</div>
+</div>
+<!-- Difficulty Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<!-- Easy Mode -->
+<div class="difficulty-card group cursor-pointer p-6 bg-surface-container border border-outline-variant rounded-xl transition-all duration-300 hover:border-primary/50 relative overflow-hidden" id="card-easy" onclick="selectDifficulty('easy')">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-tertiary">signal_cellular_1_bar</span>
+<span class="text-xs font-mono text-secondary">ID: DIFF_L1</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Easy</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6">Foundational knowledge. Focus on direct identification and primary generic nomenclature.</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+<span class="text-xs font-medium uppercase tracking-wider">Generic Identification</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-lg border border-outline-variant/30 opacity-50">
+<span class="material-symbols-outlined text-xs">block</span>
+<span class="text-xs font-medium uppercase tracking-wider">No Case Context</span>
+</div>
+</div>
+<div class="absolute top-0 right-0 p-2 opacity-0 group-[.active]:opacity-100">
+<span class="material-symbols-outlined text-primary fill-[1]">check_circle</span>
+</div>
+</div>
+<!-- Medium Mode -->
+<div class="difficulty-card active group cursor-pointer p-6 bg-surface-container border border-outline-variant rounded-xl transition-all duration-300 hover:border-primary/50 relative overflow-hidden" id="card-medium" onclick="selectDifficulty('medium')">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-primary">signal_cellular_3_bar</span>
+<span class="text-xs font-mono text-secondary">ID: DIFF_L2</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Medium</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6">Associative logic. Requires linking indications to specific manufacturers and therapeutic classes.</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+<span class="text-xs font-medium uppercase tracking-wider">Indication Matching</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+<span class="text-xs font-medium uppercase tracking-wider">Manufacturer Links</span>
+</div>
+</div>
+<div class="absolute top-0 right-0 p-2 opacity-100">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Hard Mode -->
+<div class="difficulty-card group cursor-pointer p-6 bg-surface-container border border-outline-variant rounded-xl transition-all duration-300 hover:border-primary/50 relative overflow-hidden col-span-1" id="card-hard" onclick="selectDifficulty('hard')">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-error">signal_cellular_4_bar</span>
+<span class="text-xs font-mono text-secondary">ID: DIFF_L3</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Hard</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6">Clinical mastery. Indirect reasoning through complex scenarios and patient presentation data.</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+<span class="text-xs font-medium uppercase tracking-wider">Indirect Reasoning</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+<span class="text-xs font-medium uppercase tracking-wider">Clinical Context</span>
+</div>
+</div>
+<div class="absolute top-0 right-0 p-2 opacity-0 group-[.active]:opacity-100">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Case Study Configuration (Hard Mode Dependency) -->
+<div class="hidden animate-in fade-in slide-in-from-top-4 duration-500 mb-8 p-6 bg-surface-container-highest/30 rounded-xl border border-primary/20" id="case-study-section">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">clinical_notes</span>
+<h4 class="font-bold">Case Study Context</h4>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="case-study-toggle" onchange="toggleCaseArea()" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ml-3 text-sm font-medium text-on-surface">Convert to Case Study</span>
+</label>
+</div>
+<div id="case-area-wrapper">
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-4 text-on-surface placeholder:text-secondary focus:ring-2 focus:ring-primary focus:border-transparent outline-none min-h-[160px] resize-none transition-all" placeholder="Enter clinical scenario detail... Patient age, current symptoms, and relevant co-morbidities."></textarea>
+<p class="text-xs text-secondary mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">info</span>
+                    This context will be presented to the user before they see the answer choices.
+                </p>
+</div>
+</div>
+<!-- Advanced Rules Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+<div class="p-6 border border-outline-variant rounded-xl bg-surface-container/50">
+<h4 class="text-sm font-bold uppercase tracking-widest text-secondary mb-4">System Rules</h4>
+<div class="space-y-4">
+<label class="flex items-start gap-3 group cursor-pointer">
+<div class="mt-1 relative flex items-center justify-center">
+<input class="peer h-5 w-5 appearance-none rounded border border-outline-variant bg-transparent checked:bg-primary checked:border-primary transition-all" type="checkbox"/>
+<span class="material-symbols-outlined absolute text-[16px] text-background opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Exclude from Easy Duplicate Check</span>
+<span class="text-xs text-secondary">Allows similar formulations to coexist in the foundational bank.</span>
+</div>
+</label>
+<label class="flex items-start gap-3 group cursor-pointer">
+<div class="mt-1 relative flex items-center justify-center">
+<input class="peer h-5 w-5 appearance-none rounded border border-outline-variant bg-transparent checked:bg-error checked:border-error transition-all" type="checkbox"/>
+<span class="material-symbols-outlined absolute text-[16px] text-background opacity-0 peer-checked:opacity-100 pointer-events-none">priority_high</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium group-hover:text-error transition-colors">Flag for Urgent Review</span>
+<span class="text-xs text-secondary">Marks the question for senior pharmacist verification.</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Visualization Card -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-6 relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary/10 rounded-full blur-3xl"></div>
+<h4 class="text-sm font-bold uppercase tracking-widest text-secondary mb-4">Question Distribution</h4>
+<div class="flex items-end gap-2 h-32 px-4">
+<div class="flex-1 bg-surface-container-high rounded-t-lg h-12 transition-all duration-700" id="stat-easy"></div>
+<div class="flex-1 bg-primary rounded-t-lg h-32 transition-all duration-700" id="stat-medium"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg h-20 transition-all duration-700" id="stat-hard"></div>
+</div>
+<div class="flex justify-between mt-2 px-2 text-[10px] font-bold text-secondary uppercase tracking-tighter">
+<span>Low</span>
+<span>Med</span>
+<span>High</span>
+</div>
+<p class="mt-6 text-xs text-on-surface-variant leading-relaxed italic">"Medium difficulty questions account for 64% of the current exam simulation pool."</p>
+</div>
+</section>
+<!-- Form Actions -->
+<footer class="flex items-center justify-between gap-4 border-t border-outline-variant pt-8">
+<button class="flex items-center gap-2 px-6 py-3 text-sm font-bold hover:bg-surface-variant transition-colors rounded-xl text-secondary active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                Back
+            </button>
+<div class="flex items-center gap-4">
+<button class="px-6 py-3 text-sm font-bold bg-surface-container border border-outline-variant rounded-xl hover:bg-surface-variant transition-all active:scale-95 duration-150">
+                    Save Draft
+                </button>
+<button class="flex items-center gap-2 px-8 py-3 text-sm font-bold bg-primary text-on-primary rounded-xl hover:opacity-90 shadow-[0_0_20px_rgba(167,139,250,0.3)] transition-all active:scale-95 duration-150">
+                    Preview Question
+                    <span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-2 pb-safe bg-surface border-t border-outline-variant z-50 md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label text-xs uppercase tracking-wider mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-xl px-3 py-1 active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label text-xs uppercase tracking-wider mt-1">Study</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label text-xs uppercase tracking-wider mt-1">Score</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label text-xs uppercase tracking-wider mt-1">Profile</span>
+</div>
+</nav>
+<script>
+        function selectDifficulty(mode) {
+            // Remove active state from all cards
+            document.querySelectorAll('.difficulty-card').forEach(card => {
+                card.classList.remove('active');
+                const icon = card.querySelector('.absolute .material-symbols-outlined');
+                if (icon) card.querySelector('.absolute').style.opacity = '0';
+            });
+
+            // Add active state to selected card
+            const selectedCard = document.getElementById(`card-${mode}`);
+            selectedCard.classList.add('active');
+            selectedCard.querySelector('.absolute').style.opacity = '1';
+
+            // Handle Case Study section visibility
+            const caseSection = document.getElementById('case-study-section');
+            if (mode === 'hard') {
+                caseSection.classList.remove('hidden');
+            } else {
+                caseSection.classList.add('hidden');
+            }
+
+            // Update stats visualization
+            updateStats(mode);
+        }
+
+        function updateStats(mode) {
+            const bars = {
+                easy: { e: 'h-24 bg-primary', m: 'h-16 bg-surface-container-high', h: 'h-10 bg-surface-container-high' },
+                medium: { e: 'h-12 bg-surface-container-high', m: 'h-32 bg-primary', h: 'h-20 bg-surface-container-high' },
+                hard: { e: 'h-10 bg-surface-container-high', m: 'h-14 bg-surface-container-high', h: 'h-28 bg-primary' }
+            };
+
+            const data = bars[mode];
+            const eBar = document.getElementById('stat-easy');
+            const mBar = document.getElementById('stat-medium');
+            const hBar = document.getElementById('stat-hard');
+
+            [eBar, mBar, hBar].forEach(bar => {
+                bar.className = 'flex-1 rounded-t-lg transition-all duration-700';
+            });
+
+            eBar.className += ` ${data.e}`;
+            mBar.className += ` ${data.m}`;
+            hBar.className += ` ${data.h}`;
+        }
+
+        function toggleCaseArea() {
+            const toggle = document.getElementById('case-study-toggle');
+            const wrapper = document.getElementById('case-area-wrapper');
+            if (toggle.checked) {
+                wrapper.classList.remove('opacity-40', 'pointer-events-none');
+            } else {
+                wrapper.classList.add('opacity-40', 'pointer-events-none');
+            }
+        }
+    </script>
+</body></html>

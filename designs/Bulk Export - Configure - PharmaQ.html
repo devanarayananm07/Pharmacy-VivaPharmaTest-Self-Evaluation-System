@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #09090b;
+            color: #fafafa;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0c0c0f;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 10px;
+        }
+        .glass-panel {
+            background: rgba(18, 18, 21, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #27272a;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#fafafa",
+                        "background": "#09090b",
+                        "surface-container-highest": "#1e1e22",
+                        "outline": "#52525b",
+                        "on-tertiary-container": "#bbf7d0",
+                        "on-primary-container": "#ede9fe",
+                        "outline-variant": "#27272a",
+                        "surface-dim": "#0c0c0f",
+                        "on-background": "#fafafa",
+                        "tertiary-fixed-dim": "#6ee7b7",
+                        "tertiary-container": "#065f46",
+                        "primary": "#a78bfa",
+                        "on-surface": "#fafafa",
+                        "inverse-on-surface": "#09090b",
+                        "surface-tint": "#a78bfa",
+                        "primary-fixed": "#ede9fe",
+                        "on-surface-variant": "#a1a1aa",
+                        "on-primary-fixed": "#2e1065",
+                        "on-primary": "#0a0012",
+                        "secondary-fixed": "#a1a1aa",
+                        "on-tertiary": "#001a12",
+                        "secondary-container": "#27272a",
+                        "primary-fixed-dim": "#c4b5fd",
+                        "on-secondary-fixed-variant": "#3f3f46",
+                        "inverse-primary": "#5b21b6",
+                        "tertiary-fixed": "#bbf7d0",
+                        "on-primary-fixed-variant": "#5b21b6",
+                        "surface-container-high": "#18181b",
+                        "on-tertiary-fixed": "#003318",
+                        "surface-container-low": "#0f0f12",
+                        "tertiary": "#34d399",
+                        "surface-variant": "#18181b",
+                        "on-secondary-container": "#a1a1aa",
+                        "on-secondary": "#09090b",
+                        "secondary-fixed-dim": "#71717a",
+                        "surface": "#0c0c0f",
+                        "surface-container-lowest": "#09090b",
+                        "error": "#ef4444",
+                        "surface-container": "#121215",
+                        "on-error-container": "#fca5a5",
+                        "surface-bright": "#18181b",
+                        "secondary": "#71717a",
+                        "on-tertiary-fixed-variant": "#047857",
+                        "on-secondary-fixed": "#18181b",
+                        "error-container": "#3b1111",
+                        "primary-container": "#7c3aed",
+                        "on-error": "#1a0000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Geist"],
+                        "display": ["Geist"],
+                        "body": ["Geist"],
+                        "label": ["Geist"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-4 h-16 w-full z-40 top-0 border-b border-outline-variant bg-background sticky">
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<h1 class="text-xl font-headline font-bold text-primary tracking-tighter">Export Questions</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<div class="w-8 h-8 rounded-full bg-secondary-container border border-outline-variant flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUI1BSIVVGfomGK2Kdj3tP5MeBAyEqlYcRzfSrbyT9Cbj8L5mMKFGHljRTkXA9oQzYbipzS0DyrZxqdKW5uxApgHRs2Td4-mkGEcD8hixWzjXRC7MPnG-mZmZWRnoAbnfyLsZFKmBNyXltT9Xu6_E3u13cAPleyfZEfqmj5lidcflEL1UT5Qu3eM-jZTV18MCL9UoEdA34zcj7cpSNNo1HwowPWgUnl59Hyhtw03fS_iAu_GHloqlvzHlkcrv7f-24o1jgcu7e2CA"/>
+</div>
+</div>
+</header>
+<main class="flex-grow p-4 md:p-8 max-w-4xl mx-auto w-full space-y-8 pb-32">
+<!-- Step Indicator -->
+<div class="flex items-center gap-4 mb-8">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm">1</div>
+<span class="text-sm font-medium text-primary">Configure</span>
+</div>
+<div class="h-px w-12 bg-outline-variant"></div>
+<div class="flex items-center gap-2 opacity-40">
+<div class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant flex items-center justify-center font-bold text-sm">2</div>
+<span class="text-sm font-medium text-on-surface-variant">Review</span>
+</div>
+</div>
+<!-- Filter Section: Bento Grid Style -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Category Filter -->
+<div class="bg-surface-container border border-outline-variant p-5 rounded-xl space-y-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">category</span>
+<h3 class="text-xs font-bold uppercase tracking-widest">Category</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-lg border border-primary bg-primary/10 text-primary text-sm font-medium transition-all">Antibiotics</button>
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant hover:border-primary/50 text-on-surface-variant text-sm font-medium transition-all">Narcotics</button>
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant hover:border-primary/50 text-on-surface-variant text-sm font-medium transition-all">Cardiology</button>
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant hover:border-primary/50 text-on-surface-variant text-sm font-medium transition-all">+ More</button>
+</div>
+</div>
+<!-- Difficulty Filter -->
+<div class="bg-surface-container border border-outline-variant p-5 rounded-xl space-y-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">reorder</span>
+<h3 class="text-xs font-bold uppercase tracking-widest">Difficulty</h3>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<label class="relative cursor-pointer">
+<input checked="" class="peer sr-only" type="checkbox"/>
+<div class="p-2 text-center rounded-lg border border-outline-variant peer-checked:border-primary peer-checked:bg-primary/10 text-xs font-medium text-on-surface-variant peer-checked:text-primary transition-all">Easy</div>
+</label>
+<label class="relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="p-2 text-center rounded-lg border border-outline-variant peer-checked:border-primary peer-checked:bg-primary/10 text-xs font-medium text-on-surface-variant peer-checked:text-primary transition-all">Medium</div>
+</label>
+<label class="relative cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="p-2 text-center rounded-lg border border-outline-variant peer-checked:border-primary peer-checked:bg-primary/10 text-xs font-medium text-on-surface-variant peer-checked:text-primary transition-all">Hard</div>
+</label>
+</div>
+</div>
+<!-- Date Range -->
+<div class="md:col-span-2 bg-surface-container border border-outline-variant p-5 rounded-xl space-y-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<h3 class="text-xs font-bold uppercase tracking-widest">Date Range</h3>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-4">
+<div class="relative w-full">
+<input class="w-full bg-background border border-outline-variant rounded-lg px-4 py-2 text-sm text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none" type="date"/>
+</div>
+<span class="text-on-surface-variant text-sm">to</span>
+<div class="relative w-full">
+<input class="w-full bg-background border border-outline-variant rounded-lg px-4 py-2 text-sm text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none" type="date"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Summary Card -->
+<div class="relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary/5 rounded-xl"></div>
+<div class="relative glass-panel p-6 rounded-xl border-l-4 border-l-primary flex items-center justify-between">
+<div>
+<h2 class="text-3xl font-bold text-on-surface tracking-tight">1,240</h2>
+<p class="text-on-surface-variant text-sm font-medium">Questions Selected</p>
+</div>
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+</div>
+</div>
+<!-- Format Selection -->
+<section class="space-y-4">
+<h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-widest ml-1">Export Format</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<label class="relative cursor-pointer group">
+<input checked="" class="peer sr-only" name="format" type="radio"/>
+<div class="p-6 rounded-xl border border-outline-variant bg-surface-container peer-checked:border-primary peer-checked:bg-primary/5 transition-all flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest border border-outline-variant flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">table_view</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Excel (.xlsx)</p>
+<p class="text-xs text-on-surface-variant mt-1">Structured data with formulas and formatting.</p>
+</div>
+<div class="ml-auto">
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant peer-checked:border-primary flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-primary scale-0 peer-checked:scale-100 transition-transform"></div>
+</div>
+</div>
+</div>
+</label>
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="format" type="radio"/>
+<div class="p-6 rounded-xl border border-outline-variant bg-surface-container peer-checked:border-primary peer-checked:bg-primary/5 transition-all flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest border border-outline-variant flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">drive_file</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">CSV</p>
+<p class="text-xs text-on-surface-variant mt-1">Lightweight, plain-text comma separated values.</p>
+</div>
+<div class="ml-auto">
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant peer-checked:border-primary flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-primary scale-0 peer-checked:scale-100 transition-transform"></div>
+</div>
+</div>
+</div>
+</label>
+</div>
+</section>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-background/80 backdrop-blur-md border-t border-outline-variant p-4 z-50">
+<div class="max-w-4xl mx-auto flex items-center justify-between gap-4">
+<button class="px-6 h-12 rounded-lg border border-outline-variant text-on-surface font-medium hover:bg-surface-container-highest transition-colors active:scale-95">
+                Save Draft
+            </button>
+<button class="flex-grow sm:flex-grow-0 sm:min-w-[240px] px-8 h-12 bg-primary text-on-primary rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98]">
+<span>Next: Review Selection</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Background Decorative Elements -->
+<div class="fixed top-0 right-0 -z-10 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="fixed bottom-0 left-0 -z-10 w-[300px] h-[300px] bg-tertiary/5 blur-[100px] rounded-full pointer-events-none"></div>
+<script>
+        // Simple micro-interaction for radio buttons since they're custom
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const parent = e.target.closest('div');
+                // The visual peer-checked handles most of it via Tailwind peer classes
+            });
+        });
+
+        // Dynamic count animation on load
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const countEl = document.querySelector('h2');
+        animateValue(countEl, 0, 1240, 1500);
+    </script>
+</body></html>

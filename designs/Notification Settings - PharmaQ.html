@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Geist', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 10px;
+        }
+        /* Custom Toggle Style */
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #a78bfa;
+        }
+        .toggle-checkbox:checked + .toggle-label .toggle-dot {
+            transform: translateX(100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-primary": "#5b21b6",
+                      "primary-fixed": "#ede9fe",
+                      "outline-variant": "#27272a",
+                      "error": "#ef4444",
+                      "surface-container-high": "#18181b",
+                      "on-secondary-fixed": "#18181b",
+                      "error-container": "#3b1111",
+                      "surface-tint": "#a78bfa",
+                      "surface": "#0c0c0f",
+                      "surface-bright": "#18181b",
+                      "on-tertiary-fixed": "#003318",
+                      "secondary": "#71717a",
+                      "on-error-container": "#fca5a5",
+                      "on-secondary": "#09090b",
+                      "on-primary-fixed-variant": "#5b21b6",
+                      "tertiary": "#34d399",
+                      "secondary-fixed-dim": "#71717a",
+                      "on-background": "#fafafa",
+                      "primary-fixed-dim": "#c4b5fd",
+                      "primary-container": "#7c3aed",
+                      "outline": "#52525b",
+                      "on-primary": "#0a0012",
+                      "surface-container-highest": "#1e1e22",
+                      "surface-container": "#121215",
+                      "on-primary-fixed": "#2e1065",
+                      "inverse-on-surface": "#09090b",
+                      "surface-container-low": "#0f0f12",
+                      "secondary-fixed": "#a1a1aa",
+                      "inverse-surface": "#fafafa",
+                      "surface-dim": "#0c0c0f",
+                      "on-primary-container": "#ede9fe",
+                      "tertiary-fixed-dim": "#6ee7b7",
+                      "on-tertiary": "#001a12",
+                      "background": "#09090b",
+                      "on-error": "#1a0000",
+                      "on-secondary-container": "#a1a1aa",
+                      "secondary-container": "#27272a",
+                      "tertiary-fixed": "#bbf7d0",
+                      "primary": "#a78bfa",
+                      "on-surface": "#fafafa",
+                      "tertiary-container": "#065f46",
+                      "on-surface-variant": "#a1a1aa",
+                      "surface-variant": "#18181b",
+                      "on-secondary-fixed-variant": "#3f3f46"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Geist"],
+                      "display": ["Geist"],
+                      "body": ["Geist"],
+                      "label": ["Geist"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface selection:bg-primary/30 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-4 h-16 w-full z-40 bg-background dark:bg-background border-b border-outline-variant dark:border-outline-variant fixed top-0 left-0">
+<div class="flex items-center gap-3">
+<div class="text-primary dark:text-primary active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-2xl">clinical_notes</span>
+</div>
+<h1 class="text-xl font-headline font-bold text-primary dark:text-primary tracking-tighter">PharmaQ</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-highest transition-colors p-2 rounded-full">search</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant active:scale-95 transition-transform cursor-pointer">
+<img alt="User profile avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJv8X4-ImUUz1T5SvtErcXjLbRVdYBRLEyKibyPdDkdRnOlw0lh9oJqjbuRRYhrKg5FlTN7vRByar3IpIxYud1cF3Nt1Lts9AUAfK8-O_zMkCoNNAJm6rA6v37eWHO0JRakDhva6hFjKwQN4NtCaruKINWxlUkSqy4XEVkiDfO5Qfvq_gkBaSkRQXrvx_mrf7WGII3lkBjstc3NEzfXzTR9B43AfYwm-NoYZ4ikofeNBtau4Jthm7WGxL-W8TG-6P9EPZo1iLbyT8"/>
+</div>
+</div>
+</header>
+<main class="flex-1 mt-16 mb-20 px-4 py-6 max-w-2xl mx-auto w-full overflow-y-auto custom-scrollbar">
+<!-- Screen Title -->
+<div class="mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant mb-2">
+<span class="material-symbols-outlined text-sm">settings</span>
+<span class="text-xs font-medium uppercase tracking-widest">System Settings</span>
+</div>
+<h2 class="text-3xl font-bold tracking-tight text-on-surface">Notification Settings</h2>
+<p class="text-on-surface-variant text-sm mt-1">Manage how and when you receive clinical updates and account alerts.</p>
+</div>
+<!-- Section 1: Global Push -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-5 mb-6 transition-all hover:border-outline">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">notifications_active</span>
+</div>
+<div>
+<h3 class="font-semibold text-on-surface">Push Notifications</h3>
+<p class="text-xs text-on-surface-variant">Enable all system alerts on this device</p>
+</div>
+</div>
+<div class="relative inline-block w-12 h-6 transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 transition-transform duration-200 ease-in-out" id="global-push" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-highest cursor-pointer transition-colors duration-200 ease-in-out" for="global-push">
+<span class="toggle-dot absolute left-0 inline-block w-6 h-6 rounded-full bg-white shadow transform transition-transform duration-200 ease-in-out"></span>
+</label>
+</div>
+</div>
+</div>
+<!-- Section 2: Clinical Exports -->
+<div class="mb-8">
+<div class="flex items-center gap-2 mb-4 px-1">
+<span class="material-symbols-outlined text-tertiary text-lg">database</span>
+<h4 class="font-bold text-sm uppercase tracking-wider text-on-surface-variant">Clinical Exports</h4>
+</div>
+<div class="space-y-3">
+<div class="group flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded-lg hover:bg-surface-container-high transition-all">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface">Export Ready</span>
+<span class="text-xs text-on-surface-variant">Notify when report generation is complete</span>
+</div>
+<input checked="" class="w-5 h-5 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary focus:ring-offset-background" type="checkbox"/>
+</div>
+<div class="group flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded-lg hover:bg-surface-container-high transition-all">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface">Export in Progress</span>
+<span class="text-xs text-on-surface-variant">Real-time status of heavy data processing</span>
+</div>
+<input class="w-5 h-5 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary focus:ring-offset-background" type="checkbox"/>
+</div>
+</div>
+</div>
+<!-- Section 3: Account & Security -->
+<div class="mb-8">
+<div class="flex items-center gap-2 mb-4 px-1">
+<span class="material-symbols-outlined text-error text-lg">shield_lock</span>
+<h4 class="font-bold text-sm uppercase tracking-wider text-on-surface-variant">Account &amp; Security</h4>
+</div>
+<div class="space-y-3">
+<div class="group flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded-lg hover:bg-surface-container-high transition-all">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface">New Login Alerts</span>
+<span class="text-xs text-on-surface-variant">Immediate alert for any new device login</span>
+</div>
+<input checked="" class="w-5 h-5 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary focus:ring-offset-background" type="checkbox"/>
+</div>
+<div class="group flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded-lg hover:bg-surface-container-high transition-all">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface">Password Change</span>
+<span class="text-xs text-on-surface-variant">Confirmations for credential updates</span>
+</div>
+<input checked="" class="w-5 h-5 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary focus:ring-offset-background" type="checkbox"/>
+</div>
+</div>
+</div>
+<!-- Section 4: Compliance & Goals -->
+<div class="mb-8">
+<div class="flex items-center gap-2 mb-4 px-1">
+<span class="material-symbols-outlined text-primary text-lg">verified</span>
+<h4 class="font-bold text-sm uppercase tracking-wider text-on-surface-variant">Compliance &amp; Goals</h4>
+</div>
+<div class="space-y-3">
+<div class="group flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded-lg hover:bg-surface-container-high transition-all">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface">Weekly Target Reminders</span>
+<span class="text-xs text-on-surface-variant tracking-tight italic">Goal: 150-question clinical cycle</span>
+</div>
+<input checked="" class="w-5 h-5 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary focus:ring-offset-background" type="checkbox"/>
+</div>
+<div class="group flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded-lg hover:bg-surface-container-high transition-all">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface">Performance Milestones</span>
+<span class="text-xs text-on-surface-variant">Recognition of scoring achievements</span>
+</div>
+<input class="w-5 h-5 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary focus:ring-offset-background" type="checkbox"/>
+</div>
+</div>
+</div>
+<!-- Section 5: Delivery Method -->
+<div class="mb-8">
+<div class="flex items-center gap-2 mb-4 px-1">
+<span class="material-symbols-outlined text-secondary text-lg">mail</span>
+<h4 class="font-bold text-sm uppercase tracking-wider text-on-surface-variant">Notification Method</h4>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<label class="flex items-center justify-center gap-3 p-4 bg-surface-container border border-outline-variant rounded-lg cursor-pointer hover:border-primary transition-all has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+<input checked="" class="hidden" name="method" type="radio" value="push"/>
+<span class="material-symbols-outlined text-on-surface-variant">smartphone</span>
+<span class="text-sm font-medium">Push</span>
+</label>
+<label class="flex items-center justify-center gap-3 p-4 bg-surface-container border border-outline-variant rounded-lg cursor-pointer hover:border-primary transition-all has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+<input class="hidden" name="method" type="radio" value="email"/>
+<span class="material-symbols-outlined text-on-surface-variant">alternate_email</span>
+<span class="text-sm font-medium">Email</span>
+</label>
+<label class="flex items-center justify-center gap-3 p-4 bg-surface-container border border-outline-variant rounded-lg cursor-pointer hover:border-primary transition-all has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+<input class="hidden" name="method" type="radio" value="in-app"/>
+<span class="material-symbols-outlined text-on-surface-variant">inbox</span>
+<span class="text-sm font-medium">In-App</span>
+</label>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="pt-4 flex justify-end gap-3 border-t border-outline-variant mt-8">
+<button class="px-6 py-2.5 rounded-lg text-sm font-bold text-on-surface-variant hover:bg-surface-container-highest transition-colors">Discard</button>
+<button class="px-8 py-2.5 rounded-lg text-sm font-bold bg-primary text-on-primary hover:opacity-90 transition-all shadow-lg shadow-primary/20">Save Changes</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 pb-safe bg-surface dark:bg-surface border-t border-outline-variant dark:border-outline-variant">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-body text-xs font-medium tracking-normal">Exam</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-body text-xs font-medium tracking-normal">Study</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-body text-xs font-medium tracking-normal">Score</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body text-xs font-medium tracking-normal">Logs</span>
+</button>
+<!-- Determining Logs as active as settings are usually a sub-section of profile/logs/account -->
+<div class="hidden">
+<!-- Active logic for simulation -->
+<script>
+                // Logic to set specific tab as active if needed
+                // For this UI, the user is in "Logs" or a hidden "Settings" context
+             </script>
+</div>
+</nav>
+<script>
+        // Simple Interaction logic
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                const parent = e.target.closest('.bg-surface-container');
+                if (e.target.checked) {
+                    parent.style.borderColor = 'var(--tw-color-primary)';
+                } else {
+                    parent.style.borderColor = '';
+                }
+            });
+        });
+
+        // Feedback on Save
+        const saveBtn = document.querySelector('button.bg-primary');
+        saveBtn.addEventListener('click', () => {
+            const originalText = saveBtn.innerText;
+            saveBtn.innerText = 'Applying...';
+            saveBtn.disabled = true;
+            setTimeout(() => {
+                saveBtn.innerText = 'Preferences Saved';
+                saveBtn.classList.remove('bg-primary');
+                saveBtn.classList.add('bg-tertiary', 'text-on-tertiary');
+                setTimeout(() => {
+                    saveBtn.innerText = originalText;
+                    saveBtn.classList.remove('bg-tertiary', 'text-on-tertiary');
+                    saveBtn.classList.add('bg-primary', 'text-on-primary');
+                    saveBtn.disabled = false;
+                }, 2000);
+            }, 800);
+        });
+    </script>
+</body></html>

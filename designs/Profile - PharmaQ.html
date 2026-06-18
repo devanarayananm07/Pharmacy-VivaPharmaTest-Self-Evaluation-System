@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>PharmaQ - Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.0.0/dist/fonts/geist.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#34d399",
+                    "on-primary-fixed": "#2e1065",
+                    "outline-variant": "#27272a",
+                    "tertiary-fixed": "#bbf7d0",
+                    "tertiary-fixed-dim": "#6ee7b7",
+                    "surface-tint": "#a78bfa",
+                    "surface-variant": "#18181b",
+                    "surface-container-highest": "#1e1e22",
+                    "on-error-container": "#fca5a5",
+                    "on-primary-fixed-variant": "#5b21b6",
+                    "secondary": "#71717a",
+                    "on-surface": "#fafafa",
+                    "surface-container": "#121215",
+                    "on-background": "#fafafa",
+                    "surface-dim": "#0c0c0f",
+                    "secondary-fixed": "#a1a1aa",
+                    "primary-fixed": "#ede9fe",
+                    "outline": "#52525b",
+                    "secondary-container": "#27272a",
+                    "on-tertiary-fixed-variant": "#047857",
+                    "on-tertiary-container": "#bbf7d0",
+                    "tertiary-container": "#065f46",
+                    "inverse-primary": "#5b21b6",
+                    "background": "#09090b",
+                    "surface": "#0c0c0f",
+                    "inverse-on-surface": "#09090b",
+                    "surface-bright": "#18181b",
+                    "surface-container-high": "#18181b",
+                    "on-tertiary-fixed": "#003318",
+                    "on-secondary-container": "#a1a1aa",
+                    "on-secondary-fixed": "#18181b",
+                    "surface-container-low": "#0f0f12",
+                    "surface-container-lowest": "#09090b",
+                    "error-container": "#3b1111",
+                    "error": "#ef4444",
+                    "primary-fixed-dim": "#c4b5fd",
+                    "on-error": "#1a0000",
+                    "secondary-fixed-dim": "#71717a",
+                    "on-primary": "#0a0012",
+                    "primary-container": "#7c3aed",
+                    "on-primary-container": "#ede9fe",
+                    "inverse-surface": "#fafafa",
+                    "primary": "#a78bfa",
+                    "on-tertiary": "#001a12",
+                    "on-surface-variant": "#a1a1aa",
+                    "on-secondary-fixed-variant": "#3f3f46",
+                    "on-secondary": "#09090b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Geist", "sans-serif"],
+                    "display": ["Geist", "sans-serif"],
+                    "body": ["Geist", "sans-serif"],
+                    "label": ["Geist", "sans-serif"]
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Geist', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .ios-switch:checked + .ios-switch-label {
+            background-color: #a78bfa;
+        }
+        .ios-switch:checked + .ios-switch-label::after {
+            transform: translateX(1.25rem);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-background flex justify-between items-center w-full px-4 h-16 sticky top-0 z-50 border-b border-outline-variant dark:border-outline-variant flat no shadows">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary active:scale-95 transition-transform cursor-pointer" data-icon="clinical_notes">clinical_notes</span>
+<span class="text-xl font-bold tracking-tighter text-on-surface dark:text-on-surface font-headline">PharmaQ</span>
+</div>
+<div class="active:scale-95 transition-transform cursor-pointer">
+<img alt="Dr. Aris" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A professional close-up portrait of a male clinical pharmacist with a kind expression, wearing a crisp white medical coat and a professional stethoscope around his neck. The setting is a clean, modern pharmacy environment with softly blurred shelves of medical supplies in the background. The lighting is bright and high-contrast, emphasizing clinical precision and warmth, consistent with an Obsidian dark-mode professional UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzfGCNiQiJj_qnNqwiJUTDa90Z2UhSMiqMhLHfKxE3iPgMiwUTpRjMVRMVqOZbumYRmEBlUfNyflTIyclx-70OOy7wyXFWlW7GXr-dbehpIge97a1V6hE1v6Qi0558lFFNu2AngqWbBuZAaDYTjcjLtiFtTlEanKgB8zmuY35L6JhCF7SRzhmaHOay97nySoCxKGhQw26MlavkoiVJ-k9CSNrHh6_91OcFSfw5ezF0CmtYgaNHXDD0EmcAJIpLAtxslBvvq3o7Lps"/>
+</div>
+</header>
+<main class="flex-1 pb-24 overflow-y-auto no-scrollbar">
+<!-- Profile Hero Section -->
+<section class="px-6 pt-8 pb-6 flex flex-col items-center text-center">
+<div class="relative mb-4">
+<div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-primary to-tertiary">
+<img alt="Dr. Aris Profile" class="w-full h-full rounded-full object-cover border-2 border-background" data-alt="A professional circular avatar image of Dr. Aris, a clinical pharmacist. He has a focused and friendly demeanor, wearing a white laboratory coat. The background is a minimalist, high-contrast clinical setting with subtle violet lighting accents. The image is crisp, detailed, and fits perfectly into a luxury developer-grade dark UI themed around precision and medicine." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx_7vxr405HgdInjC_bB8oj-JKuFsZjc4SK2ytSG60H7fi2jMRlgFcEcXzfntc-XqC5JWsEjyAbo3H6DLsNKYZuS4h5oCg9qk86u0_A8k6yq012H2pRAgE6oAxftZyAc-ndY7-_PwFIEX27PT1jZeZaJH_9b39to-xEqXUXzthbkKxn4yWrZFIMK9za_R0CtBnFY4PxovafNtkNSIEPcjL96aB7vMe5hd8oE2K9WhtqQ_tnsEM285vnyI-R3LyDTXanwoiY1yAiSs"/>
+</div>
+<div class="absolute bottom-1 right-1 bg-tertiary w-5 h-5 rounded-full border-2 border-background flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-on-tertiary font-bold" data-icon="check">check</span>
+</div>
+</div>
+<h1 class="text-2xl font-bold font-headline tracking-tight text-on-surface">Dr. Aris</h1>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-primary font-medium text-sm">Clinical Pharmacist</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant text-[10px] uppercase tracking-wider font-bold border border-outline-variant">Employee</span>
+</div>
+<div class="mt-3 flex items-center gap-1.5 text-secondary text-sm">
+<span class="material-symbols-outlined text-sm" data-icon="store">store</span>
+<span>Main Pharmacy A</span>
+</div>
+</section>
+<!-- Settings Categories -->
+<div class="px-4 space-y-8">
+<!-- Category: Account & Security -->
+<div class="space-y-3">
+<h2 class="px-2 text-xs font-bold uppercase tracking-[0.2em] text-secondary">Account &amp; Security</h2>
+<div class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden">
+<div class="flex items-center justify-between p-4 hover:bg-surface-variant transition-colors cursor-pointer active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary" data-icon="lock">lock</span>
+</div>
+<span class="text-on-surface font-medium">Change Password</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="h-[1px] bg-outline-variant mx-4"></div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-variant transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary" data-icon="fingerprint">fingerprint</span>
+</div>
+<span class="text-on-surface font-medium">Biometric Authentication</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer ios-switch" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary border border-outline-variant"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Category: Application Preferences -->
+<div class="space-y-3">
+<h2 class="px-2 text-xs font-bold uppercase tracking-[0.2em] text-secondary">Application Preferences</h2>
+<div class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden">
+<div class="flex items-center justify-between p-4 hover:bg-surface-variant transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+</div>
+<span class="text-on-surface font-medium">Push Notifications</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer ios-switch" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary border border-outline-variant"></div>
+</label>
+</div>
+<div class="h-[1px] bg-outline-variant mx-4"></div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-variant transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary" data-icon="dark_mode">dark_mode</span>
+</div>
+<span class="text-on-surface font-medium">Dark Mode</span>
+</div>
+<span class="text-primary text-sm font-bold bg-primary-container px-3 py-1 rounded-full">Always On</span>
+</div>
+<div class="h-[1px] bg-outline-variant mx-4"></div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-variant transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary" data-icon="translate">translate</span>
+</div>
+<span class="text-on-surface font-medium">Language</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="text-sm">English</span>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Category: Support & Legal -->
+<div class="space-y-3">
+<h2 class="px-2 text-xs font-bold uppercase tracking-[0.2em] text-secondary">Support &amp; Legal</h2>
+<div class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden">
+<div class="flex items-center justify-between p-4 hover:bg-surface-variant transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-secondary" data-icon="help_outline">help_outline</span>
+</div>
+<span class="text-on-surface font-medium">Help Center</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="open_in_new">open_in_new</span>
+</div>
+<div class="h-[1px] bg-outline-variant mx-4"></div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-variant transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-secondary" data-icon="description">description</span>
+</div>
+<span class="text-on-surface font-medium">Terms of Service</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="h-[1px] bg-outline-variant mx-4"></div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-variant transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-secondary" data-icon="shield">shield</span>
+</div>
+<span class="text-on-surface font-medium">Privacy Policy</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Logout Section -->
+<div class="pt-4 pb-12">
+<button class="w-full flex items-center justify-center gap-3 py-4 rounded-xl border border-error/30 bg-error-container text-error font-bold active:scale-[0.98] transition-transform hover:bg-error-container/80 transition-colors">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Log Out
+                </button>
+<p class="text-center text-on-secondary-fixed-variant text-[10px] mt-6 tracking-widest uppercase font-bold">PharmaQ v2.4.0 (PRO)</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface-container dark:bg-surface-container border-t border-outline-variant dark:border-outline-variant flat no shadows">
+<!-- Home -->
+<button class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-secondary-container px-3 py-1 hover:text-primary dark:hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-label text-xs">Home</span>
+</button>
+<!-- Study -->
+<button class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-secondary-container px-3 py-1 hover:text-primary dark:hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1" data-icon="menu_book">menu_book</span>
+<span class="font-label text-xs">Study</span>
+</button>
+<!-- Score -->
+<button class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-secondary-container px-3 py-1 hover:text-primary dark:hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1" data-icon="leaderboard">leaderboard</span>
+<span class="font-label text-xs">Score</span>
+</button>
+<!-- Profile (Active) -->
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-xl px-3 py-1 active:scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label text-xs">Profile</span>
+</button>
+</nav>
+<script>
+        // Micro-interactions and subtle effects
+        document.querySelectorAll('button, .cursor-pointer').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.opacity = '0.7';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.opacity = '1';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.opacity = '1';
+            });
+        });
+    </script>
+</body></html>

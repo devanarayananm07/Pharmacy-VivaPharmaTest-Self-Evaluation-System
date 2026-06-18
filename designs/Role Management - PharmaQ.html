@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ - Role Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#18181b",
+                        "on-error-container": "#fca5a5",
+                        "inverse-surface": "#fafafa",
+                        "surface-tint": "#a78bfa",
+                        "surface-variant": "#18181b",
+                        "on-surface-variant": "#a1a1aa",
+                        "on-primary": "#0a0012",
+                        "secondary-fixed": "#a1a1aa",
+                        "tertiary-container": "#065f46",
+                        "on-secondary-fixed": "#18181b",
+                        "primary-container": "#7c3aed",
+                        "surface-container-lowest": "#09090b",
+                        "on-secondary-container": "#a1a1aa",
+                        "tertiary": "#34d399",
+                        "primary": "#a78bfa",
+                        "on-background": "#fafafa",
+                        "background": "#09090b",
+                        "outline": "#52525b",
+                        "on-tertiary-fixed": "#003318",
+                        "secondary-fixed-dim": "#71717a",
+                        "primary-fixed": "#ede9fe",
+                        "error-container": "#3b1111",
+                        "on-error": "#1a0000",
+                        "error": "#ef4444",
+                        "surface-container-highest": "#1e1e22",
+                        "surface-dim": "#0c0c0f",
+                        "on-primary-fixed": "#2e1065",
+                        "on-secondary": "#09090b",
+                        "on-primary-container": "#ede9fe",
+                        "secondary-container": "#27272a",
+                        "on-primary-fixed-variant": "#5b21b6",
+                        "on-tertiary": "#001a12",
+                        "tertiary-fixed": "#bbf7d0",
+                        "outline-variant": "#27272a",
+                        "surface": "#0c0c0f",
+                        "tertiary-fixed-dim": "#6ee7b7",
+                        "secondary": "#71717a",
+                        "on-tertiary-container": "#bbf7d0",
+                        "inverse-primary": "#5b21b6",
+                        "primary-fixed-dim": "#c4b5fd",
+                        "on-secondary-fixed-variant": "#3f3f46",
+                        "on-surface": "#fafafa",
+                        "inverse-on-surface": "#09090b",
+                        "surface-bright": "#18181b",
+                        "surface-container": "#121215",
+                        "on-tertiary-fixed-variant": "#047857",
+                        "surface-container-low": "#0f0f12"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Geist"],
+                        "display": ["Geist"],
+                        "body": ["Geist"],
+                        "label": ["Geist"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .tap-highlight-transparent { -webkit-tap-highlight-color: transparent; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background selection:bg-primary/30 min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full h-16 px-4 flex justify-between items-center bg-background border-b border-outline-variant z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<h1 class="text-xl font-black tracking-tight text-on-background">PharmaQ</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-medium text-on-surface-variant hidden md:block">Admin Portal</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden">
+<img alt="User" class="w-full h-full object-cover" data-alt="A professional headshot of a pharmaceutical laboratory director in a dark-themed medical office. The lighting is moody and focused, highlighting silver hair and a clean white lab coat against a deep charcoal background with soft violet accents. The aesthetic is high-precision and authoritative, reflecting a modern healthcare executive environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdTGPzKJQTXqexDqZktWLmce_a2iVhIwZi-oaaUI3wkNWjYC4gazE59K7jZc4js3g01rV3h4YY-s8Vs4NFSpe6y_2uEJG76bt6rfeDbXkg0DmSig5d2baPpD7niEEK3Fi6P6fu314e1W78PgOmOqRba8RcIZEU9cwNGGxZlTHxSjOjuhXgcTUQwDoWcDx-34pwzmqdhiNVVtRKONWcQK-RPVd0sIW4tjBx05sPVBZUZuFMu9peg4lTYxmXLCWQs1YHi9XErmHn-Cw"/>
+</div>
+</div>
+</header>
+<main class="pt-20 px-4 max-w-2xl mx-auto">
+<!-- Section Header -->
+<div class="py-6">
+<h2 class="text-2xl font-bold tracking-tight mb-1">Role Management</h2>
+<p class="text-on-surface-variant text-sm">Assign and verify organizational hierarchies.</p>
+</div>
+<!-- Search & Filter Bar -->
+<div class="flex gap-2 mb-8">
+<div class="relative flex-grow">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-on-surface-variant/50" placeholder="Search by name or ID..." type="text"/>
+</div>
+<button class="bg-surface-container-high border border-outline-variant p-3 rounded-xl hover:bg-surface-container-highest transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 mb-6 overflow-x-auto scrollbar-hide">
+<button class="px-4 py-1.5 rounded-full bg-primary text-on-primary text-xs font-bold transition-all">All Users</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high border border-outline-variant text-on-surface-variant text-xs font-medium hover:border-primary/50 transition-all">Employees</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high border border-outline-variant text-on-surface-variant text-xs font-medium hover:border-primary/50 transition-all">Mentors</button>
+</div>
+<!-- User List -->
+<div class="space-y-3" id="user-list">
+<!-- User Card 1 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-4 flex items-center justify-between group hover:border-primary/30 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary opacity-70" data-icon="person">person</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface leading-none mb-1">Dr. Aris Thorne</h3>
+<p class="text-xs text-on-surface-variant font-mono">ID: PQ-88291</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border border-primary text-primary bg-primary/5">Mentor</span>
+<button class="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant hover:text-primary flex items-center gap-1 transition-colors" onclick="toggleRole(this)">
+<span class="material-symbols-outlined text-xs" data-icon="swap_horiz">swap_horiz</span> Change Role
+                    </button>
+</div>
+</div>
+<!-- User Card 2 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-4 flex items-center justify-between group hover:border-primary/30 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary opacity-70" data-icon="person">person</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface leading-none mb-1">Sarah Jenkins</h3>
+<p class="text-xs text-on-surface-variant font-mono">ID: PQ-11204</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border border-outline text-on-surface-variant">Employee</span>
+<button class="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant hover:text-primary flex items-center gap-1 transition-colors" onclick="toggleRole(this)">
+<span class="material-symbols-outlined text-xs" data-icon="swap_horiz">swap_horiz</span> Change Role
+                    </button>
+</div>
+</div>
+<!-- User Card 3 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-4 flex items-center justify-between group hover:border-primary/30 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary opacity-70" data-icon="person">person</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface leading-none mb-1">Marcus Vane</h3>
+<p class="text-xs text-on-surface-variant font-mono">ID: PQ-99302</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border border-primary text-primary bg-primary/5">Mentor</span>
+<button class="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant hover:text-primary flex items-center gap-1 transition-colors" onclick="toggleRole(this)">
+<span class="material-symbols-outlined text-xs" data-icon="swap_horiz">swap_horiz</span> Change Role
+                    </button>
+</div>
+</div>
+<!-- User Card 4 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-4 flex items-center justify-between group hover:border-primary/30 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary opacity-70" data-icon="person">person</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface leading-none mb-1">Elena Rodriguez</h3>
+<p class="text-xs text-on-surface-variant font-mono">ID: PQ-44129</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border border-outline text-on-surface-variant">Employee</span>
+<button class="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant hover:text-primary flex items-center gap-1 transition-colors" onclick="toggleRole(this)">
+<span class="material-symbols-outlined text-xs" data-icon="swap_horiz">swap_horiz</span> Change Role
+                    </button>
+</div>
+</div>
+</div>
+<!-- Info Card -->
+<div class="mt-12 p-4 bg-tertiary-container/10 border border-tertiary/20 rounded-xl flex gap-4 items-start">
+<span class="material-symbols-outlined text-tertiary" data-icon="info">info</span>
+<div>
+<h4 class="text-sm font-bold text-tertiary">Access Level Security</h4>
+<p class="text-xs text-on-surface-variant mt-1">Changes to user roles are logged and audited. Mentors gain access to study validation modules and peer review dashboards.</p>
+</div>
+</div>
+</main>
+<!-- Success Toast Container -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 bg-surface-container-highest border border-tertiary/50 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 opacity-0 pointer-events-none transition-all duration-300 transform translate-y-4 z-[60]" id="toast">
+<span class="material-symbols-outlined text-tertiary" data-icon="check_circle">check_circle</span>
+<span class="text-sm font-medium">Role updated successfully</span>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface-container-lowest border-t border-outline-variant pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all tap-highlight-transparent active:scale-90" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-label text-[10px] uppercase tracking-wider font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all tap-highlight-transparent active:scale-90" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="menu_book">menu_book</span>
+<span class="font-label text-[10px] uppercase tracking-wider font-bold">Study</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all tap-highlight-transparent active:scale-90" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="leaderboard">leaderboard</span>
+<span class="font-label text-[10px] uppercase tracking-wider font-bold">Score</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-2 transition-all tap-highlight-transparent active:scale-90" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label text-[10px] uppercase tracking-wider font-bold">Profile</span>
+</a>
+</nav>
+<script>
+        function toggleRole(btn) {
+            const card = btn.closest('div.flex-col');
+            const badge = card.querySelector('span:first-child');
+            const isMentor = badge.innerText.trim() === 'MENTOR';
+            
+            // Toggle UI state
+            if (isMentor) {
+                badge.innerText = 'Employee';
+                badge.className = 'text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border border-outline text-on-surface-variant';
+            } else {
+                badge.innerText = 'Mentor';
+                badge.className = 'text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border border-primary text-primary bg-primary/5';
+            }
+
+            // Show Toast
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 3000);
+
+            // Interaction effect
+            btn.classList.add('scale-95');
+            setTimeout(() => btn.classList.remove('scale-95'), 100);
+        }
+    </script>
+</body></html>

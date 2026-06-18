@@ -1,0 +1,23 @@
+# Clean Architecture Structure
+
+```bash
+lib/
+├── core/
+│   ├── constants/
+│   ├── theme/
+│   ├── utils/
+│   └── network/
+├── data/
+│   ├── models/
+│   ├── repositories/
+│   └── datasources/
+├── domain/
+│   ├── entities/
+│   ├── repositories/
+│   └── usecases/
+├── presentation/
+│   ├── blocs/
+│   ├── pages/
+│   └── widgets/
+└── main.dart
+```

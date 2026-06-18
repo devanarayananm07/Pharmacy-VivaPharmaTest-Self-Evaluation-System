@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ - Exam Module Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #09090b;
+            color: #fafafa;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1rem;
+        }
+
+        .glass-card {
+            background: rgba(18, 18, 21, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #27272a;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            background: #27272a;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #a78bfa;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#0c0c0f",
+                        "surface-container-highest": "#1e1e22",
+                        "primary": "#a78bfa",
+                        "secondary-container": "#27272a",
+                        "surface-bright": "#18181b",
+                        "on-surface-variant": "#a1a1aa",
+                        "on-tertiary-container": "#bbf7d0",
+                        "outline": "#52525b",
+                        "inverse-primary": "#5b21b6",
+                        "on-surface": "#fafafa",
+                        "tertiary": "#34d399",
+                        "secondary-fixed": "#a1a1aa",
+                        "on-tertiary-fixed-variant": "#047857",
+                        "inverse-on-surface": "#09090b",
+                        "background": "#09090b",
+                        "error": "#ef4444",
+                        "surface": "#0c0c0f",
+                        "tertiary-fixed": "#bbf7d0",
+                        "on-secondary-container": "#a1a1aa",
+                        "primary-fixed": "#ede9fe",
+                        "on-secondary-fixed": "#18181b",
+                        "inverse-surface": "#fafafa",
+                        "on-error-container": "#fca5a5",
+                        "on-secondary-fixed-variant": "#3f3f46",
+                        "surface-container-high": "#18181b",
+                        "primary-container": "#7c3aed",
+                        "on-primary-fixed-variant": "#5b21b6",
+                        "outline-variant": "#27272a",
+                        "secondary-fixed-dim": "#71717a",
+                        "tertiary-container": "#065f46",
+                        "surface-tint": "#a78bfa",
+                        "secondary": "#71717a",
+                        "on-background": "#fafafa",
+                        "primary-fixed-dim": "#c4b5fd",
+                        "on-tertiary": "#001a12",
+                        "on-primary-fixed": "#2e1065",
+                        "on-primary-container": "#ede9fe",
+                        "on-secondary": "#09090b",
+                        "on-primary": "#0a0012",
+                        "surface-variant": "#18181b",
+                        "on-tertiary-fixed": "#003318",
+                        "on-error": "#1a0000",
+                        "tertiary-fixed-dim": "#6ee7b7",
+                        "surface-container": "#121215",
+                        "error-container": "#3b1111",
+                        "surface-container-low": "#0f0f12",
+                        "surface-container-lowest": "#09090b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Geist"],
+                        "display": ["Geist"],
+                        "body": ["Geist"],
+                        "label": ["Geist"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation -->
+<header class="w-full top-0 z-50 flex justify-between items-center px-4 py-3 bg-background border-b border-outline-variant font-body text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<h1 class="text-xl font-headline font-bold tracking-tighter text-on-surface">PharmaQ</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex gap-6 text-sm font-medium">
+<a class="text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">History</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">Resources</a>
+</div>
+<div class="w-8 h-8 rounded-full bg-secondary-container border border-outline-variant flex items-center justify-center overflow-hidden">
+<img alt="User" class="w-full h-full object-cover" data-alt="A professional headshot avatar of a pharmacist in a clean white medical environment, high-contrast dark theme background with violet accent lighting, representing the user profile photo for a medical exam application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWsz7U0-Ix9hw5NivXCYGd3jTAKdxSglHhMSrcZRQCE0slXH9CVk8brQ6nCtc-kqn3t_v3gElawsqImu8tCsjQ5s55MXm-TPdCTh0Wr_oP0IQywnk-Fpio41K4JHLc065PU_8Ij3OvgqckMgrpOenYV-QicCV8VIgK7Zzyen1NhfBbcDcXmmUiU0WYoHEBr_okjlktbi0vG-pJ-ctmfowIrhRAIvUEHLBcp_ymrDzrr8_nsVIdaf-gOtclXv5wMfTcZWMEwh-Wv1s"/>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 py-8 pb-32">
+<!-- Welcome Section -->
+<section class="mb-10">
+<h2 class="text-3xl font-headline font-bold tracking-tight mb-2">Welcome back, Dr. Aris.</h2>
+<p class="text-on-surface-variant max-w-2xl">Your weekly performance is trending upwards. Complete your remaining 105 questions to stay ahead of the curve.</p>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Target Progress Card (Bento Large) -->
+<div class="md:col-span-4 flex flex-col justify-between p-6 rounded-xl border border-outline-variant bg-surface-container relative overflow-hidden group">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-8">
+<div>
+<p class="text-on-surface-variant text-sm font-label uppercase tracking-widest mb-1">Weekly Target</p>
+<h3 class="text-4xl font-headline font-extrabold text-on-surface">45<span class="text-outline">/150</span></h3>
+</div>
+<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="trending_up">trending_up</span>
+</div>
+<div class="space-y-4">
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[30%] transition-all duration-1000 ease-out" id="progress-bar"></div>
+</div>
+<div class="flex justify-between text-xs font-label text-on-surface-variant">
+<span>30% Completed</span>
+<span>105 Questions Remaining</span>
+</div>
+</div>
+</div>
+<!-- Background Decorative Element -->
+<div class="absolute -right-10 -bottom-10 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[180px]" data-icon="monitoring">monitoring</span>
+</div>
+</div>
+<!-- Start New Viva Section (Bento Extra Large) -->
+<div class="md:col-span-8 p-6 rounded-xl border border-outline-variant bg-surface-container-high shadow-xl">
+<div class="flex items-center gap-3 mb-8">
+<div class="p-2 bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="quiz">quiz</span>
+</div>
+<h3 class="text-xl font-headline font-bold">Initialize New Viva Session</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+<!-- Counter Selector -->
+<div class="space-y-2">
+<label class="text-xs font-label text-on-surface-variant uppercase tracking-wider">Select Counter</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none appearance-none">
+<option>Main Pharmacy A</option>
+<option>In-Patient B</option>
+<option>Out-Patient C</option>
+</select>
+</div>
+<!-- Department Selector -->
+<div class="space-y-2">
+<label class="text-xs font-label text-on-surface-variant uppercase tracking-wider">Department</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none appearance-none">
+<option>Pharmacology</option>
+<option>Clinical Pharmacy</option>
+<option>Pharmaceutics</option>
+</select>
+</div>
+<!-- Days Selector -->
+<div class="space-y-2">
+<label class="text-xs font-label text-on-surface-variant uppercase tracking-wider">Day Schedule</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none appearance-none">
+<option>Full Week</option>
+<option>Weekdays</option>
+<option>Weekends Only</option>
+</select>
+</div>
+</div>
+<!-- Slider for Questions -->
+<div class="mb-10 space-y-4">
+<div class="flex justify-between items-end">
+<label class="text-xs font-label text-on-surface-variant uppercase tracking-wider">Questions Per Session</label>
+<span class="text-2xl font-headline font-bold text-primary" id="question-count-display">25</span>
+</div>
+<input class="w-full" id="question-slider" max="50" min="5" type="range" value="25"/>
+<div class="flex justify-between text-[10px] text-outline font-label">
+<span>5 QNS</span>
+<span>50 QNS</span>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary font-bold rounded-xl hover:shadow-[0_0_20px_rgba(167,139,250,0.3)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group">
+<span>Initialize Viva</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Mini Stats/Info Cards -->
+<div class="md:col-span-3 p-5 rounded-xl border border-outline-variant bg-surface flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" data-icon="timer" style="font-variation-settings: 'FILL' 1;">timer</span>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-label">Avg. Speed</p>
+<p class="text-lg font-bold">42s / Qn</p>
+</div>
+</div>
+<div class="md:col-span-3 p-5 rounded-xl border border-outline-variant bg-surface flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="verified">verified</span>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-label">Accuracy Rate</p>
+<p class="text-lg font-bold">88.4%</p>
+</div>
+</div>
+<!-- Recent Activity Table (Medical Minimalism) -->
+<div class="md:col-span-6 p-6 rounded-xl border border-outline-variant bg-surface">
+<h4 class="text-sm font-label text-on-surface-variant uppercase tracking-widest mb-4">Latest Sessions</h4>
+<div class="space-y-3">
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-sm">Clinical Pharmacy Viva</span>
+</div>
+<span class="text-xs text-outline font-mono">14/15 Correct</span>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-sm">Pharmacology Quiz</span>
+</div>
+<span class="text-xs text-outline font-mono">28/30 Correct</span>
+</div>
+<div class="flex items-center justify-between py-2">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="text-sm">General Therapeutics</span>
+</div>
+<span class="text-xs text-outline font-mono">18/25 Correct</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface border-t border-outline-variant md:hidden">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center text-primary bg-secondary-container rounded-xl px-3 py-1 transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="assignment" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span class="font-label text-xs tracking-normal">Home</span>
+</a>
+<!-- Study -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-on-surface transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label text-xs tracking-normal">Study</span>
+</a>
+<!-- Score -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-on-surface transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label text-xs tracking-normal">Score</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-on-surface transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="person_outline">person_outline</span>
+<span class="font-label text-xs tracking-normal">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions
+        const slider = document.getElementById('question-slider');
+        const display = document.getElementById('question-count-display');
+        const progressBar = document.getElementById('progress-bar');
+
+        slider.addEventListener('input', (e) => {
+            display.innerText = e.target.value;
+        });
+
+        // Initialize progress bar animation
+        window.onload = () => {
+            setTimeout(() => {
+                progressBar.style.width = '30%';
+            }, 300);
+        };
+
+        // Simulated button interaction
+        document.querySelector('button').addEventListener('click', function() {
+            const originalContent = this.innerHTML;
+            this.innerHTML = '<span class="material-symbols-outlined animate-spin" data-icon="progress_activity">progress_activity</span> <span>Loading Module...</span>';
+            setTimeout(() => {
+                this.innerHTML = originalContent;
+            }, 2000);
+        });
+    </script>
+</body></html>

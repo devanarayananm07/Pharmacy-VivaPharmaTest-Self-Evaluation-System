@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Review Export - PharmaQ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.0.0/dist/fonts/geist.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#fafafa",
+                        "background": "#09090b",
+                        "surface-container-highest": "#1e1e22",
+                        "outline": "#52525b",
+                        "on-tertiary-container": "#bbf7d0",
+                        "on-primary-container": "#ede9fe",
+                        "outline-variant": "#27272a",
+                        "surface-dim": "#0c0c0f",
+                        "on-background": "#fafafa",
+                        "tertiary-fixed-dim": "#6ee7b7",
+                        "tertiary-container": "#065f46",
+                        "primary": "#a78bfa",
+                        "on-surface": "#fafafa",
+                        "inverse-on-surface": "#09090b",
+                        "surface-tint": "#a78bfa",
+                        "primary-fixed": "#ede9fe",
+                        "on-surface-variant": "#a1a1aa",
+                        "on-primary-fixed": "#2e1065",
+                        "on-primary": "#0a0012",
+                        "secondary-fixed": "#a1a1aa",
+                        "on-tertiary": "#001a12",
+                        "secondary-container": "#27272a",
+                        "primary-fixed-dim": "#c4b5fd",
+                        "on-secondary-fixed-variant": "#3f3f46",
+                        "inverse-primary": "#5b21b6",
+                        "tertiary-fixed": "#bbf7d0",
+                        "on-primary-fixed-variant": "#5b21b6",
+                        "surface-container-high": "#18181b",
+                        "on-tertiary-fixed": "#003318",
+                        "surface-container-low": "#0f0f12",
+                        "tertiary": "#34d399",
+                        "surface-variant": "#18181b",
+                        "on-secondary-container": "#a1a1aa",
+                        "on-secondary": "#09090b",
+                        "secondary-fixed-dim": "#71717a",
+                        "surface": "#0c0c0f",
+                        "surface-container": "#121215",
+                        "on-error-container": "#fca5a5",
+                        "surface-bright": "#18181b",
+                        "secondary": "#71717a",
+                        "on-tertiary-fixed-variant": "#047857",
+                        "on-secondary-fixed": "#18181b",
+                        "error-container": "#3b1111",
+                        "primary-container": "#7c3aed",
+                        "on-error": "#1a0000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Geist"],
+                        "display": ["Geist"],
+                        "body": ["Geist"],
+                        "label": ["Geist"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0c0c0f; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #27272a; border-radius: 2px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-4 h-16 w-full z-40 bg-background dark:bg-background border-b border-outline-variant dark:border-outline-variant sticky top-0">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-highest p-2 rounded-xl transition-colors active:scale-95">arrow_back</button>
+<h1 class="text-xl font-headline font-bold text-primary dark:text-primary tracking-tighter">PharmaQ</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATfBbicWLwm6fhAGBwKNNeEdiRBD22gPOGpnAx2UItpSmAQXpFtxr5ROQN58Rhs6chrEZLNj_uyn1ezOoXey3WPUWWbf-myra6m8rMg-QUDGnybtG92EgEt5gVgIKUlUefNnhVCbo9KZVcFumOcaSQox-Q71TzW-d3htQ8dfsuyTJ_cDf2M375R_yz7p-3br1fKx8iFk2PVFRXa49LCB5AJIKoX77sXy8on91qlQya3BjpWxOsR4lqlt2yNxO1uRYGjHUeRSb_lr8"/>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-4xl mx-auto w-full px-4 py-8">
+<!-- Header Section -->
+<div class="mb-8">
+<div class="flex items-center gap-2 mb-2">
+<span class="text-primary text-sm font-medium px-2 py-0.5 bg-primary/10 rounded border border-primary/20">Step 2 of 2</span>
+</div>
+<h2 class="text-3xl font-headline font-bold tracking-tight text-on-surface mb-2">Review Export</h2>
+<p class="text-on-surface-variant">Verify the data integrity and security settings before generating the clinical file.</p>
+</div>
+<!-- Selection Metadata Card -->
+<div class="bg-surface-container rounded-xl border border-outline-variant p-5 mb-8 flex items-center gap-5">
+<div class="w-12 h-12 rounded-lg bg-tertiary/10 border border-tertiary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<div class="flex-1">
+<div class="text-on-surface font-semibold text-lg">Exporting 1,240 rows</div>
+<div class="text-on-surface-variant font-mono text-sm">clinical_export_2023.xlsx</div>
+</div>
+<div class="hidden md:block px-4 py-2 bg-surface-container-low rounded-lg border border-outline-variant">
+<div class="text-[10px] uppercase tracking-widest text-secondary font-bold">Target Format</div>
+<div class="text-on-surface text-sm font-medium">Excel Spreadsheet</div>
+</div>
+</div>
+<!-- Data Preview List -->
+<div class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden mb-8">
+<div class="px-5 py-4 border-b border-outline-variant bg-surface-container-high flex justify-between items-center">
+<h3 class="text-sm font-bold uppercase tracking-wider text-on-surface-variant">Data Preview (Sample)</h3>
+<span class="text-xs text-secondary italic">Showing 5 of 1,240 items</span>
+</div>
+<div class="divide-y divide-outline-variant max-h-[400px] overflow-y-auto custom-scrollbar">
+<!-- Item 1 -->
+<div class="px-5 py-4 hover:bg-surface-container-highest transition-colors flex items-center justify-between group">
+<div class="flex flex-col gap-1">
+<span class="text-on-surface font-medium">Amoxicillin Interaction Protocol</span>
+<div class="flex gap-2">
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-surface-container-low border border-outline-variant text-on-surface-variant">Antibiotics</span>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-tertiary/10 border border-tertiary/20 text-tertiary">Easy</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-sm">visibility</span>
+</div>
+<!-- Item 2 -->
+<div class="px-5 py-4 hover:bg-surface-container-highest transition-colors flex items-center justify-between group">
+<div class="flex flex-col gap-1">
+<span class="text-on-surface font-medium">Fentanyl Dosage Calculations</span>
+<div class="flex gap-2">
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-surface-container-low border border-outline-variant text-on-surface-variant">Analgesics</span>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-error/10 border border-error/20 text-error">Hard</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-sm">visibility</span>
+</div>
+<!-- Item 3 -->
+<div class="px-5 py-4 hover:bg-surface-container-highest transition-colors flex items-center justify-between group">
+<div class="flex flex-col gap-1">
+<span class="text-on-surface font-medium">Atorvastatin Side Effect Analysis</span>
+<div class="flex gap-2">
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-surface-container-low border border-outline-variant text-on-surface-variant">Statins</span>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-primary/10 border border-primary/20 text-primary">Medium</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-sm">visibility</span>
+</div>
+<!-- Item 4 -->
+<div class="px-5 py-4 hover:bg-surface-container-highest transition-colors flex items-center justify-between group">
+<div class="flex flex-col gap-1">
+<span class="text-on-surface font-medium">Metformin Contraindications</span>
+<div class="flex gap-2">
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-surface-container-low border border-outline-variant text-on-surface-variant">Antidiabetics</span>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-primary/10 border border-primary/20 text-primary">Medium</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-sm">visibility</span>
+</div>
+<!-- Item 5 -->
+<div class="px-5 py-4 hover:bg-surface-container-highest transition-colors flex items-center justify-between group">
+<div class="flex flex-col gap-1">
+<span class="text-on-surface font-medium">Warfarin Monitoring Guidelines</span>
+<div class="flex gap-2">
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-surface-container-low border border-outline-variant text-on-surface-variant">Anticoagulants</span>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-error/10 border border-error/20 text-error">Hard</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-sm">visibility</span>
+</div>
+</div>
+</div>
+<!-- Secure Export Toggle Card -->
+<div class="bg-surface-container rounded-xl border border-outline-variant p-6 mb-12">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-primary">lock</span>
+</div>
+<div>
+<h4 class="text-on-surface font-semibold">Secure Export Toggle</h4>
+<p class="text-on-surface-variant text-sm mt-1">Enable end-to-end encryption and password protection for HIPAA-compliant clinical data transmission.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="secureToggle" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Password Input (Animated visibility) -->
+<div class="mt-4 pt-4 border-t border-outline-variant flex flex-col gap-2 transition-all duration-300 opacity-100" id="passwordField"><div class="flex flex-col gap-4"><div class="flex flex-col gap-2"><label class="text-xs text-on-surface-variant uppercase tracking-widest font-bold">File Password</label><div class="relative"><input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Enter password" type="password" value="********"/><button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-xl">visibility_off</span></button></div><div class="flex flex-col gap-1.5"><div class="flex justify-between items-center"><span class="text-[10px] text-on-surface-variant uppercase font-bold">Strength</span><span class="text-[10px] text-primary font-bold uppercase">Strong</span></div><div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden"><div class="h-full bg-primary w-3/4 transition-all duration-500"></div></div></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-1"><div class="flex items-center gap-2 text-xs text-primary"><span class="material-symbols-outlined text-sm">check_circle</span><span>At least 8 characters</span></div><div class="flex items-center gap-2 text-xs text-on-surface-variant"><span class="material-symbols-outlined text-sm">radio_button_unchecked</span><span>Special character</span></div><div class="flex items-center gap-2 text-xs text-primary"><span class="material-symbols-outlined text-sm">check_circle</span><span>One number</span></div><div class="flex items-center gap-2 text-xs text-on-surface-variant"><span class="material-symbols-outlined text-sm">radio_button_unchecked</span><span>Uppercase letter</span></div></div><div class="flex flex-col gap-2 mt-2"><label class="text-xs text-on-surface-variant uppercase tracking-widest font-bold">Confirm Password</label><div class="relative"><input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Repeat password" type="password"/><button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-xl">visibility_off</span></button></div></div></div></div>
+</div>
+<!-- Action Area -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-4 py-8 border-t border-outline-variant">
+<button class="text-on-surface-variant font-medium hover:text-primary transition-colors px-6 py-3">
+                Cancel Export
+            </button>
+<button class="w-full md:w-auto bg-primary text-on-primary font-bold px-10 py-4 rounded-xl flex items-center justify-center gap-3 active:scale-95 transition-transform hover:shadow-[0_0_20px_rgba(167,139,250,0.3)] shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">download</span>
+                Generate Export
+            </button>
+</div>
+</main>
+<!-- BottomNavBar (Hidden on desktop, shown on mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 pb-safe bg-surface dark:bg-surface border-t border-outline-variant dark:border-outline-variant">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="quiz">quiz</span>
+<span class="text-[10px] font-medium mt-1">Exam</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="text-[10px] font-medium mt-1">Study</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="text-[10px] font-medium mt-1">Score</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary bg-primary/10 rounded-xl px-3 py-1 transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-[10px] font-medium mt-1">Logs</span>
+</button>
+</nav>
+<script>
+        // Toggle interaction for password field
+        const toggle = document.getElementById('secureToggle');
+        const passwordField = document.getElementById('passwordField');
+
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                passwordField.style.opacity = '1';
+                passwordField.style.pointerEvents = 'auto';
+                passwordField.style.transform = 'translateY(0)';
+            } else {
+                passwordField.style.opacity = '0';
+                passwordField.style.pointerEvents = 'none';
+                passwordField.style.transform = 'translateY(-10px)';
+            }
+        });
+
+        // Atmospheric Micro-interaction for hover states on list items
+        const listItems = document.querySelectorAll('.divide-y > div');
+        listItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.borderLeft = '2px solid #a78bfa';
+                item.style.paddingLeft = '1.25rem';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.borderLeft = '0px solid transparent';
+                item.style.paddingLeft = '1.25rem';
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#fafafa",
+                        "primary": "#a78bfa",
+                        "inverse-primary": "#5b21b6",
+                        "on-surface": "#fafafa",
+                        "surface-container-high": "#18181b",
+                        "outline": "#52525b",
+                        "surface-container": "#121215",
+                        "secondary-fixed-dim": "#71717a",
+                        "inverse-on-surface": "#09090b",
+                        "surface-dim": "#0c0c0f",
+                        "secondary-fixed": "#a1a1aa",
+                        "surface": "#0c0c0f",
+                        "primary-fixed-dim": "#c4b5fd",
+                        "tertiary-fixed": "#bbf7d0",
+                        "outline-variant": "#27272a",
+                        "tertiary-fixed-dim": "#6ee7b7",
+                        "on-secondary-container": "#a1a1aa",
+                        "on-primary-fixed-variant": "#5b21b6",
+                        "surface-variant": "#18181b",
+                        "on-secondary": "#09090b",
+                        "on-error-container": "#fca5a5",
+                        "primary-fixed": "#ede9fe",
+                        "on-primary-fixed": "#2e1065",
+                        "error": "#ef4444",
+                        "secondary-container": "#27272a",
+                        "background": "#09090b",
+                        "surface-container-highest": "#1e1e22",
+                        "on-tertiary-fixed-variant": "#047857",
+                        "surface-bright": "#18181b",
+                        "on-secondary-fixed-variant": "#3f3f46",
+                        "on-primary-container": "#ede9fe",
+                        "surface-tint": "#a78bfa",
+                        "secondary": "#71717a",
+                        "on-tertiary": "#001a12",
+                        "surface-container-lowest": "#09090b",
+                        "on-tertiary-fixed": "#003318",
+                        "on-tertiary-container": "#bbf7d0",
+                        "surface-container-low": "#0f0f12",
+                        "error-container": "#3b1111",
+                        "on-primary": "#0a0012",
+                        "tertiary-container": "#065f46",
+                        "tertiary": "#34d399",
+                        "on-secondary-fixed": "#18181b",
+                        "inverse-surface": "#fafafa",
+                        "primary-container": "#7c3aed",
+                        "on-surface-variant": "#a1a1aa",
+                        "on-error": "#1a0000"
+                    },
+                    "fontFamily": {
+                        "headline": ["Geist"],
+                        "display": ["Geist"],
+                        "body": ["Geist"],
+                        "label": ["Geist"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; background-color: #09090b; color: #fafafa; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .success-pulse { animation: pulse-border 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse-border {
+            0%, 100% { border-color: #27272a; }
+            50% { border-color: #34d399; }
+        }
+        .fade-in-up { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; }
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-background dark:bg-background border-b border-outline-variant flex items-center justify-between px-4 h-16 max-w-none">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">clinical_notes</span>
+<h1 class="text-xl font-bold tracking-tighter text-primary dark:text-primary font-headline">PharmaQ</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-variant transition-colors rounded-full active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-secondary">search</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A professional studio portrait of a medical researcher in a dark environment with subtle violet rim lighting. The style is minimalist and high-contrast, matching the obsidian dark mode aesthetic of the application. The background is a deep zinc gray with sharp, clean lines and a modern digital feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRIV_P8yN2ZlU2PgCuwbGt6WnoguE9QfT76U5sB9k4N0KLRIhFnaxdgZ2LTCXnMJ8CHtYVte37sIsBZOmFtZTdd0CF0SU3UWkjG7kzqnc2yVrrI29Xg_iTzdwd-sz-6-RshDDEEO-At0mNYfJyNqk-_hzWrhiNProzkm4W12LdCCit0YkKuw9MR6PJ9USzLk2l6uEpJ8c63cpMnMdYEBFR5J6oPzdD6dA74ipmGVuqALw9I7P_H3YFTx_mNafb_aC21x-zvuWGQ5c"/>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center px-4 py-12 max-w-4xl mx-auto w-full">
+<!-- Success State Header -->
+<div class="text-center mb-10 fade-in-up">
+<div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-tertiary/10 border-2 border-tertiary mb-6 relative">
+<span class="material-symbols-outlined text-tertiary text-4xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="absolute inset-0 rounded-full success-pulse"></div>
+</div>
+<h2 class="text-3xl font-bold tracking-tighter text-on-surface mb-2">Question Published</h2>
+<p class="text-secondary font-body">Your clinical pharmacology case has been verified and added to the core bank.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 w-full">
+<!-- Summary Review Card -->
+<div class="md:col-span-8 space-y-6 fade-in-up delay-1">
+<div class="bg-surface-container border border-outline-variant rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-sm font-label uppercase tracking-widest text-secondary">Review Summary</h3>
+<span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded border border-primary/20">Case #PQ-8842</span>
+</div>
+<div class="space-y-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-outline-variant/50">
+<span class="text-on-surface-variant text-sm">Primary Drug Group</span>
+<span class="font-medium text-on-surface">Aminoglycosides (Gentamicin)</span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-outline-variant/50">
+<span class="text-on-surface-variant text-sm">Difficulty Setting</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-medium text-on-surface">Advanced Clinical</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-outline-variant/50">
+<span class="text-on-surface-variant text-sm">Mechanism Focus</span>
+<span class="font-medium text-on-surface">30S Ribosomal Inhibition</span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between py-3">
+<span class="text-on-surface-variant text-sm">Target Audience</span>
+<span class="font-medium text-on-surface">Post-Graduate (Step 2/3)</span>
+</div>
+</div>
+</div>
+<!-- Primary Actions -->
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="flex-1 bg-primary text-on-primary font-bold py-4 rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add_circle</span>
+                        Add Another Question
+                    </button>
+<button class="flex-1 border border-outline-variant text-on-surface font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-surface-variant active:scale-95 transition-transform">
+<span class="material-symbols-outlined">dashboard</span>
+                        Return to Dashboard
+                    </button>
+</div>
+</div>
+<!-- Side Widgets / Stats -->
+<div class="md:col-span-4 space-y-6 fade-in-up delay-2">
+<!-- Question Bank Stats -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-5 overflow-hidden relative">
+<div class="absolute -right-4 -top-4 opacity-10">
+<span class="material-symbols-outlined text-8xl">database</span>
+</div>
+<p class="text-xs font-label uppercase tracking-widest text-secondary mb-1">Question Bank Size</p>
+<p class="text-3xl font-bold text-on-surface tabular-nums">1,240</p>
+<div class="mt-4 flex items-center gap-2 text-tertiary text-xs">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+1 contribution today</span>
+</div>
+</div>
+<!-- Compliance Widget -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-5">
+<p class="text-xs font-label uppercase tracking-widest text-secondary mb-4">Counter Compliance</p>
+<div class="flex items-end justify-between mb-2">
+<span class="text-2xl font-bold text-on-surface">98.2%</span>
+<span class="text-xs text-secondary">Impact Score</span>
+</div>
+<div class="w-full bg-outline-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 98.2%"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-3 leading-tight">
+                        Your contribution meets the high-fidelity standards for FDA labeling alignment.
+                    </p>
+</div>
+<!-- Preview Thumbnail -->
+<div class="rounded-xl border border-outline-variant overflow-hidden group relative">
+<img class="w-full h-32 object-cover opacity-50 group-hover:opacity-70 transition-opacity" data-alt="A highly detailed close-up of amber medicine vials and scientific glassware in a laboratory setting. The lighting is cinematic, with deep shadows and sharp violet highlights reflecting off the glass surfaces. The atmosphere is clinical, precise, and sophisticated, echoing the Obsidian dark mode design language with high contrast and tech-forward aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8hbXAZxeE5QUvP1BP9D6KWVVXgviYeF-YAmSZGpBqDpYngegjQoiRpP4DUuXEtKaMmQ0lS1WBMB9ac73prinW9xVtR95KbWTUjMP6z7LMEJRpmLpC9WyGDTSnExzofOaQt5hWeU-jKSIihr6aOAl1_U21hTerl68XDZfu8OPkWTphTOAvh67nVTTOErxYMcIu4DNclJlpt7zjECqGzAdK0HAIpNF_Ik8TF4Z8BWGpj9ccvSJdl-v7hPEmFNygGarhRVsslzzkugE"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<button class="bg-surface/80 backdrop-blur-sm border border-outline-variant px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                            View Live Preview
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-2 pb-safe bg-surface border-t border-outline-variant z-50">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label text-xs uppercase tracking-wider mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-xl px-3 py-1 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label text-xs uppercase tracking-wider mt-1">Study</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label text-xs uppercase tracking-wider mt-1">Score</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label text-xs uppercase tracking-wider mt-1">Profile</span>
+</button>
+</nav>
+<!-- Subtle Background Glow -->
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
+<div class="fixed bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-tertiary/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+<script>
+        // Micro-interaction for feedback
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('PharmaQ Success Flow Initialized');
+            
+            // Simple interactive effect on stats
+            const stats = document.querySelectorAll('.tabular-nums');
+            stats.forEach(stat => {
+                stat.addEventListener('mouseenter', () => {
+                    stat.style.color = '#a78bfa';
+                    stat.style.transition = 'color 0.3s ease';
+                });
+                stat.addEventListener('mouseleave', () => {
+                    stat.style.color = '#fafafa';
+                });
+            });
+        });
+    </script>
+</body></html>

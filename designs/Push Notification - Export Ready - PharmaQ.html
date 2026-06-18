@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#09090b",
+                        "primary-fixed-dim": "#c4b5fd",
+                        "on-tertiary": "#001a12",
+                        "outline": "#52525b",
+                        "surface-variant": "#18181b",
+                        "outline-variant": "#27272a",
+                        "on-primary-fixed-variant": "#5b21b6",
+                        "inverse-on-surface": "#09090b",
+                        "secondary": "#71717a",
+                        "error": "#ef4444",
+                        "surface-container-low": "#0f0f12",
+                        "on-primary": "#0a0012",
+                        "error-container": "#3b1111",
+                        "tertiary": "#34d399",
+                        "surface-container-highest": "#1e1e22",
+                        "surface-container-high": "#18181b",
+                        "on-secondary-container": "#a1a1aa",
+                        "secondary-fixed-dim": "#71717a",
+                        "primary": "#a78bfa",
+                        "on-background": "#fafafa",
+                        "surface-bright": "#18181b",
+                        "primary-container": "#7c3aed",
+                        "tertiary-container": "#065f46",
+                        "on-surface": "#fafafa",
+                        "on-secondary-fixed": "#18181b",
+                        "inverse-primary": "#5b21b6",
+                        "secondary-container": "#27272a",
+                        "tertiary-fixed-dim": "#6ee7b7",
+                        "secondary-fixed": "#a1a1aa",
+                        "on-primary-fixed": "#2e1065",
+                        "on-tertiary-container": "#bbf7d0",
+                        "surface-container-lowest": "#09090b",
+                        "on-error": "#1a0000",
+                        "tertiary-fixed": "#bbf7d0",
+                        "surface": "#0c0c0f",
+                        "on-tertiary-fixed-variant": "#047857",
+                        "on-tertiary-fixed": "#003318",
+                        "on-secondary-fixed-variant": "#3f3f46",
+                        "surface-tint": "#a78bfa",
+                        "on-secondary": "#09090b",
+                        "on-surface-variant": "#a1a1aa",
+                        "on-error-container": "#fca5a5",
+                        "primary-fixed": "#ede9fe",
+                        "on-primary-container": "#ede9fe",
+                        "surface-dim": "#0c0c0f",
+                        "surface-container": "#121215",
+                        "inverse-surface": "#fafafa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Geist"],
+                        "display": ["Geist"],
+                        "body": ["Geist"],
+                        "label": ["Geist"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .blur-backdrop {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-notification {
+            animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center p-4 overflow-hidden">
+<!-- Background Wallpaper -->
+<div class="fixed inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30 grayscale brightness-50" data-alt="A sophisticated medical-themed dark wallpaper featuring high-tech molecular structures and abstract DNA helix patterns. The lighting is moody and cinematic, with soft violet and deep emerald glows reflecting off microscopic surfaces. The color palette is dominated by charcoal, midnight blue, and subtle primary violet accents, creating a professional and futuristic laboratory atmosphere for a premium pharmaceutical platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi3XmtuLBDDjfYaDmzJsGLseki52s9ENzDoQy2ClsBAvuBl8bCo40Jm42KgySkLfvgBQrazl0XVjD_nn1Bzm3hHom2bavIqeFqN7q7mjAPWLH5Za5HAZVryZQ_ym8YqmKMCmRcrU-Qw4oz8wiN_0mypDXY1Xmpenmwk8wWZLJgK08pTSoK7W2egHObjXN5z0p9RZJnclM3bcPCSP9zzfViPF08xpTF5Hb-6uiDBZKn9XHkMQERB5ZUV85WgfDss1W3H3BiKPwxM3Y"/>
+<div class="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/90"></div>
+</div>
+<!-- Mobile Screen Container -->
+<div class="relative z-10 w-full max-w-[400px] aspect-[9/19] bg-background/20 rounded-[3rem] border-[8px] border-surface-container-highest shadow-2xl flex flex-col items-center overflow-hidden">
+<!-- Status Bar -->
+<div class="w-full px-8 py-4 flex justify-between items-center text-on-surface text-sm font-medium">
+<span>9:41</span>
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-base">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-base">wifi</span>
+<span class="material-symbols-outlined text-base">battery_full</span>
+</div>
+</div>
+<!-- Lock Screen Clock -->
+<div class="mt-12 flex flex-col items-center">
+<h1 class="text-7xl font-light tracking-tight text-on-surface/90">09:41</h1>
+<p class="text-on-surface-variant font-medium mt-1">Tuesday, October 24</p>
+</div>
+<!-- Notification Content -->
+<div class="w-full px-4 mt-12 space-y-4">
+<!-- PharmaQ Notification Card -->
+<div class="animate-notification w-full bg-surface-container/80 blur-backdrop border border-outline-variant rounded-xl p-4 shadow-xl">
+<!-- Header -->
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center space-x-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-background text-xl" style="font-variation-settings: 'FILL' 1;">clinical_notes</span>
+</div>
+<div class="flex flex-col">
+<span class="text-primary font-bold text-xs tracking-tighter">PharmaQ</span>
+<span class="text-on-surface font-headline font-semibold text-sm leading-none">Export Complete</span>
+</div>
+</div>
+<span class="text-[10px] text-on-secondary-container uppercase tracking-widest font-bold">Now</span>
+</div>
+<!-- Body -->
+<div class="mb-4">
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                        Your clinical data export for <span class="text-on-surface font-medium">Antibiotics</span> is ready <span class="text-tertiary">(4.2 MB)</span>.
+                    </p>
+</div>
+<!-- Actions -->
+<div class="flex gap-2">
+<button class="flex-1 h-10 bg-primary text-on-primary font-label text-sm font-bold rounded-lg active:scale-95 transition-transform">
+                        Download Now
+                    </button>
+<button class="flex-1 h-10 bg-transparent border border-outline text-on-surface font-label text-sm font-medium rounded-lg active:scale-95 transition-transform hover:bg-surface-container-high">
+                        View in App
+                    </button>
+</div>
+</div>
+<!-- Hint for more notifications -->
+<div class="flex justify-center">
+<div class="h-1 w-12 bg-outline-variant rounded-full"></div>
+</div>
+</div>
+<!-- Bottom Home Indicator -->
+<div class="mt-auto mb-2 w-32 h-1.5 bg-on-surface/30 rounded-full"></div>
+</div>
+<!-- UI Interaction Overlay Controls (Mock) -->
+<div class="fixed bottom-8 flex space-x-4 z-20">
+<button class="p-3 rounded-full bg-surface-container-high border border-outline-variant text-on-surface hover:text-primary transition-colors" onclick="toggleNotification()">
+<span class="material-symbols-outlined">refresh</span>
+</button>
+</div>
+<script>
+        function toggleNotification() {
+            const card = document.querySelector('.animate-notification');
+            card.style.animation = 'none';
+            card.offsetHeight; /* trigger reflow */
+            card.style.animation = null;
+        }
+
+        // Slight mouse movement parallax for background
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) / 100;
+            const moveY = (e.clientY - window.innerHeight / 2) / 100;
+            document.querySelector('.fixed.inset-0 img').style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+        });
+    </script>
+</body></html>

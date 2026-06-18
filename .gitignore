@@ -1,0 +1,7 @@
+# Root-level IDE and System Ignores
+.idea/
+.vscode/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db

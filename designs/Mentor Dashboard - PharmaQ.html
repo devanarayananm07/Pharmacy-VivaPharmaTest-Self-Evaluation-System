@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ - Mentor Control Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://fonts.cdnfonts.com/css/geist-sans');
+        }
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #09090b;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(18, 18, 21, 0.8) 0%, rgba(12, 12, 15, 0.9) 100%);
+            backdrop-filter: blur(8px);
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "on-surface": "#fafafa",
+                "surface-container-highest": "#1e1e22",
+                "surface-container": "#121215",
+                "on-tertiary-fixed": "#003318",
+                "on-background": "#fafafa",
+                "on-tertiary": "#001a12",
+                "on-primary-fixed": "#2e1065",
+                "on-error-container": "#fca5a5",
+                "error": "#ef4444",
+                "surface-bright": "#18181b",
+                "inverse-surface": "#fafafa",
+                "error-container": "#3b1111",
+                "surface-tint": "#a78bfa",
+                "secondary-fixed-dim": "#71717a",
+                "outline": "#52525b",
+                "on-primary": "#0a0012",
+                "background": "#09090b",
+                "surface": "#0c0c0f",
+                "inverse-on-surface": "#09090b",
+                "secondary-container": "#27272a",
+                "primary-fixed": "#ede9fe",
+                "on-secondary-fixed": "#18181b",
+                "surface-container-high": "#18181b",
+                "on-secondary": "#09090b",
+                "on-tertiary-fixed-variant": "#047857",
+                "primary": "#a78bfa",
+                "outline-variant": "#27272a",
+                "on-primary-fixed-variant": "#5b21b6",
+                "primary-fixed-dim": "#c4b5fd",
+                "on-secondary-container": "#a1a1aa",
+                "on-primary-container": "#ede9fe",
+                "on-error": "#1a0000",
+                "inverse-primary": "#5b21b6",
+                "on-tertiary-container": "#bbf7d0",
+                "tertiary-fixed-dim": "#6ee7b7",
+                "tertiary-fixed": "#bbf7d0",
+                "surface-container-low": "#0f0f12",
+                "tertiary": "#34d399",
+                "surface-dim": "#0c0c0f",
+                "secondary": "#71717a",
+                "secondary-fixed": "#a1a1aa",
+                "surface-variant": "#18181b",
+                "on-surface-variant": "#a1a1aa",
+                "tertiary-container": "#065f46",
+                "on-secondary-fixed-variant": "#3f3f46",
+                "surface-container-lowest": "#09090b",
+                "primary-container": "#7c3aed"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "fontFamily": {
+                "headline": ["Geist"],
+                "display": ["Geist"],
+                "body": ["Geist"],
+                "label": ["Geist"]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary antialiased pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky bg-background border-b border-outline-variant flex items-center justify-between px-6 h-16 w-full max-w-full z-40">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<span class="text-xl font-bold tracking-tighter text-on-surface">PharmaQ</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold transition-colors" href="#">Home</a>
+<a class="text-secondary hover:bg-surface-container-high transition-colors px-2 py-1 rounded" href="#">Study</a>
+<a class="text-secondary hover:bg-surface-container-high transition-colors px-2 py-1 rounded" href="#">Score</a>
+<a class="text-secondary hover:bg-surface-container-high transition-colors px-2 py-1 rounded" href="#">Profile</a>
+</nav>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMXm79jLUxykJDwy9fssqTy1gERB1yCAORyqUMyRWI5K-4HZ96w3ZfpuYRAaNtwmrsqG-2Lj4HJjs2kVz8Jblg9pfedPvm7_F9iel-qWFhzYgUWzWm1aKoEPW9Q53DeA8XnnB641K4wFK1qqc3UEo9msOHO12iPOi2TwkyqEgoTXtt9AXLG3C5w74WotzvOEyFnV2XV_efjxydUuUWD5i4mVkjMMj1UtCd3ESUVCeYO6yMx9eCuqi76Se-RCnFQvSt0ChX2hMiz0I"/>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-8">
+<!-- Dashboard Header -->
+<div class="mb-10">
+<h1 class="text-3xl font-bold tracking-tight text-on-surface">Mentor Control Center</h1>
+<p class="text-secondary mt-1">Managing: <span class="text-primary font-medium">Main Pharmacy A</span></p>
+</div>
+<!-- Bento Grid Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
+<!-- Active Vivas Card -->
+<div class="md:col-span-2 lg:col-span-2 bg-surface-container p-6 rounded-xl border border-outline-variant flex flex-col justify-between hover:border-primary transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-tertiary" data-icon="clinical_notes">clinical_notes</span>
+<span class="text-xs font-mono text-tertiary bg-tertiary/10 px-2 py-1 rounded">Live</span>
+</div>
+<div>
+<div class="text-4xl font-bold text-on-surface">12</div>
+<div class="text-secondary text-sm">Active Vivas</div>
+</div>
+<div class="mt-4 h-1 bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-3/4 animate-pulse"></div>
+</div>
+</div>
+<!-- Pending Questions Card -->
+<div class="md:col-span-2 lg:col-span-2 bg-surface-container p-6 rounded-xl border border-outline-variant flex flex-col justify-between hover:border-primary transition-all">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="pending_actions">pending_actions</span>
+<span class="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">Urgent</span>
+</div>
+<div>
+<div class="text-4xl font-bold text-on-surface">45</div>
+<div class="text-secondary text-sm">Pending Questions</div>
+</div>
+<div class="mt-4 flex -space-x-2">
+<div class="w-6 h-6 rounded-full border border-background bg-surface-container-highest"></div>
+<div class="w-6 h-6 rounded-full border border-background bg-surface-container-highest"></div>
+<div class="w-6 h-6 rounded-full border border-background bg-surface-container-highest"></div>
+</div>
+</div>
+<!-- Compliance Rate Card -->
+<div class="md:col-span-4 lg:col-span-2 bg-surface-container-high p-6 rounded-xl border border-outline-variant flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-on-surface" data-icon="verified_user">verified_user</span>
+</div>
+<div class="text-4xl font-bold text-on-surface">92%</div>
+<div class="text-secondary text-sm">Compliance Rate</div>
+<p class="text-[10px] text-tertiary mt-2">150+ target hit by 11/12 staff</p>
+</div>
+<!-- Abstract visual element -->
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-tertiary/5 rounded-full blur-2xl"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column: Actions & Config -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Quick Actions -->
+<section class="bg-surface p-6 rounded-xl border border-outline-variant">
+<h2 class="text-sm font-bold uppercase tracking-widest text-secondary mb-6">Quick Actions</h2>
+<div class="flex flex-col gap-3">
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg font-bold flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-sm" data-icon="rocket_launch">rocket_launch</span>
+                            Launch Viva Session
+                        </button>
+<button class="w-full border border-outline-variant text-on-surface py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-surface-container-high active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+                            Add Question
+                        </button>
+<button class="w-full text-secondary py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:text-on-surface hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="folder_managed">folder_managed</span>
+                            Manage Study Material
+                        </button>
+</div>
+</section>
+<!-- System Configuration -->
+<section class="bg-surface-container p-6 rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-sm font-bold uppercase tracking-widest text-secondary">System Configuration</h2>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="settings">settings</span>
+</div>
+<div class="p-4 bg-background rounded-lg border border-outline-variant flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface">Current Difficulty</span>
+<span class="text-xs text-secondary">Adapts quiz parameters</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-highest px-3 py-1.5 rounded-full border border-outline-variant">
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(167,139,250,0.6)]"></div>
+<span class="text-xs font-bold text-on-surface uppercase tracking-tight">Medium</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Performance List -->
+<div class="lg:col-span-8">
+<section class="bg-surface border border-outline-variant rounded-xl flex flex-col h-[520px]">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<div>
+<h2 class="text-lg font-bold text-on-surface">Employee Performance</h2>
+<p class="text-xs text-secondary">Real-time engagement metrics</p>
+</div>
+<button class="text-primary text-sm font-bold flex items-center gap-1">
+                            Full Report <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-2">
+<!-- Employee Item -->
+<div class="flex items-center justify-between p-4 rounded-lg hover:bg-surface-container-high transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center font-bold text-primary border border-outline-variant">
+                                    JS
+                                </div>
+<div>
+<div class="font-bold text-on-surface">Julianne Smith</div>
+<div class="text-xs text-secondary">Pharmacist (Night Shift)</div>
+</div>
+</div>
+<div class="flex items-center gap-8 text-right">
+<div>
+<div class="text-sm font-mono text-on-surface">142/150</div>
+<div class="text-[10px] uppercase text-secondary tracking-widest">Progress</div>
+</div>
+<div class="w-16">
+<div class="text-sm font-bold text-tertiary">94%</div>
+<div class="text-[10px] uppercase text-secondary tracking-widest">Score</div>
+</div>
+</div>
+</div>
+<!-- Employee Item -->
+<div class="flex items-center justify-between p-4 rounded-lg hover:bg-surface-container-high transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center font-bold text-primary border border-outline-variant">
+                                    AM
+                                </div>
+<div>
+<div class="font-bold text-on-surface">Arthur Morgan</div>
+<div class="text-xs text-secondary">Lead Technician</div>
+</div>
+</div>
+<div class="flex items-center gap-8 text-right">
+<div>
+<div class="text-sm font-mono text-on-surface">120/150</div>
+<div class="text-[10px] uppercase text-secondary tracking-widest">Progress</div>
+</div>
+<div class="w-16">
+<div class="text-sm font-bold text-on-surface">88%</div>
+<div class="text-[10px] uppercase text-secondary tracking-widest">Score</div>
+</div>
+</div>
+</div>
+<!-- Employee Item -->
+<div class="flex items-center justify-between p-4 rounded-lg hover:bg-surface-container-high transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center font-bold text-primary border border-outline-variant">
+                                    LW
+                                </div>
+<div>
+<div class="font-bold text-on-surface">Linda Wright</div>
+<div class="text-xs text-secondary">Junior Pharmacist</div>
+</div>
+</div>
+<div class="flex items-center gap-8 text-right">
+<div>
+<div class="text-sm font-mono text-on-surface">150/150</div>
+<div class="text-[10px] uppercase text-tertiary tracking-widest font-bold">Complete</div>
+</div>
+<div class="w-16">
+<div class="text-sm font-bold text-tertiary">91%</div>
+<div class="text-[10px] uppercase text-secondary tracking-widest">Score</div>
+</div>
+</div>
+</div>
+<!-- Employee Item (Alert State) -->
+<div class="flex items-center justify-between p-4 rounded-lg hover:bg-surface-container-high transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center font-bold text-error border border-error/20">
+                                    BK
+                                </div>
+<div>
+<div class="font-bold text-on-surface">Ben King</div>
+<div class="text-xs text-secondary">Pharmacy Assistant</div>
+</div>
+</div>
+<div class="flex items-center gap-8 text-right">
+<div>
+<div class="text-sm font-mono text-error">45/150</div>
+<div class="text-[10px] uppercase text-error tracking-widest">At Risk</div>
+</div>
+<div class="w-16">
+<div class="text-sm font-bold text-on-surface">76%</div>
+<div class="text-[10px] uppercase text-secondary tracking-widest">Score</div>
+</div>
+</div>
+</div>
+<!-- Employee Item -->
+<div class="flex items-center justify-between p-4 rounded-lg hover:bg-surface-container-high transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center font-bold text-primary border border-outline-variant">
+                                    CD
+                                </div>
+<div>
+<div class="font-bold text-on-surface">Clara Doe</div>
+<div class="text-xs text-secondary">Staff Pharmacist</div>
+</div>
+</div>
+<div class="flex items-center gap-8 text-right">
+<div>
+<div class="text-sm font-mono text-on-surface">112/150</div>
+<div class="text-[10px] uppercase text-secondary tracking-widest">Progress</div>
+</div>
+<div class="w-16">
+<div class="text-sm font-bold text-on-surface">82%</div>
+<div class="text-[10px] uppercase text-secondary tracking-widest">Score</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Extra visual context: Pharmacy Dashboard Graphic -->
+<div class="mt-8 rounded-2xl overflow-hidden border border-outline-variant h-48 relative group">
+<img alt="Pharmacy Setting" class="w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-opacity duration-700" data-alt="A clean, futuristic pharmacy interior with soft violet ambient lighting and sleek dark surfaces. Medical equipment and medicine bottles are arranged with mathematical precision on minimalist shelves. The atmosphere is professional, technologically advanced, and quiet, rendered with a high-contrast dark aesthetic that highlights purple and emerald green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdDComsO5hcSxQV64g6g6kdv9qqQsfGoKTFaJVqMMTZWK4Fn5dkAB4RfJIrCeQ51qAno9nrHs6gbokyk1XBTjF8NWwTGzyw_QQ77aJwTx16WwiprWDWVawJwsVfqw4p_FZz7tZK5WddG9HvFpfBO-9qeZn9I6ltN9leZQTOL9j0vZLDPBTSucZcqLofV7duwk0dAaVNXkXF-f5ozjbMK72f8j-2gwDrSYoizNif08hpXo0f8FrPKnzq9tYDMEy2MMvEfPxPaqSopM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent flex items-end p-8">
+<div>
+<span class="text-primary text-xs font-bold uppercase tracking-widest">Network Status</span>
+<h3 class="text-xl font-bold text-on-surface">Regional Compliance is stable.</h3>
+<p class="text-secondary text-sm">Main Pharmacy A is performing in the top 5% of the district.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-4 bg-surface-container border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-xs font-body tracking-normal mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="text-xs font-body tracking-normal mt-1">Study</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-xs font-body tracking-normal mt-1">Score</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-xs font-body tracking-normal mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple interactivity for the difficulty status
+        document.querySelector('.bg-surface-container-highest').addEventListener('click', function() {
+            const label = this.querySelector('span');
+            const dot = this.querySelector('div');
+            
+            if (label.innerText === 'MEDIUM') {
+                label.innerText = 'HARD';
+                dot.style.backgroundColor = '#ef4444';
+                dot.style.boxShadow = '0 0 8px rgba(239, 68, 68, 0.6)';
+            } else {
+                label.innerText = 'MEDIUM';
+                dot.style.backgroundColor = '#a78bfa';
+                dot.style.boxShadow = '0 0 8px rgba(167, 139, 250, 0.6)';
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ - Viva Assessment</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100;300;400;500;700;900&display=swap');
+    
+    body {
+      font-family: 'Geist', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .glass-control {
+      background: rgba(12, 12, 15, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid #27272a;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .input-focus-ring:focus {
+      outline: none;
+      border-color: #a78bfa;
+      box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.2);
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "surface-dim": "#0c0c0f",
+                  "surface-container-highest": "#1e1e22",
+                  "primary": "#a78bfa",
+                  "secondary-container": "#27272a",
+                  "surface-bright": "#18181b",
+                  "on-surface-variant": "#a1a1aa",
+                  "on-tertiary-container": "#bbf7d0",
+                  "outline": "#52525b",
+                  "inverse-primary": "#5b21b6",
+                  "on-surface": "#fafafa",
+                  "tertiary": "#34d399",
+                  "secondary-fixed": "#a1a1aa",
+                  "on-tertiary-fixed-variant": "#047857",
+                  "inverse-on-surface": "#09090b",
+                  "background": "#09090b",
+                  "error": "#ef4444",
+                  "surface": "#0c0c0f",
+                  "tertiary-fixed": "#bbf7d0",
+                  "on-secondary-container": "#a1a1aa",
+                  "primary-fixed": "#ede9fe",
+                  "on-secondary-fixed": "#18181b",
+                  "inverse-surface": "#fafafa",
+                  "on-error-container": "#fca5a5",
+                  "on-secondary-fixed-variant": "#3f3f46",
+                  "surface-container-high": "#18181b",
+                  "primary-container": "#7c3aed",
+                  "on-primary-fixed-variant": "#5b21b6",
+                  "outline-variant": "#27272a",
+                  "secondary-fixed-dim": "#71717a",
+                  "tertiary-container": "#065f46",
+                  "surface-tint": "#a78bfa",
+                  "secondary": "#71717a",
+                  "on-background": "#fafafa",
+                  "primary-fixed-dim": "#c4b5fd",
+                  "on-tertiary": "#001a12",
+                  "on-primary-fixed": "#2e1065",
+                  "on-primary-container": "#ede9fe",
+                  "on-secondary": "#09090b",
+                  "on-primary": "#0a0012",
+                  "surface-variant": "#18181b",
+                  "on-tertiary-fixed": "#003318",
+                  "on-error": "#1a0000",
+                  "tertiary-fixed-dim": "#6ee7b7",
+                  "surface-container": "#121215",
+                  "error-container": "#3b1111",
+                  "surface-container-low": "#0f0f12",
+                  "surface-container-lowest": "#09090b"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "fontFamily": {
+                  "headline": ["Geist"],
+                  "display": ["Geist"],
+                  "body": ["Geist"],
+                  "label": ["Geist"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar: Content & Identity from JSON -->
+<header class="flex justify-between items-center px-4 py-3 w-full border-b border-outline-variant bg-background sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<h1 class="text-xl font-headline font-bold tracking-tighter text-on-surface">PharmaQ</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-6 text-sm font-medium">
+<span class="text-primary">Study Mode: Easy</span>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<span class="text-on-surface-variant">Progress</span>
+<span class="text-primary font-mono">3/20</span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center overflow-hidden">
+<img alt="User" class="w-full h-full object-cover" data-alt="A clean, professional headshot avatar of a medical professional wearing a white lab coat. The style is minimalist and modern, set against a soft violet gradient background that matches the app's primary color palette. The lighting is soft and even, suggesting a high-end digital healthcare environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5WbmPEsregLRo3h5v3kAzAnODDjSFcu6Lg8ORzk9kve3nUVa9TbfGdup7raR36ZDHfdCuife0AFz6sQzBSiwLfqmaQBO2BiNiegqQZT5DVNBEBdUi4L4aZzHeT9EvxrV2hvS7vs-eqeQHnD0pOUIV--XRlzKCaxY5LV7W1ayWa1D0-D7m9vST6sqRonAbe6ts2I7UEgAHRaOcCZfzHNRQT-DiN-0xvDDLKz5Q3aqtbewCON-8mSF8Zc5y0TuquldLIVrMX9WKQCE"/>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center px-4 py-8 md:py-12 max-w-4xl mx-auto w-full">
+<!-- Progress Indicator Mobile -->
+<div class="md:hidden w-full mb-8">
+<div class="flex justify-between items-end mb-2">
+<span class="text-xs font-label uppercase tracking-widest text-on-surface-variant">Current Viva</span>
+<span class="text-sm font-mono text-primary">03 <span class="text-outline">/ 20</span></span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[15%] transition-all duration-500"></div>
+</div>
+</div>
+<!-- Question Prompt -->
+<section class="w-full text-center mb-12">
+<span class="text-xs font-label text-tertiary uppercase tracking-widest mb-2 block">Generic Name</span>
+<h2 class="text-4xl md:text-6xl font-bold tracking-tight text-on-surface">Paracetamol</h2>
+<p class="text-on-surface-variant mt-4 max-w-md mx-auto text-sm">Identify the correct clinical properties and manufacturing details for this molecule.</p>
+</section>
+<!-- Assessment Bento Grid -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mb-32">
+<!-- Brand Name Input -->
+<div class="bg-surface-container border border-outline-variant p-6 rounded-xl hover:border-primary/50 transition-colors group">
+<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider mb-4 group-hover:text-primary transition-colors">Brand Name</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-on-surface placeholder:text-outline input-focus-ring transition-all" placeholder="Enter most common brand..." type="text"/>
+</div>
+<!-- Strength & Dosage Form -->
+<div class="bg-surface-container border border-outline-variant p-6 rounded-xl">
+<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider mb-4">Strength + Dosage Form</label>
+<div class="grid grid-cols-2 gap-3">
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-3 py-3 text-on-surface input-focus-ring appearance-none">
+<option>500mg</option>
+<option>650mg</option>
+<option>1000mg</option>
+<option>125mg/5ml</option>
+</select>
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-3 py-3 text-on-surface input-focus-ring appearance-none">
+<option>Tablet</option>
+<option>Syrup</option>
+<option>Infusion</option>
+<option>Suppository</option>
+</select>
+</div>
+</div>
+<!-- Schedule Selection -->
+<div class="bg-surface-container border border-outline-variant p-6 rounded-xl md:col-span-2">
+<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider mb-4">Schedule Category</label>
+<div class="flex flex-wrap gap-3">
+<button class="px-4 py-2 rounded-full border border-primary bg-primary/10 text-primary text-sm font-medium transition-all">Over The Counter (OTC)</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant text-sm font-medium hover:border-outline transition-all">Schedule H</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant text-sm font-medium hover:border-outline transition-all">Schedule G</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant text-sm font-medium hover:border-outline transition-all">Schedule X</button>
+</div>
+</div>
+<!-- Indication -->
+<div class="bg-surface-container border border-outline-variant p-6 rounded-xl">
+<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider mb-4">Indication</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-on-surface placeholder:text-outline input-focus-ring transition-all resize-none" placeholder="Primary clinical use..." rows="3"></textarea>
+</div>
+<!-- Company Name -->
+<div class="bg-surface-container border border-outline-variant p-6 rounded-xl flex flex-col justify-between">
+<div>
+<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider mb-4">Manufacturing Company</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-3 text-on-surface placeholder:text-outline input-focus-ring transition-all" placeholder="Search manufacturers..." type="text"/>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<span class="text-[10px] text-on-surface-variant">Common:</span>
+<span class="text-[10px] text-tertiary px-1.5 py-0.5 rounded bg-tertiary/10 border border-tertiary/20">GSK</span>
+<span class="text-[10px] text-tertiary px-1.5 py-0.5 rounded bg-tertiary/10 border border-tertiary/20">Sanofi</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Glassmorphic Bottom Control Bar -->
+<footer class="fixed bottom-0 left-0 w-full z-50 glass-control">
+<div class="max-w-4xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+<!-- Left side: Secondary actions -->
+<div class="flex items-center gap-3 order-2 md:order-1 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-4 py-2.5 rounded-lg border border-outline-variant text-on-surface font-medium text-sm flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+          Preview
+        </button>
+<button class="flex-1 md:flex-none px-4 py-2.5 rounded-lg border border-error/30 text-error font-medium text-sm flex items-center justify-center gap-2 hover:bg-error/10 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+          Save &amp; Quit
+        </button>
+</div>
+<!-- Right side: Primary actions -->
+<div class="flex items-center gap-3 order-1 md:order-2 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-lg border border-primary text-primary font-medium text-sm flex items-center justify-center gap-2 hover:bg-primary/10 transition-colors active:scale-95">
+          Save
+        </button>
+<button class="flex-[2] md:flex-none px-8 py-2.5 rounded-lg bg-primary text-on-primary font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all active:scale-95 shadow-lg shadow-primary/20">
+          Next Question
+          <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</footer>
+<!-- Background Ambient Glow -->
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-[-5%] right-[-5%] w-[30%] h-[30%] bg-tertiary/5 blur-[100px] pointer-events-none -z-10"></div>
+<script>
+    // Lightweight interaction for button scales
+    document.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+      btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+      btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
+    });
+
+    // Auto-focus first input on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const firstInput = document.querySelector('input[type="text"]');
+      if(firstInput) firstInput.focus();
+    });
+  </script>
+</body></html>

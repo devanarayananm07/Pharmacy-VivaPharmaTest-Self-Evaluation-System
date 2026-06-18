@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ - Map Clinical Data</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100;300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #09090b;
+            color: #fafafa;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0c0c0f;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 10px;
+        }
+
+        .mapping-line {
+            position: relative;
+        }
+        .mapping-line::after {
+            content: '';
+            position: absolute;
+            right: -24px;
+            top: 50%;
+            width: 16px;
+            height: 1px;
+            background: #27272a;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#18181b",
+                        "inverse-primary": "#5b21b6",
+                        "tertiary-fixed-dim": "#6ee7b7",
+                        "surface-container": "#121215",
+                        "tertiary-container": "#065f46",
+                        "on-surface": "#fafafa",
+                        "surface-container-lowest": "#09090b",
+                        "on-surface-variant": "#a1a1aa",
+                        "on-primary-container": "#ede9fe",
+                        "error-container": "#3b1111",
+                        "outline-variant": "#27272a",
+                        "secondary-fixed-dim": "#71717a",
+                        "on-tertiary-container": "#bbf7d0",
+                        "surface-container-low": "#0f0f12",
+                        "on-secondary": "#09090b",
+                        "inverse-on-surface": "#09090b",
+                        "outline": "#52525b",
+                        "on-tertiary": "#001a12",
+                        "error": "#ef4444",
+                        "on-secondary-container": "#a1a1aa",
+                        "on-secondary-fixed": "#18181b",
+                        "on-primary-fixed-variant": "#5b21b6",
+                        "surface": "#0c0c0f",
+                        "on-secondary-fixed-variant": "#3f3f46",
+                        "surface-container-high": "#18181b",
+                        "primary": "#a78bfa",
+                        "tertiary": "#34d399",
+                        "on-primary-fixed": "#2e1065",
+                        "inverse-surface": "#fafafa",
+                        "surface-dim": "#0c0c0f",
+                        "surface-bright": "#18181b",
+                        "surface-container-highest": "#1e1e22",
+                        "tertiary-fixed": "#bbf7d0",
+                        "on-background": "#fafafa",
+                        "secondary": "#71717a",
+                        "background": "#09090b",
+                        "secondary-container": "#27272a",
+                        "on-tertiary-fixed-variant": "#047857",
+                        "on-primary": "#0a0012",
+                        "secondary-fixed": "#a1a1aa",
+                        "on-tertiary-fixed": "#003318",
+                        "primary-fixed": "#ede9fe",
+                        "on-error": "#1a0000",
+                        "primary-container": "#7c3aed",
+                        "primary-fixed-dim": "#c4b5fd",
+                        "surface-tint": "#a78bfa",
+                        "on-error-container": "#fca5a5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Geist"],
+                        "display": ["Geist"],
+                        "body": ["Geist"],
+                        "label": ["Geist"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col pb-40">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full bg-surface-container text-primary font-body text-on-surface tracking-tight border-b border-outline-variant z-50 flex justify-between items-center px-4 h-16">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">clinical_notes</span>
+<h1 class="text-xl font-headline font-bold text-primary tracking-tighter">PharmaQ</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-variant transition-colors rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</button>
+<div class="h-8 w-8 rounded-full border border-outline-variant overflow-hidden bg-surface-container-highest">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0yz6oE2trOIH70NoTXGybNs_cgpnMUYmnd8cxFRYK9ikGhKqMN0XMoBgG29cNE6hjuNdgQZi6xcnHOkLUU870mzUT72xSL8-AI-XaTGp4N5hMk5Ai3nmlb2iq2CN3ty8UXhDpya8vjbSJt2Pok1wZUpxXeLxDUVkTnsCWo1MS-zWaqmFUPAff0aMKyK8Ey7-N06IqTzftS3Xl2Yqpykp4lX5sypq1KX2KFj6Ut5VfKt-Tby5HGA-Z56agrLUGTuShiIpBZ1PxAO4"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 px-4 md:px-8 max-w-5xl mx-auto w-full">
+<!-- Breadcrumbs & Title -->
+<div class="mb-8">
+<div class="flex items-center gap-2 text-xs text-on-surface-variant font-medium mb-2">
+<span>Batch Import</span>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span class="text-primary">Step 2: Field Mapping</span>
+</div>
+<h2 class="text-3xl font-headline font-bold tracking-tight text-on-surface">Map Clinical Data</h2>
+<p class="text-on-surface-variant mt-2 max-w-2xl">Connect your spreadsheet columns to PharmaQ's system architecture. We've attempted to auto-match fields based on semantic similarity.</p>
+</div>
+<!-- Global Settings Controls -->
+<div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-surface-container border border-outline-variant rounded-xl mb-6">
+<div class="flex items-center gap-3">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-secondary-container rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+<span class="text-sm font-medium text-on-surface">First row contains headers</span>
+</div>
+<div class="text-xs text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">info</span>
+                150 rows detected in 'clinical_trial_batch_04.xlsx'
+            </div>
+</div>
+<!-- Mapping Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 items-start relative">
+<!-- Headers -->
+<div class="hidden md:block text-xs font-bold uppercase tracking-widest text-on-surface-variant pb-2">Excel Columns</div>
+<div class="hidden md:block text-xs font-bold uppercase tracking-widest text-on-surface-variant pb-2">System Fields</div>
+<!-- Mapping Rows -->
+<!-- Row 1: Generic Name -->
+<div class="flex items-center gap-4 p-4 bg-surface-container-low border border-outline-variant rounded-lg mapping-line">
+<div class="flex flex-col">
+<span class="text-xs text-on-surface-variant">Column A</span>
+<span class="font-medium text-on-surface">GENERIC_NAME_VAL</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-2 bg-surface-container border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-primary px-2">medication</span>
+<select class="bg-transparent text-on-surface text-sm w-full border-none focus:ring-0 cursor-pointer">
+<option selected="" value="generic_name">Generic Name</option>
+<option value="brand_name">Brand Name</option>
+<option value="indication">Indication</option>
+<option value="dosage">Dosage</option>
+<option value="schedule">Schedule</option>
+</select>
+</div>
+<!-- Row 2: Brand Name -->
+<div class="flex items-center gap-4 p-4 bg-surface-container-low border border-outline-variant rounded-lg mapping-line">
+<div class="flex flex-col">
+<span class="text-xs text-on-surface-variant">Column B</span>
+<span class="font-medium text-on-surface">PRODUCT_TRADE_ID</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-2 bg-surface-container border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-primary px-2">label</span>
+<select class="bg-transparent text-on-surface text-sm w-full border-none focus:ring-0 cursor-pointer">
+<option value="generic_name">Generic Name</option>
+<option selected="" value="brand_name">Brand Name</option>
+<option value="indication">Indication</option>
+<option value="dosage">Dosage</option>
+<option value="schedule">Schedule</option>
+</select>
+</div>
+<!-- Row 3: Indication -->
+<div class="flex items-center gap-4 p-4 bg-surface-container-low border border-outline-variant rounded-lg mapping-line">
+<div class="flex flex-col">
+<span class="text-xs text-on-surface-variant">Column C</span>
+<span class="font-medium text-on-surface">MEDICAL_CONDITION</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-2 bg-surface-container border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-primary px-2">stethoscope</span>
+<select class="bg-transparent text-on-surface text-sm w-full border-none focus:ring-0 cursor-pointer">
+<option value="generic_name">Generic Name</option>
+<option value="brand_name">Brand Name</option>
+<option selected="" value="indication">Indication</option>
+<option value="dosage">Dosage</option>
+<option value="schedule">Schedule</option>
+</select>
+</div>
+<!-- Row 4: Dosage -->
+<div class="flex items-center gap-4 p-4 bg-surface-container-low border border-outline-variant rounded-lg mapping-line">
+<div class="flex flex-col">
+<span class="text-xs text-on-surface-variant">Column D</span>
+<span class="font-medium text-on-surface">CONCENTRATION_MG</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-2 bg-surface-container border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-primary px-2">monitor_weight</span>
+<select class="bg-transparent text-on-surface text-sm w-full border-none focus:ring-0 cursor-pointer">
+<option value="generic_name">Generic Name</option>
+<option value="brand_name">Brand Name</option>
+<option value="indication">Indication</option>
+<option selected="" value="dosage">Dosage</option>
+<option value="schedule">Schedule</option>
+</select>
+</div>
+<!-- Row 5: Schedule -->
+<div class="flex items-center gap-4 p-4 bg-surface-container-low border border-outline-variant rounded-lg mapping-line">
+<div class="flex flex-col">
+<span class="text-xs text-on-surface-variant">Column E</span>
+<span class="font-medium text-on-surface">RECURRENCE_FREQ</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-2 bg-surface-container border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-primary px-2">calendar_today</span>
+<select class="bg-transparent text-on-surface text-sm w-full border-none focus:ring-0 cursor-pointer">
+<option value="generic_name">Generic Name</option>
+<option value="brand_name">Brand Name</option>
+<option value="indication">Indication</option>
+<option value="dosage">Dosage</option>
+<option selected="" value="schedule">Schedule</option>
+</select>
+</div>
+</div>
+<!-- Hint Card -->
+<div class="mt-8 p-4 rounded-xl bg-primary-container/10 border border-primary/20 flex gap-4">
+<span class="material-symbols-outlined text-primary">auto_fix</span>
+<div>
+<h4 class="text-sm font-bold text-primary">Smart Suggestion</h4>
+<p class="text-sm text-on-surface-variant">Remaining columns (F-J) were not automatically matched. You can manually map them or skip them in the next step.</p>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar (Validation Summary) -->
+<div class="fixed bottom-20 left-0 w-full px-4 py-3 bg-surface-container-highest border-t border-outline-variant z-40">
+<div class="max-w-5xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="text-sm font-bold">Scanning 150 rows...</span>
+</div>
+<span class="text-xs text-on-surface-variant">5/12 fields mapped successfully</span>
+</div>
+<div class="hidden md:block w-48 h-2 bg-secondary-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[41%]"></div>
+</div>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-on-primary font-bold px-6 py-2.5 rounded-xl flex items-center gap-2 transition-transform active:scale-95 duration-200">
+                Next: Validate Data
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full bg-surface-container-lowest text-on-surface-variant font-label text-xs font-medium border-t border-outline-variant z-50 flex justify-around items-center h-20 px-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span>Study</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Score</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+<span>Logs</span>
+</a>
+</nav>
+<!-- Background Decoration -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 opacity-20 overflow-hidden">
+<div class="absolute -top-[10%] -right-[5%] w-[400px] h-[400px] bg-primary/20 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[20%] -left-[10%] w-[300px] h-[300px] bg-tertiary/10 blur-[100px] rounded-full"></div>
+</div>
+<script>
+        // Simple micro-interaction for selects
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('change', function() {
+                const row = this.closest('.flex');
+                row.classList.add('border-primary');
+                setTimeout(() => {
+                    row.classList.remove('border-primary');
+                }, 1000);
+            });
+        });
+
+        // Toggle animation simulation
+        const toggle = document.querySelector('input[type="checkbox"]');
+        toggle.addEventListener('change', function() {
+            console.log('Headers toggled:', this.checked);
+        });
+    </script>
+</body></html>

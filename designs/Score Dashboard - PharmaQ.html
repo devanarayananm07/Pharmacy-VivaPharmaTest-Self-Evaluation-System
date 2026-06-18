@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ - Performance Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #09090b;
+            color: #fafafa;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-badge {
+            background: rgba(39, 39, 42, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        /* Custom scrollbar for near-black theme */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#bbf7d0",
+                      "primary-container": "#7c3aed",
+                      "surface-tint": "#a78bfa",
+                      "inverse-on-surface": "#09090b",
+                      "surface-variant": "#18181b",
+                      "surface-container-high": "#18181b",
+                      "on-surface-variant": "#a1a1aa",
+                      "secondary-container": "#27272a",
+                      "on-error": "#1a0000",
+                      "outline-variant": "#27272a",
+                      "background": "#09090b",
+                      "surface-bright": "#18181b",
+                      "primary": "#a78bfa",
+                      "on-secondary-container": "#a1a1aa",
+                      "on-background": "#fafafa",
+                      "tertiary-fixed-dim": "#6ee7b7",
+                      "on-tertiary": "#001a12",
+                      "secondary-fixed": "#a1a1aa",
+                      "primary-fixed-dim": "#c4b5fd",
+                      "on-tertiary-container": "#bbf7d0",
+                      "tertiary": "#34d399",
+                      "on-secondary": "#09090b",
+                      "surface-container": "#121215",
+                      "on-tertiary-fixed": "#003318",
+                      "on-surface": "#fafafa",
+                      "on-secondary-fixed": "#18181b",
+                      "primary-fixed": "#ede9fe",
+                      "on-secondary-fixed-variant": "#3f3f46",
+                      "surface-container-lowest": "#09090b",
+                      "on-primary-fixed-variant": "#5b21b6",
+                      "error": "#ef4444",
+                      "tertiary-container": "#065f46",
+                      "inverse-primary": "#5b21b6",
+                      "inverse-surface": "#fafafa",
+                      "secondary-fixed-dim": "#71717a",
+                      "on-error-container": "#fca5a5",
+                      "on-primary": "#0a0012",
+                      "surface-dim": "#0c0c0f",
+                      "secondary": "#71717a",
+                      "error-container": "#3b1111",
+                      "surface-container-low": "#0f0f12",
+                      "on-primary-fixed": "#2e1065",
+                      "on-primary-container": "#ede9fe",
+                      "on-tertiary-fixed-variant": "#047857",
+                      "surface-container-highest": "#1e1e22",
+                      "outline": "#52525b",
+                      "surface": "#0c0c0f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Geist"],
+                      "display": ["Geist"],
+                      "body": ["Geist"],
+                      "label": ["Geist"]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-4 h-16 sticky top-0 z-50 bg-background border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<h1 class="font-headline tracking-tighter text-xl font-bold text-on-surface">PharmaQ</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant p-2 rounded-full transition-colors" data-icon="notifications">notifications</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User profile" data-alt="A professional close-up headshot of a medical student in a clean, modern clinical environment. The lighting is soft and directional, typical of a high-end editorial portrait. The background is a softly blurred modern pharmacy with violet and dark grey accents. The individual has a focused, confident expression, fitting the precision-driven Obsidian dark theme of the application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF-ofqJhaShdZZKtmECrdP6pLHo1acCKjFZLx5pYfs6P0sj5fD8HVUkK_u-uJLKi6O9hCAOFo3ajXOHxcWwKaBYFgIPu05yoB0aQ4RWNDtc2vxPoYIll3ZrYOuSYdG-sqG_Fs0RMqawrEyRzbVyhT_E3deHwxpI4S81A7OSdbI-ikoT-CalJdWm8uOXcxWFMHFUDkCB2FsCXV7vjN8HZ-gdDb_QjI52-yYO6KQfr9aDXJNxoq8g9UVHYLqgA8W6e5fzZyq842k6hc"/>
+</div>
+</div>
+</header>
+<main class="max-w-5xl mx-auto px-4 py-6">
+<!-- Header: Weekly Performance overview -->
+<div class="mb-8">
+<h2 class="text-2xl font-bold tracking-tight mb-1">Weekly Performance</h2>
+<p class="text-on-surface-variant text-sm">Review your clinical proficiency and identification accuracy.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+<!-- Large Bento Tile: Total Performance Score -->
+<div class="md:col-span-8 bg-surface-container border border-outline-variant rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex-1">
+<span class="text-xs font-semibold tracking-widest text-primary uppercase mb-2 block">Composite Mastery</span>
+<h3 class="text-3xl font-bold mb-4">Total Performance</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed max-w-sm">
+                        Your clinical diagnostic accuracy has improved by <span class="text-tertiary">4.2%</span> this week. Focus on Manufacturer Knowledge to reach Elite status.
+                    </p>
+</div>
+<div class="relative flex items-center justify-center w-48 h-48">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-outline-variant stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<circle class="text-primary stroke-current progress-ring-circle" cx="50" cy="50" fill="transparent" r="40" stroke-linecap="round" stroke-width="8" style="stroke-dasharray: 251.2; stroke-dashoffset: calc(251.2 - (251.2 * 88) / 100);"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-extrabold">88%</span>
+<span class="text-[10px] text-on-surface-variant font-bold tracking-tighter uppercase">Overall Score</span>
+</div>
+</div>
+</div>
+<!-- Medium Bento Tile: Weekly Question Compliance -->
+<div class="md:col-span-4 bg-surface-container border border-outline-variant rounded-xl p-6 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary-container" data-icon="task_alt">task_alt</span>
+<div class="glass-badge px-2 py-0.5 rounded text-[10px] font-bold text-tertiary uppercase">On Track</div>
+</div>
+<h4 class="text-lg font-bold mb-1">Weekly Compliance</h4>
+<p class="text-on-surface-variant text-xs mb-6">Question completion target</p>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-medium">
+<span>120 / 150 <span class="text-on-surface-variant">Questions</span></span>
+<span class="text-primary">80%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 80%"></div>
+</div>
+</div>
+</div>
+<!-- Grid of Small Tiles: Section-wise Accuracy -->
+<div class="md:col-span-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Tile 1 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-4 hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-sm text-on-secondary-container" data-icon="pill">pill</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Generic ID</span>
+</div>
+<div class="text-2xl font-bold text-on-surface">94%</div>
+<div class="text-[10px] text-tertiary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="trending_up">trending_up</span>
+                        +2% from avg
+                    </div>
+</div>
+<!-- Tile 2 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-4 hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-sm text-on-secondary-container" data-icon="clinical_notes">clinical_notes</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Clinical</span>
+</div>
+<div class="text-2xl font-bold text-on-surface">82%</div>
+<div class="text-[10px] text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="horizontal_rule">horizontal_rule</span>
+                        Steady
+                    </div>
+</div>
+<!-- Tile 3 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-4 hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-sm text-on-secondary-container" data-icon="medication">medication</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Dosage Accuracy</span>
+</div>
+<div class="text-2xl font-bold text-on-surface">76%</div>
+<div class="text-[10px] text-error mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="trending_down">trending_down</span>
+                        -3% focus needed
+                    </div>
+</div>
+<!-- Tile 4 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-4 hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-sm text-on-secondary-container" data-icon="factory">factory</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Manufacturer</span>
+</div>
+<div class="text-2xl font-bold text-on-surface">91%</div>
+<div class="text-[10px] text-tertiary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="trending_up">trending_up</span>
+                        +5% peak
+                    </div>
+</div>
+</div>
+<!-- Trend Chart: Line Chart -->
+<div class="md:col-span-7 bg-surface-container border border-outline-variant rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h4 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant">7-Day Score Trend</h4>
+<span class="text-xs text-primary font-medium">Avg: 86.4%</span>
+</div>
+<div class="h-48 flex items-end justify-between gap-2 px-2 relative">
+<!-- Simple Bar Chart Representation with rounded tops -->
+<div class="flex-1 bg-surface-container-highest rounded-t-lg group relative h-[70%]">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-primary text-on-primary text-[10px] px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">70%</div>
+<div class="absolute bottom-0 w-full bg-primary/20 h-full rounded-t-lg"></div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant">Mon</div>
+</div>
+<div class="flex-1 bg-surface-container-highest rounded-t-lg group relative h-[82%]">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-primary text-on-primary text-[10px] px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">82%</div>
+<div class="absolute bottom-0 w-full bg-primary/40 h-full rounded-t-lg"></div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant">Tue</div>
+</div>
+<div class="flex-1 bg-surface-container-highest rounded-t-lg group relative h-[78%]">
+<div class="absolute bottom-0 w-full bg-primary/30 h-full rounded-t-lg"></div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant">Wed</div>
+</div>
+<div class="flex-1 bg-surface-container-highest rounded-t-lg group relative h-[90%]">
+<div class="absolute bottom-0 w-full bg-primary/60 h-full rounded-t-lg"></div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant">Thu</div>
+</div>
+<div class="flex-1 bg-surface-container-highest rounded-t-lg group relative h-[85%]">
+<div class="absolute bottom-0 w-full bg-primary/50 h-full rounded-t-lg"></div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant">Fri</div>
+</div>
+<div class="flex-1 bg-surface-container-highest rounded-t-lg group relative h-[94%]">
+<div class="absolute bottom-0 w-full bg-primary/80 h-full rounded-t-lg"></div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant">Sat</div>
+</div>
+<div class="flex-1 bg-surface-container-highest rounded-t-lg group relative h-[88%]">
+<div class="absolute bottom-0 w-full bg-primary h-full rounded-t-lg"></div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-on-surface-variant font-bold text-on-surface">Sun</div>
+</div>
+</div>
+</div>
+<!-- List: Recent Viva Results -->
+<div class="md:col-span-5 bg-surface-container border border-outline-variant rounded-xl p-6">
+<h4 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant mb-4">Recent Viva Exams</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-variant transition-colors cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-tertiary-container/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+</div>
+<div>
+<div class="text-sm font-bold">Pharmacokinetics II</div>
+<div class="text-[10px] text-on-surface-variant uppercase">Oct 12, 2023</div>
+</div>
+</div>
+<div class="text-lg font-mono font-bold text-tertiary">92%</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-variant transition-colors cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+</div>
+<div>
+<div class="text-sm font-bold">Antibiotic Protocols</div>
+<div class="text-[10px] text-on-surface-variant uppercase">Oct 10, 2023</div>
+</div>
+</div>
+<div class="text-lg font-mono font-bold text-on-surface">85%</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-variant transition-colors cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-error-container/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="priority_high">priority_high</span>
+</div>
+<div>
+<div class="text-sm font-bold">Narcotic Controls</div>
+<div class="text-[10px] text-on-surface-variant uppercase">Oct 08, 2023</div>
+</div>
+</div>
+<div class="text-lg font-mono font-bold text-error">68%</div>
+</div>
+</div>
+<button class="w-full mt-4 py-2 text-xs font-bold text-primary hover:underline transition-all">View All Results</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface-container border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-secondary-container px-3 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label text-xs">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-secondary-container px-3 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label text-xs">Study</span>
+</a>
+<!-- Active Tab: Score -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-xl px-3 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="font-label text-xs">Score</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container dark:text-on-secondary-container px-3 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label text-xs">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction: Update progress ring on load
+        window.addEventListener('load', () => {
+            const circle = document.querySelector('.progress-ring-circle');
+            if (circle) {
+                const radius = circle.r.baseVal.value;
+                const circumference = radius * 2 * Math.PI;
+                circle.style.strokeDasharray = `${circumference} ${circumference}`;
+                
+                // Set score to 88
+                const offset = circumference - (88 / 100 * circumference);
+                circle.style.strokeDashoffset = offset;
+            }
+        });
+
+        // Simple Tab active state switching (for demo)
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                document.querySelectorAll('nav a').forEach(l => {
+                    l.classList.remove('bg-primary-container', 'text-on-primary-container', 'rounded-xl');
+                    l.classList.add('text-on-secondary-container');
+                    const icon = l.querySelector('.material-symbols-outlined');
+                    if(icon) icon.style.fontVariationSettings = "'FILL' 0";
+                });
+                link.classList.add('bg-primary-container', 'text-on-primary-container', 'rounded-xl');
+                link.classList.remove('text-on-secondary-container');
+                const icon = link.querySelector('.material-symbols-outlined');
+                if(icon) icon.style.fontVariationSettings = "'FILL' 1";
+            });
+        });
+    </script>
+</body></html>

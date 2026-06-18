@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ - Question Bank Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
+            font-weight: 700;
+        }
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #09090b;
+            color: #fafafa;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for horizontal chips */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#18181b",
+                        "background": "#09090b",
+                        "secondary-fixed": "#a1a1aa",
+                        "on-primary": "#0a0012",
+                        "error-container": "#3b1111",
+                        "surface-tint": "#a78bfa",
+                        "surface-container-lowest": "#09090b",
+                        "secondary": "#71717a",
+                        "on-surface-variant": "#a1a1aa",
+                        "tertiary-fixed-dim": "#6ee7b7",
+                        "surface-bright": "#18181b",
+                        "surface-container-highest": "#1e1e22",
+                        "inverse-primary": "#5b21b6",
+                        "surface": "#0c0c0f",
+                        "on-error": "#1a0000",
+                        "error": "#ef4444",
+                        "tertiary-container": "#065f46",
+                        "on-error-container": "#fca5a5",
+                        "secondary-container": "#27272a",
+                        "on-primary-fixed-variant": "#5b21b6",
+                        "inverse-on-surface": "#09090b",
+                        "secondary-fixed-dim": "#71717a",
+                        "on-tertiary": "#001a12",
+                        "on-secondary-container": "#a1a1aa",
+                        "on-background": "#fafafa",
+                        "primary-fixed-dim": "#c4b5fd",
+                        "on-tertiary-fixed-variant": "#047857",
+                        "on-secondary": "#09090b",
+                        "primary-fixed": "#ede9fe",
+                        "surface-container-low": "#0f0f12",
+                        "on-secondary-fixed-variant": "#3f3f46",
+                        "on-tertiary-fixed": "#003318",
+                        "surface-container-high": "#18181b",
+                        "primary": "#a78bfa",
+                        "surface-container": "#121215",
+                        "on-tertiary-container": "#bbf7d0",
+                        "tertiary-fixed": "#bbf7d0",
+                        "tertiary": "#34d399",
+                        "primary-container": "#7c3aed",
+                        "on-surface": "#fafafa",
+                        "outline-variant": "#27272a",
+                        "inverse-surface": "#fafafa",
+                        "on-primary-fixed": "#2e1065",
+                        "surface-dim": "#0c0c0f",
+                        "on-secondary-fixed": "#18181b",
+                        "outline": "#52525b",
+                        "on-primary-container": "#ede9fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Geist"],
+                        "display": ["Geist"],
+                        "body": ["Geist"],
+                        "label": ["Geist"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant h-16 flex items-center justify-between px-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<h1 class="text-xl font-headline font-bold tracking-tighter text-on-surface">Question Bank</h1>
+</div>
+<div class="flex items-center gap-4"><button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-highest transition-colors active:scale-95"><span class="material-symbols-outlined" data-icon="file_download">file_download</span></button><button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-highest transition-colors active:scale-95"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-xs font-bold text-on-primary-container">AD</div></div>
+</header>
+<main class="pt-20 px-4 max-w-4xl mx-auto space-y-6">
+<!-- Search & Filter Header Section -->
+<section class="space-y-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary" data-icon="search">search</span>
+<input class="w-full bg-surface-container border border-outline-variant rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-secondary" placeholder="Search drug by Generic or Brand Name..." type="text"/>
+</div>
+<!-- Horizontal Filter Chips -->
+<div class="space-y-3">
+<div class="flex items-center gap-2 overflow-x-auto hide-scrollbar py-1">
+<span class="text-xs font-bold uppercase tracking-widest text-secondary mr-2">Category:</span>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-primary text-on-primary text-sm font-medium transition-transform active:scale-95">All</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant text-sm font-medium hover:border-primary transition-all active:scale-95">Antibiotics</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant text-sm font-medium hover:border-primary transition-all active:scale-95">Narcotics</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant text-sm font-medium hover:border-primary transition-all active:scale-95">Antivirals</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant text-sm font-medium hover:border-primary transition-all active:scale-95">Cardiology</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant text-sm font-medium hover:border-primary transition-all active:scale-95">Neurology</button>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto hide-scrollbar py-1">
+<span class="text-xs font-bold uppercase tracking-widest text-secondary mr-2">Difficulty:</span>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant text-sm font-medium hover:border-primary transition-all active:scale-95">Easy</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant text-sm font-medium hover:border-primary transition-all active:scale-95">Medium</button>
+<button class="whitespace-nowrap px-4 py-1.5 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant text-sm font-medium hover:border-primary transition-all active:scale-95">Hard</button>
+</div>
+</div>
+</section>
+<!-- Question List (Bento Grid Style Cards) -->
+<section class="space-y-3">
+<div class="flex items-center justify-between px-1">
+<h2 class="text-sm font-bold text-secondary uppercase tracking-widest">Questions (42)</h2>
+<button class="text-xs text-primary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="sort">sort</span>
+                    Newest First
+                </button>
+</div>
+<!-- Question Card 1 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-5 group hover:border-primary transition-colors" style="opacity: 1; transform: translateY(0px); transition: 0.4s ease-out;">
+<div class="flex justify-between items-start mb-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="text-lg font-bold text-on-surface">Amoxicillin</h3>
+<span class="text-sm text-secondary">(Amoxil)</span>
+</div>
+<p class="text-xs text-secondary-fixed">Category: Antibiotics • Updated Oct 24, 2023</p>
+</div>
+<span class="px-2 py-0.5 rounded bg-tertiary/10 text-tertiary text-[10px] font-bold tracking-widest border border-tertiary/20 uppercase">Easy</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="text-[10px] text-secondary uppercase font-bold tracking-tighter">Usage</span>
+<span class="text-sm text-on-surface-variant">Bacterial Infections</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg text-secondary hover:bg-surface-container-highest hover:text-primary transition-all active:scale-90" title="Preview">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 rounded-lg text-secondary hover:bg-surface-container-highest hover:text-primary transition-all active:scale-90" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-lg text-secondary hover:bg-error/10 hover:text-error transition-all active:scale-90" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Question Card 2 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-5 group hover:border-primary transition-colors" style="opacity: 1; transform: translateY(0px); transition: 0.4s ease-out;">
+<div class="flex justify-between items-start mb-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="text-lg font-bold text-on-surface">Fentanyl</h3>
+<span class="text-sm text-secondary">(Duragesic)</span>
+</div>
+<p class="text-xs text-secondary-fixed">Category: Narcotics • Updated Oct 21, 2023</p>
+</div>
+<span class="px-2 py-0.5 rounded bg-error/10 text-error text-[10px] font-bold tracking-widest border border-error/20 uppercase">Hard</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="text-[10px] text-secondary uppercase font-bold tracking-tighter">Usage</span>
+<span class="text-sm text-on-surface-variant">Severe Chronic Pain</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg text-secondary hover:bg-surface-container-highest hover:text-primary transition-all active:scale-90" title="Preview">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 rounded-lg text-secondary hover:bg-surface-container-highest hover:text-primary transition-all active:scale-90" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-lg text-secondary hover:bg-error/10 hover:text-error transition-all active:scale-90" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Question Card 3 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-5 group hover:border-primary transition-colors" style="opacity: 1; transform: translateY(0px); transition: 0.4s ease-out;">
+<div class="flex justify-between items-start mb-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="text-lg font-bold text-on-surface">Atorvastatin</h3>
+<span class="text-sm text-secondary">(Lipitor)</span>
+</div>
+<p class="text-xs text-secondary-fixed">Category: Cardiology • Updated Oct 15, 2023</p>
+</div>
+<span class="px-2 py-0.5 rounded bg-orange-500/10 text-orange-500 text-[10px] font-bold tracking-widest border border-orange-500/20 uppercase">Medium</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="text-[10px] text-secondary uppercase font-bold tracking-tighter">Usage</span>
+<span class="text-sm text-on-surface-variant">High Cholesterol</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg text-secondary hover:bg-surface-container-highest hover:text-primary transition-all active:scale-90" title="Preview">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 rounded-lg text-secondary hover:bg-surface-container-highest hover:text-primary transition-all active:scale-90" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-lg text-secondary hover:bg-error/10 hover:text-error transition-all active:scale-90" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Question Card 4 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-5 group hover:border-primary transition-colors" style="opacity: 1; transform: translateY(0px); transition: 0.4s ease-out;">
+<div class="flex justify-between items-start mb-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="text-lg font-bold text-on-surface">Levetiracetam</h3>
+<span class="text-sm text-secondary">(Keppra)</span>
+</div>
+<p class="text-xs text-secondary-fixed">Category: Neurology • Updated Oct 12, 2023</p>
+</div>
+<span class="px-2 py-0.5 rounded bg-error/10 text-error text-[10px] font-bold tracking-widest border border-error/20 uppercase">Hard</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="text-[10px] text-secondary uppercase font-bold tracking-tighter">Usage</span>
+<span class="text-sm text-on-surface-variant">Seizure Control</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg text-secondary hover:bg-surface-container-highest hover:text-primary transition-all active:scale-90" title="Preview">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 rounded-lg text-secondary hover:bg-surface-container-highest hover:text-primary transition-all active:scale-90" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-lg text-secondary hover:bg-error/10 hover:text-error transition-all active:scale-90" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB -->
+<div class="fixed bottom-24 right-6 flex flex-col items-end gap-3 z-50 group">
+<div class="flex flex-col items-end gap-3 mb-2 opacity-0 translate-y-4 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
+<div class="flex items-center gap-3">
+<span class="bg-surface-container-highest text-on-surface text-xs font-bold px-3 py-1.5 rounded-lg border border-outline-variant shadow-xl">Import Bulk</span>
+<button class="w-12 h-12 bg-surface-container-highest text-primary rounded-xl shadow-lg border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all active:scale-90" onclick="document.getElementById('import-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined">table_chart</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<span class="bg-surface-container-highest text-on-surface text-xs font-bold px-3 py-1.5 rounded-lg border border-outline-variant shadow-xl">Add Question</span>
+<button class="w-12 h-12 bg-surface-container-highest text-primary rounded-xl shadow-lg border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">edit_note</span>
+</button>
+</div>
+</div>
+<button class="w-14 h-14 bg-primary text-on-primary rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center transition-transform active:scale-90 group-hover:rotate-45">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center py-3 bg-surface border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label text-xs uppercase tracking-wider mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label text-xs uppercase tracking-wider mt-1">Study</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label text-xs uppercase tracking-wider mt-1">Score</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label text-xs uppercase tracking-wider mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for filter chips
+        const chips = document.querySelectorAll('button.rounded-full');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                // Find sibling chips in the same container and reset them
+                const parent = chip.parentElement;
+                const siblings = parent.querySelectorAll('button.rounded-full');
+                siblings.forEach(s => {
+                    s.classList.remove('bg-primary', 'text-on-primary');
+                    s.classList.add('bg-surface-container', 'border', 'border-outline-variant', 'text-on-surface-variant');
+                });
+                
+                // Activate clicked chip
+                chip.classList.remove('bg-surface-container', 'border', 'border-outline-variant', 'text-on-surface-variant');
+                chip.classList.add('bg-primary', 'text-on-primary');
+            });
+        });
+
+        // Add a subtle entrance animation for cards
+        const cards = document.querySelectorAll('section > div.bg-surface-container');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                card.style.transition = 'all 0.4s ease-out';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+    </script>
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" id="import-modal"><div class="bg-surface border border-outline-variant w-full max-w-md rounded-xl shadow-2xl overflow-hidden flex flex-col"><div class="p-5 border-b border-outline-variant flex justify-between items-center"><h2 class="text-lg font-headline font-bold text-on-surface">Bulk Question Import</h2><button class="text-secondary hover:text-on-surface" onclick="document.getElementById('import-modal').classList.add('hidden')"><span class="material-symbols-outlined">close</span></button></div><div class="p-6 space-y-6"><div class="border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center gap-3 hover:border-primary transition-colors cursor-pointer group"><span class="material-symbols-outlined text-4xl text-secondary group-hover:text-primary transition-colors">upload_file</span><div class="text-center"><p class="text-sm font-medium text-on-surface">Upload Excel File</p><p class="text-xs text-secondary">Drag and drop or click to browse</p></div></div><div class="flex items-center justify-between bg-surface-container p-3 rounded-lg"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">description</span><span class="text-xs font-medium text-on-surface-variant">Clinical_Template.xlsx</span></div><a class="text-[10px] font-bold text-primary uppercase tracking-wider hover:underline" href="#">Download Template</a></div><div class="space-y-2"><div class="flex justify-between text-[10px] font-bold uppercase tracking-widest text-secondary"><span class="">Validation Status</span><span class="">Scanning 50 entries...</span></div><div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden"><div class="h-full bg-primary w-2/3 transition-all"></div></div></div></div><div class="p-4 bg-surface-container-low flex gap-3 justify-end"><button class="px-4 py-2 rounded-lg text-sm font-bold text-on-surface-variant hover:bg-surface-container-highest transition-colors" onclick="document.getElementById('import-modal').classList.add('hidden')">Cancel</button><button class="px-6 py-2 rounded-lg bg-primary text-on-primary text-sm font-bold shadow-lg shadow-primary/20 active:scale-95 transition-transform">Process Import</button></div></div></div></body></html>

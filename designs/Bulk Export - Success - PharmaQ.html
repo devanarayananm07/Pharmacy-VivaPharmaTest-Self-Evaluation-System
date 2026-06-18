@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.cdnfonts.com/css/geist" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Geist', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#fafafa",
+                        "background": "#09090b",
+                        "surface-container-highest": "#1e1e22",
+                        "outline": "#52525b",
+                        "on-tertiary-container": "#bbf7d0",
+                        "on-primary-container": "#ede9fe",
+                        "outline-variant": "#27272a",
+                        "surface-dim": "#0c0c0f",
+                        "on-background": "#fafafa",
+                        "tertiary-fixed-dim": "#6ee7b7",
+                        "tertiary-container": "#065f46",
+                        "primary": "#a78bfa",
+                        "on-surface": "#fafafa",
+                        "inverse-on-surface": "#09090b",
+                        "surface-tint": "#a78bfa",
+                        "primary-fixed": "#ede9fe",
+                        "on-surface-variant": "#a1a1aa",
+                        "on-primary-fixed": "#2e1065",
+                        "on-primary": "#0a0012",
+                        "secondary-fixed": "#a1a1aa",
+                        "on-tertiary": "#001a12",
+                        "secondary-container": "#27272a",
+                        "primary-fixed-dim": "#c4b5fd",
+                        "on-secondary-fixed-variant": "#3f3f46",
+                        "inverse-primary": "#5b21b6",
+                        "tertiary-fixed": "#bbf7d0",
+                        "on-primary-fixed-variant": "#5b21b6",
+                        "surface-container-high": "#18181b",
+                        "on-tertiary-fixed": "#003318",
+                        "surface-container-low": "#0f0f12",
+                        "tertiary": "#34d399",
+                        "surface-variant": "#18181b",
+                        "on-secondary-container": "#a1a1aa",
+                        "on-secondary": "#09090b",
+                        "secondary-fixed-dim": "#71717a",
+                        "surface": "#0c0c0f",
+                        "surface-container-lowest": "#09090b",
+                        "error": "#ef4444",
+                        "surface-container": "#121215",
+                        "on-error-container": "#fca5a5",
+                        "surface-bright": "#18181b",
+                        "secondary": "#71717a",
+                        "on-tertiary-fixed-variant": "#047857",
+                        "on-secondary-fixed": "#18181b",
+                        "error-container": "#3b1111",
+                        "primary-container": "#7c3aed",
+                        "on-error": "#1a0000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface selection:bg-primary/30 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-4 h-16 w-full z-40 bg-background border-b border-outline-variant font-body text-on-surface tracking-tight">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<span class="text-xl font-headline font-bold text-primary tracking-tighter">PharmaQ</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="close">close</span>
+</button>
+</div>
+</header>
+<!-- Success Content Canvas -->
+<main class="flex-grow flex items-center justify-center px-6 py-12">
+<div class="max-w-2xl w-full">
+<!-- Bento-style Layout for Success State -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+<!-- Main Status Card -->
+<div class="md:col-span-12 lg:col-span-8 bg-surface-container border border-outline-variant rounded-xl p-8 flex flex-col items-center text-center relative overflow-hidden">
+<!-- Subtle background glow -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="relative mb-6">
+<div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center animate-pulse">
+<span class="material-symbols-outlined text-5xl text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<h1 class="text-3xl font-headline font-extrabold tracking-tight text-on-surface mb-2">Export Successfully Generated</h1>
+<p class="text-on-surface-variant max-w-md mx-auto mb-8">Your pharmacology question data has been compiled and is ready for clinical review or offline study.</p>
+<div class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-4 flex items-center justify-between group hover:border-primary/50 transition-colors mb-8">
+<div class="flex items-center gap-4 text-left">
+<div class="bg-surface-container-highest p-3 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+</div>
+<div>
+<p class="text-sm font-medium text-on-surface">clinical_export_2023.xlsx</p>
+<p class="text-xs text-on-surface-variant">4.2 MB • Microsoft Excel</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="verified">verified</span>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+<button class="bg-primary text-on-primary font-semibold px-8 py-3 rounded-lg flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-xl" data-icon="download">download</span>
+                            Download File
+                        </button>
+<button class="border border-outline-variant text-on-surface font-semibold px-8 py-3 rounded-lg hover:bg-surface-container-highest active:scale-95 transition-all">
+                            Back to Question Bank
+                        </button>
+</div>
+</div>
+<!-- Supplemental Info Card (Asymmetric Layout) -->
+<div class="md:col-span-12 lg:col-span-4 flex flex-col gap-6">
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-6 flex-grow">
+<h3 class="text-on-surface font-bold text-sm uppercase tracking-widest mb-4">Export Summary</h3>
+<ul class="space-y-4">
+<li class="flex justify-between items-center text-sm border-b border-outline-variant pb-3">
+<span class="text-on-surface-variant">Questions</span>
+<span class="text-tertiary font-mono">1,240</span>
+</li>
+<li class="flex justify-between items-center text-sm border-b border-outline-variant pb-3">
+<span class="text-on-surface-variant">Format</span>
+<span class="text-on-surface">XLSX</span>
+</li>
+<li class="flex justify-between items-center text-sm border-b border-outline-variant pb-3">
+<span class="text-on-surface-variant">Generated</span>
+<span class="text-on-surface">Just Now</span>
+</li>
+</ul>
+</div>
+<!-- Atmospheric Detail Image -->
+<div class="h-48 rounded-xl border border-outline-variant overflow-hidden relative group">
+<img class="w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-700" data-alt="A professional medical setting with a sleek, dark laboratory aesthetic. In the background, a high-resolution monitor displays complex clinical data charts in shades of violet and emerald green. The foreground shows a metallic medical tablet resting on a dark zinc surface, reflecting the surrounding soft violet ambient lighting. The atmosphere is precise, modern, and clinical, emphasizing a developer-grade pharmaceutical workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqXHBY3DX9XKHKrxO-ypSH-ab7VPPOhljP6ihvhca75Mk1OfvJSgV03h6XyWsHXsJWm-SpkKgz-32VsM7gAYQeSJeyl2FKB_vtcH3iJyGKgM6eNrjNu_MdY3TAe0bnDQQBhCk_lDp3yh81_M98Nh2ikwAQ18eixjByNHB5JMKvZhANsyyG7nbVAur9MgpSRK2cek3AMBfvjt-zamFtV0QOqKNqq3DeL6UeueGzkLvutDQGfSFkNi59CgvK530VOAloYPnanO7yIk4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
+<div class="absolute bottom-4 left-4">
+<span class="text-[10px] text-primary font-bold uppercase tracking-[0.2em] bg-background/80 px-2 py-1 rounded">Security Verified</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Suppression Rule: Excluded for Task-Focused Success Screen -->
+<!-- The BottomNavBar is suppressed here as per "Shell Visibility & Relevance" rule for Transactional/Success screens -->
+<script>
+        // Micro-interaction: Download button confetti effect or state change
+        const downloadBtn = document.querySelector('button.bg-primary');
+        downloadBtn.addEventListener('click', function() {
+            const icon = this.querySelector('.material-symbols-outlined');
+            const originalIcon = icon.innerText;
+            
+            icon.innerText = 'sync';
+            icon.classList.add('animate-spin');
+            this.classList.add('opacity-80');
+            
+            setTimeout(() => {
+                icon.innerText = 'check';
+                icon.classList.remove('animate-spin');
+                this.classList.remove('opacity-80');
+                this.innerHTML = `<span class="material-symbols-outlined text-xl" data-icon="check">check</span> Downloaded`;
+            }, 1200);
+        });
+    </script>
+</body></html>

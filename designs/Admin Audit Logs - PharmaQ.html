@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ Admin - Audit Logs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
+            font-weight: 700;
+        }
+        body {
+            font-family: 'Geist', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed": "#2e1065",
+                      "on-primary-container": "#ede9fe",
+                      "error": "#ef4444",
+                      "on-tertiary": "#001a12",
+                      "surface-container-lowest": "#09090b",
+                      "secondary": "#71717a",
+                      "on-secondary-fixed-variant": "#3f3f46",
+                      "surface-container": "#121215",
+                      "primary-fixed-dim": "#c4b5fd",
+                      "on-primary-fixed-variant": "#5b21b6",
+                      "tertiary-fixed": "#bbf7d0",
+                      "surface": "#0c0c0f",
+                      "primary": "#a78bfa",
+                      "inverse-on-surface": "#09090b",
+                      "on-tertiary-container": "#bbf7d0",
+                      "error-container": "#3b1111",
+                      "on-error": "#1a0000",
+                      "on-surface-variant": "#a1a1aa",
+                      "on-primary": "#0a0012",
+                      "on-tertiary-fixed": "#003318",
+                      "on-secondary": "#09090b",
+                      "on-background": "#fafafa",
+                      "inverse-primary": "#5b21b6",
+                      "background": "#09090b",
+                      "on-tertiary-fixed-variant": "#047857",
+                      "surface-bright": "#18181b",
+                      "surface-dim": "#0c0c0f",
+                      "secondary-fixed": "#a1a1aa",
+                      "on-error-container": "#fca5a5",
+                      "primary-fixed": "#ede9fe",
+                      "inverse-surface": "#fafafa",
+                      "tertiary-fixed-dim": "#6ee7b7",
+                      "on-secondary-container": "#a1a1aa",
+                      "outline": "#52525b",
+                      "on-secondary-fixed": "#18181b",
+                      "surface-container-highest": "#1e1e22",
+                      "secondary-fixed-dim": "#71717a",
+                      "secondary-container": "#27272a",
+                      "tertiary": "#34d399",
+                      "surface-tint": "#a78bfa",
+                      "outline-variant": "#27272a",
+                      "surface-variant": "#18181b",
+                      "surface-container-low": "#0f0f12",
+                      "primary-container": "#7c3aed",
+                      "on-surface": "#fafafa",
+                      "tertiary-container": "#065f46",
+                      "surface-container-high": "#18181b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Geist"],
+                      "display": ["Geist"],
+                      "body": ["Geist"],
+                      "label": ["Geist"]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface custom-scrollbar selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-4 h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span>
+</button>
+<h1 class="font-headline tracking-tight text-on-surface text-xl font-bold tracking-tighter">Audit Logs</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-24 px-4 max-w-4xl mx-auto">
+<!-- Search & Filter Controls -->
+<section class="mb-8 space-y-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input class="w-full bg-surface-container border border-outline-variant rounded-xl py-3 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Search by user ID, action, or date..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-4 py-1.5 rounded-full text-sm font-medium bg-primary-container text-on-primary-container border border-primary/20 whitespace-nowrap">All Logs</button>
+<button class="px-4 py-1.5 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant hover:border-outline whitespace-nowrap transition-colors">Security</button>
+<button class="px-4 py-1.5 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant hover:border-outline whitespace-nowrap transition-colors">Database</button>
+<button class="px-4 py-1.5 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant hover:border-outline whitespace-nowrap transition-colors">Users</button>
+<button class="px-4 py-1.5 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant border border-outline-variant hover:border-outline whitespace-nowrap transition-colors">System</button>
+</div>
+</section>
+<!-- Log Feed (Bento Style Cards) -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Audit Entry 1: Security -->
+<div class="group bg-surface-container border border-outline-variant rounded-xl p-4 flex gap-4 items-start hover:bg-surface-container-high transition-all duration-200">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-error-container/20 border border-error/30 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-medium uppercase tracking-wider text-error">Security Alert</span>
+<span class="text-[11px] text-on-surface-variant">Oct 26, 2023 • 14:45</span>
+</div>
+<p class="text-sm text-on-surface font-medium mb-1 truncate">Unauthorized access attempt blocked from IP 192.168.1.105</p>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant">
+<span class="font-bold text-on-surface">System Shield</span>
+<span>•</span>
+<span class="bg-error/10 text-error px-2 py-0.5 rounded border border-error/20">Critical</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Audit Entry 2: Database -->
+<div class="group bg-surface-container border border-outline-variant rounded-xl p-4 flex gap-4 items-start hover:bg-surface-container-high transition-all duration-200">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-tertiary-container/20 border border-tertiary/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-medium uppercase tracking-wider text-tertiary">Database Update</span>
+<span class="text-[11px] text-on-surface-variant">Oct 26, 2023 • 14:30</span>
+</div>
+<p class="text-sm text-on-surface font-medium mb-1 truncate">Dr. Aris Thorne updated Amoxicillin clinical guidelines</p>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant">
+<span class="font-bold text-on-surface">Aris Thorne (Mentor)</span>
+<span>•</span>
+<span class="bg-tertiary/10 text-tertiary px-2 py-0.5 rounded border border-tertiary/20">Info</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Audit Entry 3: Role Management -->
+<div class="group bg-surface-container border border-outline-variant rounded-xl p-4 flex gap-4 items-start hover:bg-surface-container-high transition-all duration-200">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="manage_accounts">manage_accounts</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-medium uppercase tracking-wider text-primary">Role Modified</span>
+<span class="text-[11px] text-on-surface-variant">Oct 26, 2023 • 12:12</span>
+</div>
+<p class="text-sm text-on-surface font-medium mb-1 truncate">Sarah Jenkins promoted to 'Senior Editor' in Question Bank</p>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant">
+<span class="font-bold text-on-surface">Mark Vance (Admin)</span>
+<span>•</span>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded border border-primary/20">Modified</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Audit Entry 4: Deletion -->
+<div class="group bg-surface-container border border-outline-variant rounded-xl p-4 flex gap-4 items-start hover:bg-surface-container-high transition-all duration-200">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-surface-container-highest border border-outline-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="delete_forever">delete_forever</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-medium uppercase tracking-wider text-on-surface-variant">Content Purged</span>
+<span class="text-[11px] text-on-surface-variant">Oct 25, 2023 • 23:45</span>
+</div>
+<p class="text-sm text-on-surface font-medium mb-1 truncate">Deleted 4 outdated mock exams (Batch ID: #EX-992)</p>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant">
+<span class="font-bold text-on-surface">Auto-System</span>
+<span>•</span>
+<span class="bg-error/10 text-error px-2 py-0.5 rounded border border-error/20">Deleted</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Audit Entry 5: Login Event -->
+<div class="group bg-surface-container border border-outline-variant rounded-xl p-4 flex gap-4 items-start hover:bg-surface-container-high transition-all duration-200">
+<div class="flex-shrink-0 w-12 h-12 rounded-lg bg-surface-container-highest border border-outline-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="key">key</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-medium uppercase tracking-wider text-on-surface-variant">Auth Event</span>
+<span class="text-[11px] text-on-surface-variant">Oct 25, 2023 • 19:15</span>
+</div>
+<p class="text-sm text-on-surface font-medium mb-1 truncate">Admin login successful from recognized device</p>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant">
+<span class="font-bold text-on-surface">Elena Rodriguez</span>
+<span>•</span>
+<span class="bg-secondary-container text-on-surface-variant px-2 py-0.5 rounded border border-outline-variant">Info</span>
+</div>
+</div>
+<button class="p-2 text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Load More State -->
+<div class="mt-8 flex justify-center">
+<button class="flex items-center gap-2 text-sm text-primary font-medium hover:bg-primary/5 px-6 py-2 rounded-lg transition-colors border border-primary/20">
+<span class="material-symbols-outlined text-base" data-icon="sync">sync</span>
+                Load Previous Logs
+            </button>
+</div>
+</main>
+<!-- Side Navigation (Visible on MD+) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-72 bg-surface-container-low border-r border-outline-variant flex-col py-6 space-y-2 z-50">
+<div class="px-6 mb-8">
+<h2 class="text-lg font-headline font-bold text-on-surface">Admin Console</h2>
+<p class="text-xs text-on-surface-variant">PharmaQ Institutional Control</p>
+</div>
+<nav class="flex-grow flex flex-col space-y-1">
+<a class="text-on-surface-variant hover:text-on-surface px-4 py-3 mx-2 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body text-sm">Mentor Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-4 py-3 mx-2 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="font-body text-sm">Question Bank</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-4 py-3 mx-2 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="manage_accounts">manage_accounts</span>
+<span class="font-body text-sm">Role Management</span>
+</a>
+<a class="bg-secondary-container text-on-secondary-container rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+<span class="font-body text-sm font-medium">Audit Logs</span>
+</a>
+</nav>
+<div class="px-6 pt-4 border-t border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/20 border border-primary/40 overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhh-H8PeFOhdFkp4RutdWOx36CI5vg_6lG-DXsWV0PjmAuletRjLQ_fxcFw4HLVz2n7L9E7xEHq6lL6rCHTUutdwKkjgvpajDrgNFCFjn0OPde-thjaqn8K2VPvFwkVonYWOUUvxQCuPvAupOAkbjQF-4PcnxiPyEqSnArtS5709rS3w8vsghkCLjcsDj8koANDVsN9PwPAFrWK2iLojcRaC1XDoH10Z2PUPTbRg9GZzSN6LdhlahcTeZyjOIwkQ_8VExOVWJTZxg"/>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface">Admin Session</p>
+<p class="text-[10px] text-on-surface-variant">Connected: v2.4.1</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full h-16 flex justify-around items-center bg-surface-container px-2 border-t border-outline-variant z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="quiz">quiz</span>
+<span class="font-label text-xs font-medium">Exam</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label text-xs font-medium">Study</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label text-xs font-medium">Score</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-xl px-3 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+<span class="font-label text-xs font-medium">Logs</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for filter chips
+        const chips = document.querySelectorAll('button.rounded-full');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('bg-primary-container', 'text-on-primary-container', 'border-primary/20');
+                    c.classList.add('bg-surface-container-high', 'text-on-surface-variant', 'border-outline-variant');
+                });
+                chip.classList.add('bg-primary-container', 'text-on-primary-container', 'border-primary/20');
+                chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant', 'border-outline-variant');
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.01]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.01]');
+        });
+    </script>
+</body></html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ - Study Material</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#6ee7b7",
+                    "primary": "#a78bfa",
+                    "secondary-fixed": "#a1a1aa",
+                    "on-primary-container": "#ede9fe",
+                    "secondary": "#71717a",
+                    "outline": "#52525b",
+                    "on-tertiary-fixed-variant": "#047857",
+                    "tertiary-container": "#065f46",
+                    "primary-fixed": "#ede9fe",
+                    "surface-container-lowest": "#09090b",
+                    "tertiary": "#34d399",
+                    "inverse-primary": "#5b21b6",
+                    "secondary-fixed-dim": "#71717a",
+                    "on-background": "#fafafa",
+                    "surface-container": "#121215",
+                    "on-tertiary-fixed": "#003318",
+                    "background": "#09090b",
+                    "error-container": "#3b1111",
+                    "on-primary-fixed": "#2e1065",
+                    "on-surface-variant": "#a1a1aa",
+                    "on-tertiary": "#001a12",
+                    "on-secondary-fixed-variant": "#3f3f46",
+                    "inverse-on-surface": "#09090b",
+                    "outline-variant": "#27272a",
+                    "surface": "#0c0c0f",
+                    "primary-container": "#7c3aed",
+                    "on-secondary-fixed": "#18181b",
+                    "tertiary-fixed": "#bbf7d0",
+                    "surface-dim": "#0c0c0f",
+                    "on-secondary": "#09090b",
+                    "on-error": "#1a0000",
+                    "surface-bright": "#18181b",
+                    "surface-container-highest": "#1e1e22",
+                    "surface-container-low": "#0f0f12",
+                    "inverse-surface": "#fafafa",
+                    "secondary-container": "#27272a",
+                    "on-surface": "#fafafa",
+                    "on-primary": "#0a0012",
+                    "surface-container-high": "#18181b",
+                    "surface-variant": "#18181b",
+                    "on-secondary-container": "#a1a1aa",
+                    "on-primary-fixed-variant": "#5b21b6",
+                    "on-error-container": "#fca5a5",
+                    "on-tertiary-container": "#bbf7d0",
+                    "error": "#ef4444",
+                    "surface-tint": "#a78bfa",
+                    "primary-fixed-dim": "#c4b5fd"
+            },
+            "fontFamily": {
+                    "headline": ["Geist"],
+                    "display": ["Geist"],
+                    "body": ["Geist"],
+                    "label": ["Geist"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Geist', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+        .lockdown-shimmer {
+            background: linear-gradient(90deg, #09090b 25%, #18181b 50%, #09090b 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite linear;
+        }
+        @keyframes shimmer {
+            from { background-position: 200% 0; }
+            to { background-position: -200% 0; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background border-b border-outline-variant flex justify-between items-center px-4 py-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<h1 class="text-xl font-headline font-bold tracking-tighter text-on-surface">PharmaQ</h1>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant bg-surface-container">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a medical student in a clean, high-contrast dark room. The lighting is focused and dramatic, highlighting sharp features. The aesthetic is modern and developer-grade, matching a near-black zinc-based UI theme with soft violet accents in the background bokeh. The mood is serious and focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPxMvxqsd1kzFEjSg9096O2lo7Lp9q3wZY2WqIpfFuQS0II1DlUPlwh2N9D9_eQSINjbrNpOx0w2orW1jBhqDloj2zCinEkXLqwliGCXaUTIUcUenEmm2D26EkoguUDFoFG8YNlroGYI-5vDuF8P6H-MD4Yo0dH-7byhrlldCSFZeQV4qYX8OG_tKoIs4ML95wa4sbIaSVb503HIay-dMLw3_D4M-DwQ81SWc__tSDdAmILICK5uPoI4h6z8QE_Dh2vVhW8EoOKWc"/>
+</div>
+</header>
+<main class="mt-16 px-4">
+<!-- Search Section -->
+<section class="py-4 space-y-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input class="w-full bg-surface-container border border-outline-variant rounded-xl py-3 pl-10 pr-4 text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Search drug database" type="text"/>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-full text-sm font-medium whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]" data-icon="medication">medication</span>
+                    Counter
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container border border-outline-variant text-on-surface-variant rounded-full text-sm font-medium whitespace-nowrap hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="domain">domain</span>
+                    Department
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container border border-outline-variant text-on-surface-variant rounded-full text-sm font-medium whitespace-nowrap hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="calendar_today">calendar_today</span>
+                    Days
+                </button>
+</div>
+</section>
+<!-- Active Viva Session Alert (Lockdown) -->
+<div class="bg-surface-container-high border border-primary/20 rounded-xl p-4 flex items-start gap-3 mb-6 relative overflow-hidden">
+<div class="absolute inset-0 lockdown-shimmer opacity-10 pointer-events-none"></div>
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+<div class="space-y-1">
+<p class="text-sm font-bold text-on-surface leading-none">Viva Session Active</p>
+<p class="text-xs text-on-surface-variant leading-relaxed">Study material access is restricted to review mode only. Flashcards and notes are locked until the session concludes.</p>
+</div>
+</div>
+<!-- Drug Grid -->
+<div class="bento-grid mb-8">
+<!-- Card 1 -->
+<div class="col-span-2 bg-surface-container border border-outline-variant rounded-xl p-4 active:scale-[0.98] transition-all hover:bg-surface-container-highest flex flex-col justify-between h-40 group">
+<div class="flex justify-between items-start">
+<div class="space-y-0.5">
+<span class="text-[10px] font-bold text-primary tracking-widest uppercase">Generic Name</span>
+<h3 class="text-xl font-headline font-bold text-on-surface leading-tight">Paracetamol</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="arrow_outward">arrow_outward</span>
+</div>
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<p class="text-xs text-on-surface-variant italic">Panadol, Tylenol, Calpol</p>
+<p class="text-xs text-tertiary-fixed-dim font-medium">Indication: Analgesic &amp; Antipyretic</p>
+</div>
+<p class="text-[10px] text-on-secondary-fixed-variant">GSK Pharma</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-4 active:scale-[0.98] transition-all hover:bg-surface-container-highest h-48 flex flex-col justify-between">
+<div>
+<span class="text-[10px] font-bold text-primary tracking-widest uppercase">Generic</span>
+<h3 class="text-lg font-bold text-on-surface leading-tight">Amoxicillin</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">Mox, Amoxil</p>
+</div>
+<div>
+<p class="text-[10px] text-tertiary-fixed-dim line-clamp-2">Bacterial Infections of respiratory tract</p>
+<div class="mt-2 h-1 w-full bg-outline-variant rounded-full overflow-hidden">
+<div class="bg-primary h-full w-3/4"></div>
+</div>
+<p class="text-[9px] text-on-surface-variant mt-1">High Relevance</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-4 active:scale-[0.98] transition-all hover:bg-surface-container-highest h-48 flex flex-col justify-between">
+<div>
+<span class="text-[10px] font-bold text-primary tracking-widest uppercase">Generic</span>
+<h3 class="text-lg font-bold text-on-surface leading-tight">Metformin</h3>
+<p class="text-[10px] text-on-surface-variant mt-1">Glucophage</p>
+</div>
+<div>
+<p class="text-[10px] text-tertiary-fixed-dim">Type 2 Diabetes Management</p>
+<div class="mt-4 flex -space-x-1.5 overflow-hidden">
+<div class="inline-block h-5 w-5 rounded-full ring-2 ring-surface bg-zinc-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px]" data-icon="warning">warning</span>
+</div>
+<div class="inline-block h-5 w-5 rounded-full ring-2 ring-surface bg-zinc-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px]" data-icon="info">info</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 (Horizontal Bento) -->
+<div class="col-span-2 bg-surface-container border border-outline-variant rounded-xl p-4 active:scale-[0.98] transition-all hover:bg-surface-container-highest flex gap-4 items-center">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary" data-icon="ecg" style="font-variation-settings: 'FILL' 1;">ecg</span>
+</div>
+<div class="flex-1">
+<h3 class="text-base font-bold text-on-surface">Atorvastatin</h3>
+<p class="text-xs text-on-surface-variant">Lipitor • Pfizer • Lipid-lowering</p>
+</div>
+<div class="px-2 py-1 bg-secondary-container rounded-md text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">
+                    Essential
+                </div>
+</div>
+<!-- Card 5 -->
+<div class="col-span-2 bg-surface-container border border-outline-variant rounded-xl p-4 active:scale-[0.98] transition-all hover:bg-surface-container-highest h-32 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<span class="text-[10px] font-bold text-primary tracking-widest uppercase">Generic</span>
+<h3 class="text-xl font-bold text-on-surface">Omeprazole</h3>
+</div>
+<div class="text-right">
+<span class="text-[10px] font-bold text-on-surface-variant block">Manufacturer</span>
+<span class="text-xs text-on-surface italic">AstraZeneca</span>
+</div>
+</div>
+<p class="text-xs text-tertiary-fixed-dim">Indication: GERD, Peptic Ulcer Disease</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface border-t border-outline-variant">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-on-surface transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-label text-xs tracking-normal">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary bg-secondary-container rounded-xl px-3 py-1 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="menu_book" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label text-xs tracking-normal">Study</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-on-surface transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label text-xs tracking-normal">Score</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-on-surface transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="person_outline">person_outline</span>
+<span class="font-label text-xs tracking-normal">Profile</span>
+</button>
+</nav>
+<!-- Detail View Overlay (Micro-interaction mockup) -->
+<div class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] opacity-0 pointer-events-none transition-opacity duration-300" id="detail-backdrop"></div>
+<div class="fixed bottom-0 left-0 w-full bg-surface-container-high rounded-t-3xl z-[70] p-6 translate-y-full transition-transform duration-500 border-t border-outline-variant" id="detail-panel">
+<div class="w-12 h-1.5 bg-outline-variant rounded-full mx-auto mb-6"></div>
+<div class="space-y-6">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="text-2xl font-headline font-bold text-on-surface" id="detail-title">Drug Name</h2>
+<p class="text-primary font-medium" id="detail-subtitle">Generic Category</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center" onclick="closeDetail()">
+<span class="material-symbols-outlined text-on-surface" data-icon="close">close</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container border border-outline-variant p-4 rounded-xl">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-1">Pharmacology</p>
+<p class="text-sm text-on-surface leading-relaxed">Detailed mechanism of action goes here, explaining binding sites and metabolic pathways.</p>
+</div>
+<div class="bg-surface-container border border-outline-variant p-4 rounded-xl">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-1">Side Effects</p>
+<ul class="text-sm text-error/80 list-disc pl-4">
+<li>Nausea</li>
+<li>Dizziness</li>
+<li>Rashes</li>
+</ul>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary rounded-xl font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+                Save to Study List
+            </button>
+</div>
+</div>
+<script>
+        function openDetail(name, cat) {
+            const panel = document.getElementById('detail-panel');
+            const backdrop = document.getElementById('detail-backdrop');
+            document.getElementById('detail-title').innerText = name;
+            document.getElementById('detail-subtitle').innerText = cat;
+            
+            backdrop.classList.remove('opacity-0', 'pointer-events-none');
+            panel.classList.remove('translate-y-full');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetail() {
+            const panel = document.getElementById('detail-panel');
+            const backdrop = document.getElementById('detail-backdrop');
+            
+            backdrop.classList.add('opacity-0', 'pointer-events-none');
+            panel.classList.add('translate-y-full');
+            document.body.style.overflow = '';
+        }
+
+        // Add event listeners to cards for interaction simulation
+        document.querySelectorAll('.bento-grid > div').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('h3').innerText;
+                const cat = card.querySelector('.text-primary')?.innerText || 'Essential Medication';
+                openDetail(title, cat);
+            });
+        });
+
+        // Close on backdrop click
+        document.getElementById('detail-backdrop').addEventListener('click', closeDetail);
+    </script>
+</body></html>

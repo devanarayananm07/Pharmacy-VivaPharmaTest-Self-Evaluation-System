@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ - Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
+            font-weight: 700;
+        }
+        body {
+            font-family: 'Geist', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#09090b",
+                      "primary-fixed-dim": "#c4b5fd",
+                      "on-tertiary": "#001a12",
+                      "outline": "#52525b",
+                      "surface-variant": "#18181b",
+                      "outline-variant": "#27272a",
+                      "on-primary-fixed-variant": "#5b21b6",
+                      "inverse-on-surface": "#09090b",
+                      "secondary": "#71717a",
+                      "error": "#ef4444",
+                      "surface-container-low": "#0f0f12",
+                      "on-primary": "#0a0012",
+                      "error-container": "#3b1111",
+                      "tertiary": "#34d399",
+                      "surface-container-highest": "#1e1e22",
+                      "surface-container-high": "#18181b",
+                      "on-secondary-container": "#a1a1aa",
+                      "secondary-fixed-dim": "#71717a",
+                      "primary": "#a78bfa",
+                      "on-background": "#fafafa",
+                      "surface-bright": "#18181b",
+                      "primary-container": "#7c3aed",
+                      "tertiary-container": "#065f46",
+                      "on-surface": "#fafafa",
+                      "on-secondary-fixed": "#18181b",
+                      "inverse-primary": "#5b21b6",
+                      "secondary-container": "#27272a",
+                      "tertiary-fixed-dim": "#6ee7b7",
+                      "secondary-fixed": "#a1a1aa",
+                      "on-primary-fixed": "#2e1065",
+                      "on-tertiary-container": "#bbf7d0",
+                      "surface-container-lowest": "#09090b",
+                      "on-error": "#1a0000",
+                      "tertiary-fixed": "#bbf7d0",
+                      "surface": "#0c0c0f",
+                      "on-tertiary-fixed-variant": "#047857",
+                      "on-tertiary-fixed": "#003318",
+                      "on-secondary-fixed-variant": "#3f3f46",
+                      "surface-tint": "#a78bfa",
+                      "on-secondary": "#09090b",
+                      "on-surface-variant": "#a1a1aa",
+                      "on-error-container": "#fca5a5",
+                      "primary-fixed": "#ede9fe",
+                      "on-primary-container": "#ede9fe",
+                      "surface-dim": "#0c0c0f",
+                      "surface-container": "#121215",
+                      "inverse-surface": "#fafafa"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Geist"],
+                      "display": ["Geist"],
+                      "body": ["Geist"],
+                      "label": ["Geist"]
+              }
+            },
+          }
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top Navigation Anchor (Translated from JSON) -->
+<header class="fixed top-0 w-full bg-surface text-on-surface z-50 flex items-center justify-between px-4 h-16 border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="clinical_notes">clinical_notes</span>
+<h1 class="font-headline tracking-tighter text-xl font-bold text-primary">PharmaQ</h1>
+</div>
+<button class="hover:bg-surface-container transition-colors p-2 rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-4 max-w-2xl mx-auto space-y-6">
+<!-- Section Header -->
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-2xl font-bold tracking-tight text-on-surface">Notifications</h2>
+<button class="text-sm font-medium text-primary hover:text-primary-fixed-dim transition-colors flex items-center gap-1 group">
+                Mark all as read
+                <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform" data-icon="done_all">done_all</span>
+</button>
+</div>
+<!-- Notification List -->
+<div class="space-y-3">
+<!-- 1. Export Ready Notification -->
+<div class="bg-surface-container border border-outline-variant p-4 rounded-xl flex gap-4 items-start hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="bg-primary-container/10 p-3 rounded-lg text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="download">download</span>
+</div>
+<div class="flex-1 space-y-3">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<p class="font-bold text-sm tracking-tight text-on-surface">Export Ready</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">Clinical Export 2023.xlsx is ready for download</p>
+</div>
+<span class="text-[10px] text-outline font-medium">2m ago</span>
+</div>
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-lg text-xs font-bold active:scale-95 transition-all w-fit">
+                        Download
+                    </button>
+</div>
+</div>
+<!-- 2. Export in Progress -->
+<div class="bg-surface-container border border-outline-variant p-4 rounded-xl flex gap-4 items-start">
+<div class="bg-surface-container-highest p-3 rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined text-2xl animate-pulse" data-icon="sync">sync</span>
+</div>
+<div class="flex-1 space-y-3">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<p class="font-bold text-sm tracking-tight text-on-surface">Export in Progress</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">Generating Cardiology Batch...</p>
+</div>
+<span class="text-[10px] text-outline font-medium">Active</span>
+</div>
+<div class="space-y-2">
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 65%"></div>
+</div>
+<div class="flex justify-between text-[10px] font-medium text-outline">
+<span>65% complete</span>
+<span>ETA 45s</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. Security Alert -->
+<div class="bg-surface-container border border-outline-variant p-4 rounded-xl flex gap-4 items-start group">
+<div class="bg-error-container/20 p-3 rounded-lg text-error">
+<span class="material-symbols-outlined text-2xl" data-icon="report" style="font-variation-settings: 'FILL' 1;">report</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<p class="font-bold text-sm tracking-tight text-on-surface">Security Alert</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">New login from Chrome on Windows</p>
+</div>
+<span class="text-[10px] text-outline font-medium">1h ago</span>
+</div>
+<div class="mt-3 flex gap-2">
+<button class="text-error text-xs font-bold border border-error/30 px-3 py-1.5 rounded-lg hover:bg-error/10 transition-colors">
+                            This wasn't me
+                        </button>
+</div>
+</div>
+</div>
+<!-- 4. Weekly Target -->
+<div class="bg-surface-container border border-outline-variant p-4 rounded-xl flex gap-4 items-start">
+<div class="bg-tertiary/10 p-3 rounded-lg text-tertiary">
+<span class="material-symbols-outlined text-2xl" data-icon="target">target</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<p class="font-bold text-sm tracking-tight text-on-surface">Weekly Target</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">You are 42 questions away from your 150-question weekly goal.</p>
+</div>
+<span class="text-[10px] text-outline font-medium">Yesterday</span>
+</div>
+<div class="mt-4 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-2 rounded-lg border border-outline-variant/50">
+<p class="text-[10px] text-outline uppercase font-bold tracking-widest">Progress</p>
+<p class="text-lg font-bold text-tertiary">108/150</p>
+</div>
+<div class="bg-surface-container-low p-2 rounded-lg border border-outline-variant/50">
+<p class="text-[10px] text-outline uppercase font-bold tracking-widest">Streak</p>
+<p class="text-lg font-bold text-on-surface">12 Days</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Anchor: Bento Style Activity Overview -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-8 pb-12">
+<div class="bg-surface-container border border-outline-variant rounded-xl p-5 overflow-hidden relative">
+<div class="relative z-10">
+<p class="text-outline text-xs font-bold uppercase tracking-wider mb-1">Weekly Insight</p>
+<h3 class="text-on-surface font-bold text-lg mb-4">Notification Volume</h3>
+<div class="flex items-end gap-1 h-24">
+<div class="flex-1 bg-outline-variant rounded-t-sm h-[30%]"></div>
+<div class="flex-1 bg-outline-variant rounded-t-sm h-[50%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-sm h-[80%]"></div>
+<div class="flex-1 bg-primary/60 rounded-t-sm h-[60%]"></div>
+<div class="flex-1 bg-primary rounded-t-sm h-[90%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-sm h-[40%]"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[20%]"></div>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-9xl" data-icon="notifications">notifications</span>
+</div>
+</div>
+<div class="bg-surface-container border border-outline-variant rounded-xl p-5 flex flex-col justify-between">
+<div>
+<p class="text-outline text-xs font-bold uppercase tracking-wider mb-1">Storage Status</p>
+<h3 class="text-on-surface font-bold text-lg">Cloud Reports</h3>
+</div>
+<div class="py-4">
+<div class="flex justify-between text-xs text-on-surface-variant mb-2 font-medium">
+<span>Used: 4.2 GB</span>
+<span>Total: 10 GB</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full">
+<div class="h-full bg-tertiary w-[42%] rounded-full shadow-[0_0_10px_rgba(52,211,153,0.3)]"></div>
+</div>
+</div>
+<button class="w-full py-2 bg-surface-container-highest border border-outline-variant rounded-lg text-xs font-bold hover:bg-surface-container-high transition-colors">
+                    Manage Storage
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Anchor (Translated from JSON) -->
+<nav class="fixed bottom-0 left-0 w-full h-16 flex justify-around items-center bg-surface-container px-2 border-t border-outline-variant z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="quiz">quiz</span>
+<span class="font-label text-xs font-medium">Exam</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="menu_book">menu_book</span>
+<span class="font-label text-xs font-medium">Study</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="leaderboard">leaderboard</span>
+<span class="font-label text-xs font-medium">Score</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-xl px-3 py-1 duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="person">person</span>
+<span class="font-label text-xs font-medium">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for marking as read
+        document.querySelectorAll('.cursor-pointer').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.opacity = '0.6';
+                item.style.transition = 'opacity 0.5s ease';
+            });
+        });
+
+        // Simulating some atmosphere with a small glow effect that follows the cursor
+        const glow = document.createElement('div');
+        glow.className = 'fixed w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none z-[-1] opacity-0 transition-opacity duration-1000';
+        document.body.appendChild(glow);
+
+        document.addEventListener('mousemove', (e) => {
+            glow.style.opacity = '1';
+            glow.style.left = `${e.clientX - 192}px`;
+            glow.style.top = `${e.clientY - 192}px`;
+        });
+    </script>
+</body></html>

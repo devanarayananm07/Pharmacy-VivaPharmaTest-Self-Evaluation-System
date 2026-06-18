@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #09090b;
+            color: #fafafa;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .glass-card {
+            background: rgba(18, 18, 21, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #27272a;
+        }
+
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#71717a",
+                        "primary-fixed-dim": "#c4b5fd",
+                        "on-background": "#fafafa",
+                        "on-tertiary-container": "#bbf7d0",
+                        "on-secondary": "#09090b",
+                        "error-container": "#3b1111",
+                        "tertiary": "#34d399",
+                        "inverse-surface": "#fafafa",
+                        "surface-container-low": "#0f0f12",
+                        "outline": "#52525b",
+                        "surface-container-lowest": "#09090b",
+                        "on-tertiary-fixed-variant": "#047857",
+                        "primary-container": "#7c3aed",
+                        "on-secondary-fixed-variant": "#3f3f46",
+                        "on-tertiary-fixed": "#003318",
+                        "on-secondary-container": "#a1a1aa",
+                        "surface-bright": "#18181b",
+                        "on-primary": "#0a0012",
+                        "on-surface": "#fafafa",
+                        "secondary-container": "#27272a",
+                        "on-error": "#1a0000",
+                        "tertiary-fixed": "#bbf7d0",
+                        "surface-variant": "#18181b",
+                        "surface-container": "#121215",
+                        "surface-tint": "#a78bfa",
+                        "tertiary-container": "#065f46",
+                        "on-primary-fixed": "#2e1065",
+                        "surface-container-highest": "#1e1e22",
+                        "secondary-fixed": "#a1a1aa",
+                        "surface-container-high": "#18181b",
+                        "on-error-container": "#fca5a5",
+                        "error": "#ef4444",
+                        "on-tertiary": "#001a12",
+                        "outline-variant": "#27272a",
+                        "on-primary-container": "#ede9fe",
+                        "inverse-on-surface": "#09090b",
+                        "secondary": "#71717a",
+                        "inverse-primary": "#5b21b6",
+                        "tertiary-fixed-dim": "#6ee7b7",
+                        "surface-dim": "#0c0c0f",
+                        "on-secondary-fixed": "#18181b",
+                        "primary": "#a78bfa",
+                        "on-surface-variant": "#a1a1aa",
+                        "primary-fixed": "#ede9fe",
+                        "on-primary-fixed-variant": "#5b21b6",
+                        "surface": "#0c0c0f",
+                        "background": "#09090b"
+                    },
+                    "fontFamily": {
+                        "headline": ["Geist"],
+                        "display": ["Geist"],
+                        "body": ["Geist"],
+                        "label": ["Geist"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-background border-b border-outline-variant w-full sticky top-0 z-50 flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-high transition-colors active:scale-95 duration-100 p-2 rounded-full">
+<span class="material-symbols-outlined text-primary dark:text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline tracking-tight text-on-surface font-bold text-lg">Employee Progress</h1>
+</div>
+<button class="hover:bg-surface-container-high transition-colors active:scale-95 duration-100 p-2 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</header>
+<main class="max-w-4xl mx-auto p-4 space-y-6">
+<!-- Profile Section -->
+<section class="flex flex-col md:flex-row items-center md:items-end gap-6 py-4">
+<div class="relative">
+<div class="w-24 h-24 rounded-full border-2 border-primary p-1">
+<img alt="Sarah Chen" class="w-full h-full object-cover rounded-full" data-alt="A professional studio portrait of a female clinical pharmacist named Sarah Chen. She has a warm yet serious expression, wearing a crisp white lab coat over a dark professional blouse. The lighting is soft and cinematic, with a deep charcoal background that aligns with a high-contrast dark UI. The overall aesthetic is clean, medical, and authoritative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsIbY6AbWirwSTJS50u2z_f4eFNFciovBmSs29GZLqowf5rP9yybNxtgsXTtyFo1shrOM8bYnPc8Xwf7kQmxvwuTSXN1Kgpdm57oiXbzewbGHq2hP5KuIy6Hd5aYu9qA7-iJp2NgFQPC3ntUzdV29AzltRT-npV_cSV86cWVznd5d1olPw-q1SzrmUvANvO1zYqPdi0CxVQyojEtwErDY5_ICikm4QNPGujcgxwiXRQ7VsNh_f5KzeWmJnBQJlNHUvJF3QkhHrrKw"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-error text-on-error text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                    At Risk
+                </div>
+</div>
+<div class="text-center md:text-left flex-1">
+<h2 class="text-3xl font-bold tracking-tight">Sarah Chen</h2>
+<p class="text-on-surface-variant font-medium">Clinical Pharmacist • PGY-2 Resident</p>
+<div class="mt-2 flex flex-wrap justify-center md:justify-start gap-2">
+<span class="bg-surface-container px-3 py-1 rounded-full text-xs border border-outline-variant">ID: #88241</span>
+<span class="bg-surface-container px-3 py-1 rounded-full text-xs border border-outline-variant">Dept: Medicine</span>
+</div>
+</div>
+</section>
+<!-- Bento Grid Stats -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+<!-- Weekly Target Card -->
+<div class="md:col-span-5 glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center">
+<h3 class="text-sm font-medium text-on-surface-variant mb-6 self-start uppercase tracking-widest">Weekly Target</h3>
+<div class="relative w-40 h-40">
+<svg class="w-full h-full">
+<circle class="text-secondary-container" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary progress-ring-circle" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="110" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-bold">75%</span>
+<span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-tighter">Completion</span>
+</div>
+</div>
+<p class="mt-6 font-bold text-xl">112 <span class="text-on-surface-variant font-normal text-sm">/ 150 questions</span></p>
+<p class="text-xs text-error mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">warning</span> 12% behind schedule
+                </p>
+</div>
+<!-- Daily Activity Chart -->
+<div class="md:col-span-7 glass-card rounded-xl p-6 flex flex-col">
+<div class="flex justify-between items-start mb-8">
+<h3 class="text-sm font-medium text-on-surface-variant uppercase tracking-widest">Daily Activity</h3>
+<div class="text-right">
+<p class="text-2xl font-bold">16.4</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Avg / Day</p>
+</div>
+</div>
+<div class="flex-1 flex items-end justify-between gap-2 px-2">
+<!-- Simple CSS Bar Chart -->
+<div class="flex flex-col items-center gap-2 w-full group">
+<div class="w-full bg-secondary-container rounded-t-sm h-24 group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] text-on-surface-variant">Mon</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full group">
+<div class="w-full bg-secondary-container rounded-t-sm h-32 group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] text-on-surface-variant">Tue</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full group">
+<div class="w-full bg-primary rounded-t-sm h-40"></div>
+<span class="text-[10px] text-primary font-bold">Wed</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full group">
+<div class="w-full bg-secondary-container rounded-t-sm h-20 group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] text-on-surface-variant">Thu</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full group">
+<div class="w-full bg-secondary-container rounded-t-sm h-12 group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] text-on-surface-variant">Fri</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full group">
+<div class="w-full bg-secondary-container rounded-t-sm h-8 group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] text-on-surface-variant">Sat</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full group">
+<div class="w-full bg-secondary-container rounded-t-sm h-16 group-hover:bg-primary transition-colors"></div>
+<span class="text-[10px] text-on-surface-variant">Sun</span>
+</div>
+</div>
+</div>
+<!-- Category Performance -->
+<div class="md:col-span-12 glass-card rounded-xl p-6"><div class="flex justify-between items-center mb-6"><h3 class="text-sm font-medium text-on-surface-variant uppercase tracking-widest">Category Performance</h3><div class="flex items-center gap-4 text-[10px] uppercase tracking-tighter text-on-surface-variant"><div class="flex items-center gap-1"><div class="w-2 h-2 bg-primary rounded-full"></div><span>Trend</span></div><div class="flex items-center gap-1"><div class="w-0.5 h-3 bg-on-surface-variant"></div><span>Peer Avg</span></div></div></div><div class="space-y-8"><div class="space-y-3"><div class="flex justify-between items-end"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-tertiary">pill</span><div><p class="font-medium">Antibiotics</p><p class="text-[10px] text-tertiary flex items-center gap-1"><span class="material-symbols-outlined text-xs">trending_up</span> +4% vs last month</p></div></div><div class="text-right"><span class="text-tertiary font-bold text-lg">92%</span><p class="text-on-surface-variant text-[10px] uppercase">Accuracy</p></div></div><div class="relative pt-2"><div class="h-1.5 w-full bg-secondary-container rounded-full overflow-hidden"><div class="h-full bg-tertiary w-[92%]"></div></div><div class="absolute top-0 left-[85%] h-4 w-0.5 bg-on-surface-variant" title="Peer Average: 85%"></div></div></div><div class="space-y-3"><div class="flex justify-between items-end"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">vaccines</span><div><p class="font-medium">Narcotics</p><p class="text-[10px] text-error flex items-center gap-1"><span class="material-symbols-outlined text-xs">trending_down</span> -2% vs last month</p></div></div><div class="text-right"><span class="text-primary font-bold text-lg">64%</span><p class="text-on-surface-variant text-[10px] uppercase">Accuracy</p></div></div><div class="relative pt-2"><div class="h-1.5 w-full bg-secondary-container rounded-full overflow-hidden"><div class="h-full bg-primary w-[64%]"></div></div><div class="absolute top-0 left-[78%] h-4 w-0.5 bg-on-surface-variant" title="Peer Average: 78%"></div></div></div><div class="space-y-3"><div class="flex justify-between items-end"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-on-surface">favorite</span><div><p class="font-medium">Cardiology</p><p class="text-[10px] text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-xs">trending_flat</span> Stable</p></div></div><div class="text-right"><span class="text-on-surface font-bold text-lg">81%</span><p class="text-on-surface-variant text-[10px] uppercase">Accuracy</p></div></div><div class="relative pt-2"><div class="h-1.5 w-full bg-secondary-container rounded-full overflow-hidden"><div class="h-full bg-on-surface-variant w-[81%]"></div></div><div class="absolute top-0 left-[72%] h-4 w-0.5 bg-on-surface-variant" title="Peer Average: 72%"></div></div></div></div><button class="w-full mt-8 py-3 border border-outline-variant rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-surface-container-high transition-colors flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">analytics</span> View Full Report</button></div>
+</div>
+<!-- Action Section -->
+<section class="flex flex-col sm:flex-row gap-3 pt-4">
+<button class="flex-1 bg-primary text-on-primary py-4 rounded-lg font-bold flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">notifications_active</span>
+                Send Reminder
+            </button>
+<button class="flex-1 bg-transparent border border-outline-variant text-on-surface py-4 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-surface-container-high active:scale-95 transition-all">
+<span class="material-symbols-outlined">library_add</span>
+                Assign Material
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe w-full">
+<a class="flex flex-col items-center justify-center text-secondary gap-1 hover:text-on-surface transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label text-xs font-medium">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary gap-1 hover:text-on-surface transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label text-xs font-medium">Roster</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary gap-1 hover:text-on-surface transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">book_2</span>
+<span class="font-label text-xs font-medium">Resources</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary gap-1 hover:text-on-surface transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label text-xs font-medium">Settings</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const ripple = document.createElement('div');
+                ripple.className = 'absolute inset-0 bg-white/10 rounded-lg pointer-events-none opacity-0';
+                this.appendChild(ripple);
+                ripple.animate([
+                    { opacity: 0.5, scale: 0.9 },
+                    { opacity: 0, scale: 1.1 }
+                ], { duration: 400 }).onfinish = () => ripple.remove();
+            });
+        });
+    </script>
+</body></html>

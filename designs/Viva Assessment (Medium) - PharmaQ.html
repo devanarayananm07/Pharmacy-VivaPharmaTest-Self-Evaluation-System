@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ - Viva Assessment Medium</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#18181b",
+                    "on-primary-container": "#ede9fe",
+                    "on-background": "#fafafa",
+                    "primary": "#a78bfa",
+                    "on-tertiary": "#001a12",
+                    "on-secondary-container": "#a1a1aa",
+                    "surface-dim": "#0c0c0f",
+                    "on-secondary": "#09090b",
+                    "surface-container-lowest": "#09090b",
+                    "tertiary-fixed": "#bbf7d0",
+                    "outline-variant": "#27272a",
+                    "error": "#ef4444",
+                    "inverse-on-surface": "#09090b",
+                    "tertiary-fixed-dim": "#6ee7b7",
+                    "surface-tint": "#a78bfa",
+                    "surface-container-low": "#0f0f12",
+                    "on-primary-fixed-variant": "#5b21b6",
+                    "outline": "#52525b",
+                    "on-secondary-fixed-variant": "#3f3f46",
+                    "on-primary-fixed": "#2e1065",
+                    "on-error-container": "#fca5a5",
+                    "error-container": "#3b1111",
+                    "on-primary": "#0a0012",
+                    "on-error": "#1a0000",
+                    "surface-container-highest": "#1e1e22",
+                    "surface": "#0c0c0f",
+                    "secondary-fixed": "#a1a1aa",
+                    "on-tertiary-fixed": "#003318",
+                    "on-surface": "#fafafa",
+                    "secondary-container": "#27272a",
+                    "surface-container-high": "#18181b",
+                    "secondary": "#71717a",
+                    "primary-container": "#7c3aed",
+                    "tertiary": "#34d399",
+                    "background": "#09090b",
+                    "on-tertiary-container": "#bbf7d0",
+                    "secondary-fixed-dim": "#71717a",
+                    "primary-fixed-dim": "#c4b5fd",
+                    "surface-container": "#121215",
+                    "surface-variant": "#18181b",
+                    "primary-fixed": "#ede9fe",
+                    "on-surface-variant": "#a1a1aa",
+                    "tertiary-container": "#065f46",
+                    "on-tertiary-fixed-variant": "#047857",
+                    "on-secondary-fixed": "#18181b",
+                    "inverse-primary": "#5b21b6",
+                    "inverse-surface": "#fafafa"
+            },
+            "fontFamily": {
+                    "headline": ["Geist"],
+                    "display": ["Geist"],
+                    "body": ["Geist"],
+                    "label": ["Geist"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Geist', sans-serif; }
+        .glass-panel {
+            background: rgba(18, 18, 21, 0.8);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid #27272a;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background selection:bg-primary/30 min-h-screen pb-32">
+<!-- TopAppBar -->
+<nav class="flex justify-between items-center w-full px-4 h-16 bg-background border-b border-outline-variant fixed top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<span class="text-xl font-headline font-black tracking-tighter text-on-surface">PharmaQ</span>
+</div>
+<div class="flex items-center gap-6">
+<!-- Navigation Desktop -->
+<div class="hidden md:flex gap-4">
+<a class="text-on-surface-variant hover:bg-surface-container transition-colors duration-200 px-3 py-1 rounded-md font-body text-sm" href="#">Home</a>
+<a class="text-primary font-bold transition-colors duration-200 px-3 py-1 rounded-md font-body text-sm" href="#">Study</a>
+<a class="text-on-surface-variant hover:bg-surface-container transition-colors duration-200 px-3 py-1 rounded-md font-body text-sm" href="#">Score</a>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHUUFAg0difkmqSNhT9Q-UkZj7tpE3bjSnYxBJ8hGb7gN5QUp27a5JXta8sDGyKa8Ab_T6Z14TeQ74YvKy2QX-Z7CNkkJpKkaxJQTp8U9qOsl18Agq_zzcZWTsg9FdrUi6rQK0P0G5Yi7ErgBJjiy69fpUftAb2KbJUaguCweuv7jLDGt7bSIG1WqOoFfD7Vs5coAzUTb9a7rbZDpwgy1uJQRo1Z62DB08vNjZVjk4hBQOlpNNCtXpkinLL0kxxN9YppZEh9ekJEM"/>
+</div>
+</div>
+</nav>
+<main class="max-w-4xl mx-auto px-6 pt-24">
+<!-- Header Section -->
+<header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold tracking-tight text-on-surface mb-2">VIVA ASSESSMENT (MEDIUM)</h1>
+<p class="text-on-surface-variant text-sm font-body">Associative Knowledge Phase: Clinical Indications &amp; Attributes</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-xs font-mono text-primary uppercase tracking-widest">Progress</span>
+<div class="flex items-center gap-3">
+<div class="w-48 h-1.5 bg-surface-container-highest rounded-full overflow-hidden border border-outline-variant">
+<div class="h-full bg-primary w-[32%]"></div>
+</div>
+<span class="text-sm font-mono font-bold">Question 08 / 25</span>
+</div>
+</div>
+</header>
+<!-- Question Canvas -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left: Prompt Card -->
+<div class="lg:col-span-5">
+<div class="bg-surface-container rounded-xl border border-outline-variant p-8 sticky top-24">
+<div class="flex items-center gap-2 mb-6">
+<span class="px-2 py-1 bg-tertiary/10 text-tertiary text-[10px] font-bold uppercase tracking-widest rounded border border-tertiary/20">Active Prompt</span>
+</div>
+<div class="space-y-1">
+<p class="text-secondary text-xs uppercase font-bold tracking-wider">Clinical Indication</p>
+<h2 class="text-3xl font-bold text-on-surface leading-tight">Type 2 Diabetes Mellitus</h2>
+</div>
+<div class="mt-8 pt-8 border-t border-outline-variant space-y-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5" data-icon="task_alt">task_alt</span>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                                Identify the <span class="text-on-surface font-bold">Generic Name</span> and the primary <span class="text-on-surface font-bold">Brand Name</span> associated with this clinical indication.
+                            </p>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5" data-icon="corporate_fare">corporate_fare</span>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                                Specify the <span class="text-on-surface font-bold">Manufacturing Company</span> and select the correct <span class="text-on-surface font-bold">Schedule Category</span>.
+                            </p>
+</div>
+</div>
+<!-- Ambient Visual -->
+<div class="mt-8 rounded-lg overflow-hidden h-32 relative bg-surface-container-low border border-outline-variant">
+<img class="w-full h-full object-cover opacity-40 grayscale hover:grayscale-0 transition-all duration-700" data-alt="A microscopic, highly detailed close-up of pharmaceutical crystals and chemical compounds under a polarized lens. The aesthetic is clean, scientific, and dark, with deep charcoal backgrounds and hints of violet light refracting through the edges of the crystals. The mood is precise, clinical, and high-tech, fitting for a modern medical learning application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtrlvF7y8byqpXVH7QlyP7SxTqzGu2H1Y8jOFE4MyHC9XNYnrf4lsKlZyR8-bhVw-AqDYUBJmIBNtCo3vpPmCtWVd3n38WG2yjNCiPAZct4hc1vRmNiwabWP-D15gd04ciqheTyceHsq71RLUsYeExwlC0udGJaC8VewQFk8-UdgDduGZ_E1IeEYddQChPtT3qcSDXCfR8hLcjVismtwB0BN-O38U8PZVkykB1jBgIF2jVmKfLzK1X1hNzIJjxoPXZoEPTiwj0hHQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent"></div>
+</div>
+</div>
+</div>
+<!-- Right: Response Form -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Generic Name Input -->
+<div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant group focus-within:border-primary transition-colors">
+<label class="block text-xs font-bold text-secondary uppercase tracking-widest mb-3" for="generic-name">1. Generic Name</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 text-on-surface placeholder:text-on-secondary-container focus:ring-1 focus:ring-primary focus:outline-none transition-all" id="generic-name" placeholder="Search generic database..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-secondary" data-icon="search">search</span>
+</div>
+<div class="mt-3 flex flex-wrap gap-2">
+<span class="text-[10px] text-on-secondary-container">Suggestions: Metformin, Sitagliptin, Empagliflozin</span>
+</div>
+</div>
+<!-- Brand Name Input -->
+<div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant group focus-within:border-primary transition-colors">
+<label class="block text-xs font-bold text-secondary uppercase tracking-widest mb-3" for="brand-name">2. Associated Brand Name</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 text-on-surface placeholder:text-on-secondary-container focus:ring-1 focus:ring-primary focus:outline-none transition-all" id="brand-name" placeholder="Enter most common brand..." type="text"/>
+</div>
+<!-- Manufacturing Company -->
+<div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant group focus-within:border-primary transition-colors">
+<label class="block text-xs font-bold text-secondary uppercase tracking-widest mb-3" for="company">3. Manufacturing Company</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 text-on-surface appearance-none focus:ring-1 focus:ring-primary focus:outline-none transition-all" id="company">
+<option value="">Select Manufacturer</option>
+<option value="novartis">Novartis</option>
+<option value="pfizer">Pfizer</option>
+<option value="gsk">GSK</option>
+<option value="merck">Merck</option>
+<option value="boehringer">Boehringer Ingelheim</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-secondary" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Schedule Category -->
+<div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant group">
+<label class="block text-xs font-bold text-secondary uppercase tracking-widest mb-4">4. Drug Schedule Category</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<button class="py-2 px-3 border border-outline-variant rounded-lg text-xs font-bold hover:border-primary hover:text-primary transition-all active:scale-95 bg-surface-container-lowest">Schedule H</button>
+<button class="py-2 px-3 border border-outline-variant rounded-lg text-xs font-bold hover:border-primary hover:text-primary transition-all active:scale-95 bg-surface-container-lowest">Schedule G</button>
+<button class="py-2 px-3 border border-outline-variant rounded-lg text-xs font-bold hover:border-primary hover:text-primary transition-all active:scale-95 bg-surface-container-lowest">OTC</button>
+<button class="py-2 px-3 border border-outline-variant rounded-lg text-xs font-bold hover:border-primary hover:text-primary transition-all active:scale-95 bg-surface-container-lowest">Schedule X</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar (Glassmorphic) -->
+<div class="fixed bottom-0 left-0 w-full z-40 glass-panel px-6 py-4">
+<div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+                    Preview
+                </button>
+<div class="h-4 w-px bg-outline-variant"></div>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-error transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-[20px]" data-icon="exit_to_app">exit_to_app</span>
+                    Save &amp; Quit
+                </button>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container transition-all text-sm font-bold active:scale-95">
+                    Save
+                </button>
+<button class="flex-1 md:flex-none px-8 py-2.5 rounded-lg bg-primary text-on-primary hover:bg-opacity-90 transition-all text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-95">
+                    Next Question
+                    <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Mobile Bottom NavBar (Simulated shared component) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex md:hidden justify-around items-center h-16 bg-background border-t border-outline-variant sm:hidden">
+<button class="flex flex-col items-center justify-center text-on-secondary-container hover:text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-body">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary font-bold transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="menu_book" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="text-[10px] font-body">Study</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-secondary-container hover:text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="text-[10px] font-body">Score</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-secondary-container hover:text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-body">Profile</span>
+</button>
+</nav>
+<script>
+        // Simple Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if(this.classList.contains('active:scale-95')) {
+                    // Visual feedback handled by CSS class
+                }
+            });
+        });
+
+        // Drug schedule toggle
+        const scheduleButtons = document.querySelectorAll('.grid-cols-2 button, .grid-cols-4 button');
+        scheduleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                scheduleButtons.forEach(b => b.classList.remove('bg-primary', 'text-on-primary', 'border-primary'));
+                btn.classList.add('bg-primary', 'text-on-primary', 'border-primary');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaQ - Batch Import</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #09090b;
+            color: #fafafa;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        .dropzone-active {
+            border-color: #a78bfa;
+            background-color: rgba(167, 139, 250, 0.05);
+        }
+
+        /* Custom scrollbar for precision aesthetic */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#18181b",
+                        "inverse-primary": "#5b21b6",
+                        "tertiary-fixed-dim": "#6ee7b7",
+                        "surface-container": "#121215",
+                        "tertiary-container": "#065f46",
+                        "on-surface": "#fafafa",
+                        "surface-container-lowest": "#09090b",
+                        "on-surface-variant": "#a1a1aa",
+                        "on-primary-container": "#ede9fe",
+                        "error-container": "#3b1111",
+                        "outline-variant": "#27272a",
+                        "secondary-fixed-dim": "#71717a",
+                        "on-tertiary-container": "#bbf7d0",
+                        "surface-container-low": "#0f0f12",
+                        "on-secondary": "#09090b",
+                        "inverse-on-surface": "#09090b",
+                        "outline": "#52525b",
+                        "on-tertiary": "#001a12",
+                        "error": "#ef4444",
+                        "on-secondary-container": "#a1a1aa",
+                        "on-secondary-fixed": "#18181b",
+                        "on-primary-fixed-variant": "#5b21b6",
+                        "surface": "#0c0c0f",
+                        "on-secondary-fixed-variant": "#3f3f46",
+                        "surface-container-high": "#18181b",
+                        "primary": "#a78bfa",
+                        "tertiary": "#34d399",
+                        "on-primary-fixed": "#2e1065",
+                        "inverse-surface": "#fafafa",
+                        "surface-dim": "#0c0c0f",
+                        "surface-bright": "#18181b",
+                        "surface-container-highest": "#1e1e22",
+                        "tertiary-fixed": "#bbf7d0",
+                        "on-background": "#fafafa",
+                        "secondary": "#71717a",
+                        "background": "#09090b",
+                        "secondary-container": "#27272a",
+                        "on-tertiary-fixed-variant": "#047857",
+                        "on-primary": "#0a0012",
+                        "secondary-fixed": "#a1a1aa",
+                        "on-tertiary-fixed": "#003318",
+                        "primary-fixed": "#ede9fe",
+                        "on-error": "#1a0000",
+                        "primary-container": "#7c3aed",
+                        "primary-fixed-dim": "#c4b5fd",
+                        "surface-tint": "#a78bfa",
+                        "on-error-container": "#fca5a5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Geist"],
+                        "display": ["Geist"],
+                        "body": ["Geist"],
+                        "label": ["Geist"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background selection:bg-primary/30 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-surface-container border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<h1 class="text-xl font-headline font-bold text-primary tracking-tighter">Batch Import</h1>
+</div>
+<div class="flex items-center gap-2">
+<div class="hidden md:flex items-center bg-surface-variant px-3 py-1 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-xs text-tertiary mr-2" style="font-variation-settings: 'FILL' 1;">circle</span>
+<span class="text-xs font-medium text-on-surface-variant">Step 1 of 3</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-primary text-sm">person</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-16 mb-24 p-4 md:p-8 max-w-3xl mx-auto w-full">
+<!-- Progress Indicator -->
+<div class="mb-8 flex justify-between items-center w-full px-2">
+<div class="flex flex-col items-center gap-2 group">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold border-2 border-primary shadow-[0_0_15px_rgba(167,139,250,0.3)]">1</div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">Selection</span>
+</div>
+<div class="h-px flex-1 bg-outline-variant mx-4 -mt-6"></div>
+<div class="flex flex-col items-center gap-2 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-container border-2 border-outline-variant flex items-center justify-center text-on-surface-variant font-bold">2</div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Mapping</span>
+</div>
+<div class="h-px flex-1 bg-outline-variant mx-4 -mt-6"></div>
+<div class="flex flex-col items-center gap-2 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-container border-2 border-outline-variant flex items-center justify-center text-on-surface-variant font-bold">3</div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Review</span>
+</div>
+</div>
+<div class="space-y-6">
+<!-- Template Download Section -->
+<section class="bg-surface-container p-6 rounded-xl border border-outline-variant group hover:border-primary/50 transition-all duration-300">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">clinical_notes</span>
+</div>
+<div class="flex-1">
+<h2 class="text-lg font-bold text-on-surface mb-1">Download Excel Template</h2>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-4">
+                            Ensure data follows the required pharmacological schema to avoid validation errors during mapping.
+                        </p>
+<button class="inline-flex items-center gap-2 px-4 py-2 bg-surface-variant border border-outline-variant rounded-lg text-sm font-medium text-primary hover:bg-surface-container-highest active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">download</span>
+                            Download Template (.xlsx)
+                        </button>
+</div>
+</div>
+</section>
+<!-- Upload Dropzone -->
+<section class="relative">
+<label class="group relative flex flex-col items-center justify-center w-full min-h-[320px] bg-surface-container border-2 border-dashed border-outline-variant rounded-xl cursor-pointer hover:border-primary/50 hover:bg-surface-variant/50 transition-all duration-300" for="file-upload" id="drop-area">
+<div class="flex flex-col items-center justify-center pt-5 pb-6 text-center px-4">
+<div class="w-20 h-20 mb-6 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-5xl" id="upload-icon">upload_file</span>
+</div>
+<p class="mb-2 text-xl font-bold text-on-surface">Drag &amp; drop Excel file or <span class="text-primary">Browse</span></p>
+<p class="text-sm text-on-surface-variant">Supported format: .xlsx</p>
+<!-- File Info (Hidden by default) -->
+<div class="hidden mt-6 p-4 bg-surface-container-highest border border-primary/30 rounded-lg animate-in fade-in zoom-in duration-300" id="file-info">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">task_alt</span>
+<div class="text-left">
+<p class="text-sm font-bold text-on-surface" id="file-name">filename.xlsx</p>
+<p class="text-xs text-on-surface-variant" id="file-size">2.4 MB</p>
+</div>
+<button class="ml-4 text-on-surface-variant hover:text-error transition-colors" id="remove-file" type="button">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+</div>
+</div>
+<input accept=".xlsx" class="hidden" id="file-upload" type="file"/>
+</label>
+<div class="mt-4 flex items-center justify-between px-2">
+<div class="flex items-center gap-2 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">info</span>
+                        Max file size: 10MB
+                    </div>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">security</span>
+                        Encrypted transmission
+                    </div>
+</div>
+</section>
+<!-- Navigation Action -->
+<div class="pt-4">
+<button class="w-full py-4 bg-secondary-container text-secondary-fixed cursor-not-allowed rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2" disabled="" id="next-btn">
+                    Next: Map Data
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-2 pb-safe bg-surface-container-lowest border-t border-outline-variant z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label text-xs font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="font-label text-xs font-medium">Study</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-3 py-1 hover:text-primary transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label text-xs font-medium">Score</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container rounded-xl px-3 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-label text-xs font-medium">Logs</span>
+</a>
+</nav>
+<script>
+        const fileUpload = document.getElementById('file-upload');
+        const dropArea = document.getElementById('drop-area');
+        const fileInfo = document.getElementById('file-info');
+        const fileNameDisplay = document.getElementById('file-name');
+        const fileSizeDisplay = document.getElementById('file-size');
+        const nextBtn = document.getElementById('next-btn');
+        const removeFileBtn = document.getElementById('remove-file');
+        const uploadIcon = document.getElementById('upload-icon');
+
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, () => dropArea.classList.add('dropzone-active'), false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, () => dropArea.classList.remove('dropzone-active'), false);
+        });
+
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        }
+
+        fileUpload.addEventListener('change', function() {
+            handleFiles(this.files);
+        });
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                if (file.name.endsWith('.xlsx')) {
+                    fileNameDisplay.textContent = file.name;
+                    fileSizeDisplay.textContent = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+                    
+                    fileInfo.classList.remove('hidden');
+                    uploadIcon.textContent = 'check_circle';
+                    uploadIcon.parentElement.classList.replace('bg-primary/10', 'bg-tertiary/20');
+                    uploadIcon.parentElement.classList.replace('text-primary', 'text-tertiary');
+                    
+                    // Enable Button
+                    nextBtn.disabled = false;
+                    nextBtn.classList.replace('bg-secondary-container', 'bg-primary');
+                    nextBtn.classList.replace('text-secondary-fixed', 'text-on-primary');
+                    nextBtn.classList.remove('cursor-not-allowed');
+                    nextBtn.classList.add('hover:bg-primary/90', 'active:scale-95', 'shadow-[0_0_20px_rgba(167,139,250,0.4)]');
+                } else {
+                    alert('Please upload a valid .xlsx file.');
+                }
+            }
+        }
+
+        removeFileBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            fileUpload.value = '';
+            fileInfo.classList.add('hidden');
+            uploadIcon.textContent = 'upload_file';
+            uploadIcon.parentElement.classList.replace('bg-tertiary/20', 'bg-primary/10');
+            uploadIcon.parentElement.classList.replace('text-tertiary', 'text-primary');
+            
+            nextBtn.disabled = true;
+            nextBtn.classList.replace('bg-primary', 'bg-secondary-container');
+            nextBtn.classList.replace('text-on-primary', 'text-secondary-fixed');
+            nextBtn.classList.add('cursor-not-allowed');
+            nextBtn.classList.remove('hover:bg-primary/90', 'active:scale-95', 'shadow-[0_0_20px_rgba(167,139,250,0.4)]');
+        });
+    </script>
+</body></html>
