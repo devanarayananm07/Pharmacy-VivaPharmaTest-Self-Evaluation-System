@@ -17,19 +17,19 @@ class ProfileScreen extends ConsumerStatefulWidget {
 
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   final List<String> _maleAvatars = [
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Felix&top=shortHairShortFlat&facialHairProbability=100&facialHair=beardMajestic&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Male Pharmacist/Doctor illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Jack&top=shortHairTheCaesarSidePart&facialHairProbability=100&facialHair=beardLight&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Male Specialist illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=James&top=shortHairSides&facialHairProbability=100&facialHair=beardMedium&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Male friendly illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Christian&top=shortHairShortWaved&facialHairProbability=100&facialHair=moustacheFancy&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Male medical-style illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=George&top=shaggyMullet&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Male corporate style illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Felix&top=shortFlat&facialHairProbability=100&facialHair=beardMajestic&accessories=prescription01&accessoriesProbability=100&apparel=collarAndShirt&apparelColor=ffffff&mouth=smile&eyebrows=default', // Senior Pharmacist / Mentor
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Jack&top=theCaesar&facialHairProbability=100&facialHair=beardLight&accessoriesProbability=0&apparel=overall&apparelColor=65c9ff&mouth=smile&eyebrows=default', // Clinical Pharmacist (Blue Scrubs)
+    'https://api.dicebear.com/7.x/avataaars/png?seed=James&top=sides&facialHairProbability=100&facialHair=beardMedium&accessoriesProbability=0&apparel=overall&apparelColor=26a69a&mouth=smile&eyebrows=default', // Junior Pharmacist (Teal Scrubs)
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Christian&top=shortWaved&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&apparelColor=e0e0e0&mouth=smile&eyebrows=default', // Trainee / Student
+    'https://api.dicebear.com/7.x/avataaars/png?seed=George&top=shaggyMullet&facialHairProbability=80&facialHair=beardLight&accessories=prescription02&accessoriesProbability=100&apparel=collarAndShirt&apparelColor=ffffff&mouth=smile&eyebrows=default', // Chief Pharmacist / Admin
   ];
 
   final List<String> _femaleAvatars = [
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Maria&top=longButNotTooLong&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Female Pharmacist/Professional illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Sara&top=straight02&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Female clinical scientist illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Aria&top=curly&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Female friendly illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Lulu&top=bun&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Female smart glasses illustration
-    'https://api.dicebear.com/7.x/avataaars/png?seed=Heidi&top=bob&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&mouth=smile&eyebrows=default', // Female doctor illustration
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Maria&top=longButNotTooLong&facialHairProbability=0&accessories=prescription01&accessoriesProbability=100&apparel=collarAndShirt&apparelColor=ffffff&mouth=smile&eyebrows=default', // Senior Pharmacist / Mentor
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Sara&top=straight02&facialHairProbability=0&accessoriesProbability=0&apparel=overall&apparelColor=65c9ff&mouth=smile&eyebrows=default', // Clinical Pharmacist (Blue Scrubs)
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Aria&top=curly&facialHairProbability=0&accessoriesProbability=0&apparel=overall&apparelColor=26a69a&mouth=smile&eyebrows=default', // Junior Pharmacist (Teal Scrubs)
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Lulu&top=bun&facialHairProbability=0&accessories=prescription02&accessoriesProbability=100&apparel=collarAndShirt&apparelColor=e0e0e0&mouth=smile&eyebrows=default', // Trainee / Student
+    'https://api.dicebear.com/7.x/avataaars/png?seed=Heidi&top=bob&facialHairProbability=0&accessoriesProbability=0&apparel=collarAndShirt&apparelColor=ffffff&mouth=smile&eyebrows=default', // Chief Pharmacist / Admin
   ];
 
   void _saveAvatar(String url) {
