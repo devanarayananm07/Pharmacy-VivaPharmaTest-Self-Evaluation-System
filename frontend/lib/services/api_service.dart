@@ -8,7 +8,7 @@ class ApiService {
   /// - Use '10.0.2.2:8000' if you are running the Frappe server on your localhost and using an Android Emulator.
   /// - Use your computer's LAN IP (e.g. '192.168.52.186:8000') if using a physical device or different setup.
   /// The Frappe server host IP or Domain (without http:// or https://).
-  static const String serverHost = '192.168.52.186:8000';
+  static const String serverHost = '100.111.5.186:8000';
 
   /// Set to true if your public URL uses HTTPS (e.g. ngrok or cloud hosting).
   static const bool useHttps = false;
@@ -16,7 +16,7 @@ class ApiService {
   static String get baseUrl => '${useHttps ? 'https' : 'http'}://$serverHost/api/method';
   static String get resourceUrl => '${useHttps ? 'https' : 'http'}://$serverHost/api/resource';
 
-  static const String apiKey = 'amrita_aepl_viva_metaflow_secure_2026_xf92';
+  static const String apiKey = 'viva_metaflow_secure_2026_xf11';
   static const Duration timeoutDuration = Duration(seconds: 2);
 
   // Offline caching status tracking to improve network performance
@@ -494,11 +494,11 @@ class ApiService {
       };
     }
 
-    // 2. Regular Employee Login via emp_auth_api
+    // 2. Regular Employee Login via emp_auth
     try {
       final res = await _makeRequest(
         () async => http.post(
-          Uri.parse('$baseUrl/emp_auth_api?action=login'),
+          Uri.parse('$baseUrl/emp_auth?action=login'),
           headers: await _getHeaders(),
           body: jsonEncode({
             'employee_id': cleanId,
@@ -558,7 +558,7 @@ class ApiService {
   Future<void> initPassword(String employeeId) async {
     await _makeRequest(
       () async => http.post(
-        Uri.parse('$baseUrl/emp_auth_api?action=init'),
+        Uri.parse('$baseUrl/emp_auth?action=init'),
         headers: await _getHeaders(),
         body: jsonEncode({'employee_id': employeeId.trim()}),
       ),
@@ -572,7 +572,7 @@ class ApiService {
 
     await _makeRequest(
       () async => http.post(
-        Uri.parse('$baseUrl/emp_auth_api?action=change_password'),
+        Uri.parse('$baseUrl/emp_auth?action=change_password'),
         headers: await _getHeaders(),
         body: jsonEncode({
           'employee_id': employeeId,
@@ -593,7 +593,7 @@ class ApiService {
     try {
       final res = await _makeRequest(
         () async => http.get(
-          Uri.parse('$baseUrl/employee_master_api'),
+          Uri.parse('$baseUrl/employee_master'),
           headers: await _getHeaders(),
         ),
       );
@@ -608,7 +608,7 @@ class ApiService {
     try {
       final res = await _makeRequest(
         () async => http.post(
-          Uri.parse('$baseUrl/employee_master_api?action=create'),
+          Uri.parse('$baseUrl/employee_master?action=create'),
           headers: await _getHeaders(),
           body: jsonEncode(employee),
         ),
@@ -629,7 +629,7 @@ class ApiService {
     try {
       final res = await _makeRequest(
         () async => http.post(
-          Uri.parse('$baseUrl/employee_master_api?action=update'),
+          Uri.parse('$baseUrl/employee_master?action=update'),
           headers: await _getHeaders(),
           body: jsonEncode(employee),
         ),
@@ -653,7 +653,7 @@ class ApiService {
     try {
       await _makeRequest(
         () async => http.post(
-          Uri.parse('$baseUrl/employee_master_api?action=delete'),
+          Uri.parse('$baseUrl/employee_master?action=delete'),
           headers: await _getHeaders(),
           body: jsonEncode({'emp_id': empId}),
         ),
@@ -682,7 +682,7 @@ class ApiService {
     };
     
     try {
-      final uri = Uri.parse('$baseUrl/questions_master_api').replace(queryParameters: queryParams);
+      final uri = Uri.parse('$baseUrl/questions_master').replace(queryParameters: queryParams);
       final res = await _makeRequest(() async => http.get(uri, headers: await _getHeaders()));
       return List<dynamic>.from(res);
     } catch (e) {
@@ -712,7 +712,7 @@ class ApiService {
     try {
       final res = await _makeRequest(
         () async => http.post(
-          Uri.parse('$baseUrl/questions_master_api?action=create'),
+          Uri.parse('$baseUrl/questions_master?action=create'),
           headers: await _getHeaders(),
           body: jsonEncode(question),
         ),
@@ -736,7 +736,7 @@ class ApiService {
     try {
       final res = await _makeRequest(
         () async => http.post(
-          Uri.parse('$baseUrl/questions_master_api?action=update'),
+          Uri.parse('$baseUrl/questions_master?action=update'),
           headers: await _getHeaders(),
           body: jsonEncode(question),
         ),
@@ -760,7 +760,7 @@ class ApiService {
     try {
       await _makeRequest(
         () async => http.post(
-          Uri.parse('$baseUrl/questions_master_api?action=delete'),
+          Uri.parse('$baseUrl/questions_master?action=delete'),
           headers: await _getHeaders(),
           body: jsonEncode({'id': id}),
         ),
@@ -780,7 +780,7 @@ class ApiService {
       if (employeeId != null && employeeId.isNotEmpty) 'employee_id': employeeId,
     };
     try {
-      final uri = Uri.parse('$baseUrl/attempt_master_api').replace(queryParameters: queryParams);
+      final uri = Uri.parse('$baseUrl/attempt_master').replace(queryParameters: queryParams);
       final res = await _makeRequest(() async => http.get(uri, headers: await _getHeaders()));
       return List<dynamic>.from(res);
     } catch (e) {
@@ -804,7 +804,7 @@ class ApiService {
     try {
       final res = await _makeRequest(
         () async => http.post(
-          Uri.parse('$baseUrl/attempt_master_api?action=create'),
+          Uri.parse('$baseUrl/attempt_master?action=create'),
           headers: await _getHeaders(),
           body: jsonEncode(attempt),
         ),
@@ -831,7 +831,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> getDashboardStats(String employeeId) async {
     try {
-      final uri = Uri.parse('$baseUrl/dashboard_stats_api').replace(queryParameters: {'employee_id': employeeId});
+      final uri = Uri.parse('$baseUrl/dashboard_stats').replace(queryParameters: {'employee_id': employeeId});
       final res = await _makeRequest(() async => http.get(uri, headers: await _getHeaders()));
       return Map<String, dynamic>.from(res);
     } catch (e) {
